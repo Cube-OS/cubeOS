@@ -79,3 +79,4 @@ dist/
 
 # During local SDK development, the following directories may be created
 app-registry/
+file-storage
