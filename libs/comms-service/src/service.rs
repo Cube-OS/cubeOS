@@ -287,12 +287,12 @@ fn handle_graphql_request<Connection: Clone, Packet: LinkPacket>(
 ) -> Result<(), String> {
     let payload = message.payload().to_vec();
 
-    let client = reqwest::Client::builder()
+    let client = reqwest::blocking::Client::builder()
         .timeout(Duration::from_millis(timeout))
         .build()
         .map_err(|e| e.to_string())?;
 
-    let mut res = client
+    let res = client
         .post(&format!("http://{}:{}", sat_ip, message.destination()))
         .body(payload)
         .send()

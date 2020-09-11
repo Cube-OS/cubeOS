@@ -144,7 +144,7 @@ impl Drop for TelemetryServiceFixture {
 pub fn do_query(service_port: Option<u16>, query: &str) -> serde_json::Value {
     let port = service_port.unwrap_or(8111);
 
-    let client = reqwest::Client::new();
+    let client = reqwest::blocking::Client::new();
 
     let uri = format!("http://127.0.0.1:{}", port);
 

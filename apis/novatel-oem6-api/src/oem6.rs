@@ -247,7 +247,7 @@ pub struct OEM6 {
     /// Channel for receiveing response messages
     pub response_recv: Arc<Mutex<Receiver<(Header, Vec<u8>)>>>,
     /// Channel for receiving abbreviated response messages
-    pub response_abbrv_recv: Arc<Mutex<Receiver<(Vec<u8>)>>>,
+    pub response_abbrv_recv: Arc<Mutex<Receiver<Vec<u8>>>>,
 }
 
 impl OEM6 {

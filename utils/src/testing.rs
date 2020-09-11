@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-extern crate tempfile;
+use tempfile;
 
 use serde_json::Value;
 use std::cell::RefCell;
@@ -161,7 +161,7 @@ impl Drop for TestService {
 }
 
 pub fn service_query(query: &str, ip: &str, port: u16) -> Value {
-    let client = reqwest::Client::builder()
+    let client = reqwest::blocking::Client::builder()
         .timeout(Duration::from_millis(100))
         .build()
         .unwrap();

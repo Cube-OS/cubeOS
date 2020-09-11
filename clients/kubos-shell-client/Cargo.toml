@@ -6,6 +6,6 @@ edition = "2018"
 
 [dependencies]
 clap = "2.32"
-failure = "0.1.2"
+failure = "0.1.8"
 shell-protocol = { path = "../../libs/shell-protocol" }
 channel-protocol = { path = "../../libs/channel-protocol" }

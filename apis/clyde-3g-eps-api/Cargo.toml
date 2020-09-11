@@ -7,6 +7,6 @@ edition = "2018"
 [dependencies]
 bitflags = "1.0"
 eps-api = { path = "../eps-api" }
-failure = "0.1.2"
+failure = "0.1.8"
 nom = "4.0"
 rust-i2c = { path = "../../hal/rust-hal/rust-i2c" }
