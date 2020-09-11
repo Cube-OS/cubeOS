@@ -16,6 +16,7 @@
 #![deny(warnings)]
 
 #[macro_use]
+#[allow(deprecated)]
 extern crate juniper;
 
 mod app_entry;

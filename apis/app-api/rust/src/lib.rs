@@ -57,9 +57,10 @@
 #![deny(missing_docs)]
 #![deny(warnings)]
 
-#[cfg(test)]
-#[macro_use]
-extern crate juniper;
+// #[cfg(test)]
+// #[macro_use]
+// #[allow(deprecated)]
+// //use juniper;
 
 mod framework;
 mod query;

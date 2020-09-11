@@ -9,7 +9,7 @@ edition = "2018"
 tokio = { version = "0.1" }
 serde = { version = "1.0", default-features = false }
 serde_json = { version = "1.0", default-features = false }
-juniper = { version = "0.14.2", default-features = false }
+juniper = { version = "0.14.2" }
 juniper_warp = { version = "0.5.2", default-features = false }
 kubos-system = { path = "../../apis/system-api" }
 log = { version = "^0.4.0", default-features = false }
@@ -18,4 +18,4 @@ warp = { version = "0.1.20", default-features = false }
 pkg-config = {version = "= 0.3.15", default-features = false }
 
 [dev-dependencies]
-failure = "0.1.2"
+failure = "0.1.8"
