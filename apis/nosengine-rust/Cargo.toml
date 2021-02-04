@@ -7,7 +7,7 @@ edition = "2018"
 
 [dependencies]
 libc = "0.2.0"
-failure = "0.1.2"
+failure = "0.1.8"
 
 [build-dependencies]
 cmake = "0.1"

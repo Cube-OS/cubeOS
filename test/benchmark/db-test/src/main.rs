@@ -167,7 +167,7 @@ impl DbTest {
 
             let start = PreciseTime::now();
 
-            let client = reqwest::Client::builder().build().unwrap();
+            let client = reqwest::blocking::Client::builder().build().unwrap();
 
             let uri = format!("http://{}", self.config.hosturl().unwrap());
 
@@ -214,7 +214,7 @@ impl DbTest {
         );
 
         let start = PreciseTime::now();
-        let client = reqwest::Client::builder().build().unwrap();
+        let client = reqwest::blocking::Client::builder().build().unwrap();
         let uri = format!("http://{}", self.config.hosturl().unwrap());
         let mut map = ::std::collections::HashMap::new();
         map.insert("query", mutation);
@@ -276,7 +276,7 @@ impl DbTest {
                 }
             }"#;
 
-        let client = reqwest::Client::builder().build().unwrap();
+        let client = reqwest::blocking::Client::builder().build().unwrap();
 
         let uri = format!("http://{}", self.config.hosturl().unwrap());
 

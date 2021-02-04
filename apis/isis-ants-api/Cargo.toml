@@ -10,7 +10,7 @@ edition = "2018"
 nos3 = ["rust-i2c/nos3"]
 
 [dependencies]
-failure = "0.1.2"
+failure = "0.1.8"
 nom = "4.0.0-beta1"
 rust-i2c = { path = "../../hal/rust-hal/rust-i2c", optional = true }
 

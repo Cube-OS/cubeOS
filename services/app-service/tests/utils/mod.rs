@@ -285,7 +285,7 @@ impl Drop for AppServiceFixture {
 }
 
 pub fn send_query(config: ServiceConfig, query: &str) -> serde_json::Value {
-    let client = reqwest::Client::new();
+    let client = reqwest::blocking::Client::new();
 
     let uri = format!("http://{}", config.hosturl().unwrap());
 

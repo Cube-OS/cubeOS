@@ -8,7 +8,7 @@ edition = "2018"
 byteorder = "1.2.7"
 clap = "2.32"
 comms-service = { path = "../../libs/comms-service" }
-failure = "0.1.2"
+failure = "0.1.8"
 pnet = "0.23.0"
-serde_json = "1.0"
+serde_json = { version = "1.0", default-features = false }
 serial = "0.4"

@@ -7,9 +7,9 @@ edition = "2018"
 [dependencies]
 cbor-protocol = { path = "../cbor-protocol" }
 channel-protocol = { path = "../channel-protocol" }
-failure = "0.1.2"
+failure = "0.1.8"
 libc = "0.2"
-log = "^0.4.0"
+log = { version = "^0.4.0", default-features = false }
 nix = "0.11.0"
 rand = "0.5"
 serde_cbor = "0.8"

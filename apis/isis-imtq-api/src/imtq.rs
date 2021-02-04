@@ -35,8 +35,8 @@ impl Imtq<ImtqRaw> {
     ///
     /// # Example
     /// ```
-    /// extern crate adcs_api;
-    /// extern crate isis_imtq_api;
+    /// use adcs_api;
+    /// use isis_imtq_api;
     /// use adcs_api::*;
     /// use isis_imtq_api::*;
     ///
@@ -79,8 +79,8 @@ impl<T: ImtqFFI> Imtq<T> {
     ///
     /// # Example
     /// ```
-    /// extern crate adcs_api;
-    /// extern crate isis_imtq_api;
+    /// use adcs_api;
+    /// use isis_imtq_api;
     /// use adcs_api::*;
     /// use isis_imtq_api::*;
     ///
@@ -123,8 +123,8 @@ impl<T: ImtqFFI> Imtq<T> {
     ///
     /// # Example
     /// ```
-    /// extern crate adcs_api;
-    /// extern crate isis_imtq_api;
+    /// use adcs_api;
+    /// use isis_imtq_api;
     /// use adcs_api::*;
     /// use isis_imtq_api::*;
     ///

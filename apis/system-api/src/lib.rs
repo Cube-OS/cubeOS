@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 #![deny(warnings)]
+#![allow(deprecated)]
 #![deny(missing_docs)]
 
 //! KubOS System level APIs
