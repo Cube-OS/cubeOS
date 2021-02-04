@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-#[derive(Debug, Deserialize)]
-
 use kubos_telemetry_db::Database;
 use log::{error, info};
 use serde::Deserialize;
@@ -26,6 +24,7 @@ pub struct DirectUdp {
     db: Arc<Mutex<Database>>,
 }
 
+#[derive(Debug, Deserialize)]
 struct DataPoint {
     timestamp: Option<f64>,
     subsystem: String,
