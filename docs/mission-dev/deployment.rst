@@ -4,7 +4,7 @@ Deployment Application Guide
 Overview
 --------
 
-The deployment sequence in KubOS is handled by a mission application. This is a
+The deployment sequence in CubeOS is handled by a mission application. This is a
 guide for best practices for how to control deployment in the safest and most
 reliable way within that mission application.
 
@@ -23,7 +23,7 @@ All of these tasks often need to occur completely autonomously on deployment
 from the launch vehicle. Since we are not focusing on a specific hardware
 configuration, we cannot cover the finer points of items 2-4. Item 1, however,
 is simply a persistent timer, and we will cover the recommended way to achieve
-this within the KubOS environment.
+this within the CubeOS environment.
 
 Hold Time Tracking
 ------------------
@@ -54,5 +54,5 @@ Notice how ``deployed`` is not set to ``True`` until all deployment tasks are
 completed successfully. This is to ensure that these are continually attempted
 until they are successfully completed so the satellite does not put itself into
 an unrecoverable state. This is only one possible way to implement the
-deployment hold time countdown within KubOS. It can be achieved in many other
+deployment hold time countdown within CubeOS. It can be achieved in many other
 ways, depending on the mission's needs!

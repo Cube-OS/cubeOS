@@ -15,11 +15,12 @@
  */
 
 #include <i2c.h>
-#include <trxvu.h>
 #include <stdio.h>
 #include <string.h>
+#include <trxvu.h>
 
-KRadioStatus k_radio_recv(radio_rx_header * frame, uint8_t * message, uint8_t * len)
+KRadioStatus k_radio_recv(radio_rx_header * frame, uint8_t * message,
+                          uint8_t * len)
 {
     if (frame == NULL || message == NULL)
     {
@@ -197,7 +198,8 @@ KRadioStatus kprv_radio_rx_remove_frame(void)
     return RADIO_OK;
 }
 
-KRadioStatus kprv_radio_rx_get_frame(radio_rx_header * frame, uint8_t * message, uint8_t * len)
+KRadioStatus kprv_radio_rx_get_frame(radio_rx_header * frame,
+                                     uint8_t * message, uint8_t * len)
 {
     if (frame == NULL || message == NULL)
     {
@@ -211,15 +213,14 @@ KRadioStatus kprv_radio_rx_get_frame(radio_rx_header * frame, uint8_t * message,
     status = k_i2c_write(radio_bus, radio_rx.addr, (uint8_t *) &cmd, 1);
     if (status != I2C_OK)
     {
-        fprintf(stderr, "Failed to request radio RX frame: %d\n",
-                status);
+        fprintf(stderr, "Failed to request radio RX frame: %d\n", status);
         return RADIO_ERROR;
     }
 
     uint8_t * buffer = malloc(sizeof(radio_rx_header) + radio_rx.max_size);
 
     status = k_i2c_read(radio_bus, radio_rx.addr, (char *) buffer,
-            sizeof(radio_rx_header) + radio_rx.max_size);
+                        sizeof(radio_rx_header) + radio_rx.max_size);
     if (status != I2C_OK)
     {
         fprintf(stderr, "Failed to read radio RX frame: %d\n", status);
@@ -229,11 +230,11 @@ KRadioStatus kprv_radio_rx_get_frame(radio_rx_header * frame, uint8_t * message,
 
     radio_rx_header * temp = (radio_rx_header *) buffer;
 
-    frame->msg_size = temp->msg_size;
-    frame->doppler_offset = temp->doppler_offset;
+    frame->msg_size        = temp->msg_size;
+    frame->doppler_offset  = temp->doppler_offset;
     frame->signal_strength = temp->signal_strength;
 
-    memcpy(message, buffer+sizeof(radio_rx_header), frame->msg_size);
+    memcpy(message, buffer + sizeof(radio_rx_header), frame->msg_size);
 
     if (len != NULL)
     {

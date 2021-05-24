@@ -1,4 +1,4 @@
-KubOS for the Pumpkin MBM2
+CubeOS for the Pumpkin MBM2
 ==========================
 
 .. toctree::
@@ -27,7 +27,7 @@ port on the edge of the board, with the exposed pins facing up.
 The USB cable can then be plugged into your computer. Any required
 drivers should be automatically installed.
 
-This connection will be passed through to a Kubos Vagrant image as
+This connection will be passed through to a CubeOS Vagrant image as
 `/dev/FTDI` and will be used for the serial console.
 
 Ethernet Connection
@@ -39,7 +39,7 @@ ethernet.
 Peripherals
 -----------
 
-By default, KubOS exposes the following peripheral components:
+By default, CubeOS exposes the following peripheral components:
 
 - Ethernet
 - 1 real-time clock (RTC)

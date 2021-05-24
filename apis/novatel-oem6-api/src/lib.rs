@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-//! Kubos API for interacting with [NovAtel OEM6 High Precision GNSS Receivers](https://www.novatel.com/products/gnss-receivers/oem-receiver-boards/oem6-receivers/)
+//! CubeOS API for interacting with [NovAtel OEM6 High Precision GNSS Receivers](https://www.novatel.com/products/gnss-receivers/oem-receiver-boards/oem6-receivers/)
 //!
 //! All work is done against an instantiated [`OEM6`] struct.
 //!

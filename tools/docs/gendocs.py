@@ -18,12 +18,14 @@ DOCS_DIRS = [
     "apis/isis-imtq-api",
     "apis/isis-iobc-supervisor",
     "apis/isis-trxvu-api",
-    "hal/kubos-hal",
+    "hal/cubeos-hal",
 ]
+
 
 def gendocs_xml(dir, doxyfile, version, doc_dir):
     doxycmd = GENERATE_XML.format(doxyfile, version, doc_dir)
     subprocess.call((doxycmd), shell=True, cwd=dir)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -49,6 +51,7 @@ def main():
 
     subprocess.call("cargo doc --all --no-deps", shell=True)
     dir_util.copy_tree("target/doc", "html/rust-docs")
+
 
 if __name__ == '__main__':
     main()

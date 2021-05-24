@@ -22,7 +22,7 @@ mod schema;
 
 use crate::model::Subsystem;
 use crate::schema::{MutationRoot, QueryRoot};
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 use log::error;
 
 fn main() {

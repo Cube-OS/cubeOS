@@ -17,7 +17,7 @@
 // ARC Training Centre for CubeSats, UAVs & Their Applications (CUAVA) team (www.cuava.com.au)
 // at the University of Sydney
 
-//! Kubos API for interacting with [GomSpace EPS Systems]
+//! CubeOS API for interacting with [GomSpace EPS Systems]
 
 #![deny(missing_docs)]
 #[macro_use]

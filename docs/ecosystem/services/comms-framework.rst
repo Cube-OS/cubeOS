@@ -3,7 +3,7 @@ Communications Service Framework
 
 The hardware used to establish communication between a satellite and the ground varies wildly from
 mission to mission.
-As a result, KubOS provides a communications service framework which can be used by developers when
+As a result, CubeOS provides a communications service framework which can be used by developers when
 creating their specific radio's hardware service.
 This framework is used to simplify the process of reading messages from the ground, forwarding them
 to the appropriate internal destination, and then sending properly formatted messages back to the
@@ -137,7 +137,7 @@ Once this transaction has completed, the message handler thread exits.
         activate handler
     end box
 
-    participant "Kubos Service" as service
+    participant "CubeOS Service" as service
 
     handler -> service : 5. Posts GraphQL query/mutation to service
     service -> handler : 6. Return result of query/mutation
@@ -177,7 +177,7 @@ Any responses must be sent through the appropriate downlink endpoint.
         activate handler
     end box
 
-    participant "Kubos Service" as service
+    participant "CubeOS Service" as service
 
     handler -> service : 5. Pass UDP packet to service
     destroy handler

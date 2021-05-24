@@ -1,4 +1,4 @@
-# Kubos UART Comms Service Client
+# CubeOS UART Comms Service Client
 
 Example client "radio" over UART program
 

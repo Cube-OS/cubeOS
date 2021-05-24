@@ -1,6 +1,6 @@
+use cubeos_app::*;
 use failure::{bail, Error};
 use getopts::Options;
-use kubos_app::*;
 use log::*;
 use std::thread;
 use std::time::Duration;

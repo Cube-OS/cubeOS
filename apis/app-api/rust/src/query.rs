@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
+use cubeos_system::Config as ServiceConfig;
 use failure::format_err;
-use kubos_system::Config as ServiceConfig;
 use serde_json;
 use std::time::Duration;
 
 /// The result type used by `query`
 type AppResult<T> = Result<T, failure::Error>;
 
-/// Execute a GraphQL query against a running KubOS Service using UDP.
+/// Execute a GraphQL query against a running CubeOS Service using UDP.
 ///
 /// Returns the parsed JSON result as a serde_json::Value on success
 ///
@@ -37,7 +37,7 @@ type AppResult<T> = Result<T, failure::Error>;
 ///
 /// ```
 /// # use failure;
-/// use kubos_app::*;
+/// use cubeos_app::*;
 /// use std::time::Duration;
 ///
 /// # fn func() -> Result<(), failure::Error> {
@@ -45,7 +45,7 @@ type AppResult<T> = Result<T, failure::Error>;
 /// 		ping
 /// 	}"#;
 ///
-/// let result = query(&ServiceConfig::new_from_path("radio-service", "/home/kubos/config.toml".to_owned())?, request, Some(Duration::from_secs(1)))?;
+/// let result = query(&ServiceConfig::new_from_path("radio-service", "/home/cubeos/config.toml".to_owned())?, request, Some(Duration::from_secs(1)))?;
 ///
 /// let data = result.get("ping").unwrap().as_str();
 ///
@@ -56,7 +56,7 @@ type AppResult<T> = Result<T, failure::Error>;
 ///
 /// ```
 /// # use failure;
-/// use kubos_app::*;
+/// use cubeos_app::*;
 /// use std::time::Duration;
 ///
 /// # fn func() -> Result<(), failure::Error> {

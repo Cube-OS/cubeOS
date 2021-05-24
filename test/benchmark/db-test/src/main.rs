@@ -16,8 +16,8 @@
 
 use getopts::Options;
 
-use kubos_system::{Config, DEFAULT_PATH};
-use kubos_telemetry_db::{Database, Entry};
+use cubeos_system::{Config, DEFAULT_PATH};
+use cubeos_telemetry_db::{Database, Entry};
 use rand::{thread_rng, Rng};
 use serde_json::{json, ser};
 use std::net::{IpAddr, Ipv4Addr, SocketAddr, UdpSocket};

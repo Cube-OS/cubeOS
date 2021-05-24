@@ -17,7 +17,7 @@
 // ARC Training Centre for CubeSats, UAVs & Their Applications (CUAVA) team (www.cuava.com.au)
 // at the University of Sydney
 
-//! Kubos Service for interacting with [GomSpace p31u EPS]
+//! CubeOS Service for interacting with [GomSpace p31u EPS]
 //!
 //! # Configuration
 //!
@@ -58,9 +58,9 @@ extern crate juniper;
 use crate::model::Subsystem;
 pub use crate::objects::*;
 use crate::schema::{MutationRoot, QueryRoot};
+use cubeos_service::{Config, Service};
 use failure::format_err;
 use gomspace_p31u_api::*;
-use kubos_service::{Config, Service};
 use log::error;
 use syslog::Facility;
 

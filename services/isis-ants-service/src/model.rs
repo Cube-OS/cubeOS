@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
+use cubeos_service::{process_errors, push_err, run};
 use failure::Error;
 use isis_ants_api::*;
-use kubos_service::{process_errors, push_err, run};
 use log::info;
 use std::str;
 use std::sync::{Arc, Mutex, RwLock};
@@ -101,7 +101,7 @@ impl Subsystem {
             ants_box
         })));
 
-        info!("Kubos antenna systems service started");
+        info!("CubeOS antenna systems service started");
 
         Ok(Subsystem {
             ants,

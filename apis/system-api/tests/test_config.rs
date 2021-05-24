@@ -21,14 +21,14 @@ use toml::Value;
 
 #[test]
 fn default_config() {
-    let config = kubos_system::Config::default();
+    let config = cubeos_system::Config::default();
 
     assert_eq!(config.get("addr"), None);
 }
 
 #[test]
 fn new_from_str() {
-    let config = kubos_system::Config::new_from_str(
+    let config = cubeos_system::Config::new_from_str(
         "category-1",
         r#"
     [category-1]
@@ -64,7 +64,7 @@ fn new_from_file() {
     );
     assert!(result.is_ok());
 
-    let config = kubos_system::Config::new_from_path(
+    let config = cubeos_system::Config::new_from_path(
         "category-1",
         file.path().to_string_lossy().to_string(),
     )
@@ -78,7 +78,7 @@ fn new_from_file() {
 
 #[test]
 fn missing_port() {
-    let result = kubos_system::Config::new_from_str(
+    let result = cubeos_system::Config::new_from_str(
         "category-1",
         r#"
     [category-1.addr]
@@ -94,7 +94,7 @@ fn missing_port() {
 
 #[test]
 fn missing_ip() {
-    let result = kubos_system::Config::new_from_str(
+    let result = cubeos_system::Config::new_from_str(
         "category-1",
         r#"
     [category-1.addr]
@@ -110,7 +110,7 @@ fn missing_ip() {
 
 #[test]
 fn good_addr() {
-    let config = kubos_system::Config::new_from_str(
+    let config = cubeos_system::Config::new_from_str(
         "category-1",
         r#"
     [category-1.addr]
@@ -124,7 +124,7 @@ fn good_addr() {
 
 #[test]
 fn only_category_config() {
-    let config = kubos_system::Config::new_from_str(
+    let config = cubeos_system::Config::new_from_str(
         "category-1",
         r#"
     root-a = 1

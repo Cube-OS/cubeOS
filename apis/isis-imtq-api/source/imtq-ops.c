@@ -49,10 +49,11 @@ KADCSStatus k_adcs_reset(KADCSReset type)
         return ADCS_ERROR_CONFIG;
     }
 
-    /* 
+    /*
      * We need a longer delay (100 ms) to allow the iMTQ time to come back up
      */
-    const struct timespec TRANSFER_DELAY = {.tv_sec = 0, .tv_nsec = 100000000 };
+    const struct timespec TRANSFER_DELAY
+        = { .tv_sec = 0, .tv_nsec = 100000000 };
 
     status = kprv_imtq_transfer(packet, sizeof(packet), (uint8_t *) &response,
                                 sizeof(response), &TRANSFER_DELAY);
@@ -75,7 +76,7 @@ KADCSStatus k_adcs_reset(KADCSReset type)
 
 /*
  * For the iMTQ, the only mode parameter that may be passed is the duration
- * value for detumble mode 
+ * value for detumble mode
  */
 KADCSStatus k_adcs_set_mode(ADCSMode mode, const adcs_mode_param * duration)
 {
@@ -126,14 +127,15 @@ KADCSStatus k_adcs_run_test(ADCSTestType axis, adcs_test_results buffer)
     }
 
     /* Wait an appropriate time for the test to finish */
-    const struct timespec TRANSFER_DELAY = {.tv_sec = 1, .tv_nsec = 300000000 };
+    const struct timespec TRANSFER_DELAY
+        = { .tv_sec = 1, .tv_nsec = 300000000 };
 
     nanosleep(&TRANSFER_DELAY, NULL);
 
     if (axis == TEST_ALL)
     {
         imtq_test_result_all data = { 0 };
-        
+
         status = k_imtq_get_test_results_all(&data);
         if (status != ADCS_OK)
         {
@@ -153,12 +155,12 @@ KADCSStatus k_adcs_run_test(ADCSTestType axis, adcs_test_results buffer)
     else
     {
         imtq_test_result_single data = { 0 };
-        
+
         status = k_imtq_get_test_results_single(&data);
         if (status != ADCS_OK)
         {
-            fprintf(stderr,
-                    "Failed to get single test results (single): %d\n", status);
+            fprintf(stderr, "Failed to get single test results (single): %d\n",
+                    status);
             return status;
         }
 
@@ -206,14 +208,11 @@ KADCSStatus k_imtq_start_measurement(void)
 
 KADCSStatus k_imtq_start_actuation_current(imtq_axis_data current, uint16_t time)
 {
-    KADCSStatus status    = ADCS_OK;
-    uint8_t     packet[9] = {
-            START_CURRENT,
-            current.x & 0xFF, current.x >> 8,
-            current.y & 0xFF, current.y >> 8,
-            current.z & 0xFF, current.z >> 8,
-            time & 0xFF, time >> 8
-    };
+    KADCSStatus status = ADCS_OK;
+    uint8_t     packet[9]
+        = { START_CURRENT,    current.x & 0xFF, current.x >> 8,
+            current.y & 0xFF, current.y >> 8,   current.z & 0xFF,
+            current.z >> 8,   time & 0xFF,      time >> 8 };
 
     imtq_resp_header response;
 
@@ -238,13 +237,9 @@ KADCSStatus k_imtq_start_actuation_current(imtq_axis_data current, uint16_t time
 KADCSStatus k_imtq_start_actuation_dipole(imtq_axis_data dipole, uint16_t time)
 {
     KADCSStatus status    = ADCS_OK;
-    uint8_t     packet[9] = {
-            START_DIPOLE,
-            dipole.x & 0xFF, dipole.x >> 8,
-            dipole.y & 0xFF, dipole.y >> 8,
-            dipole.z & 0xFF, dipole.z >> 8,
-            time & 0xFF, time >> 8
-    };
+    uint8_t     packet[9] = { START_DIPOLE,    dipole.x & 0xFF, dipole.x >> 8,
+                          dipole.y & 0xFF, dipole.y >> 8,   dipole.z & 0xFF,
+                          dipole.z >> 8,   time & 0xFF,     time >> 8 };
 
     imtq_resp_header response;
 
@@ -270,13 +265,9 @@ KADCSStatus k_imtq_start_actuation_PWM(imtq_axis_data pwm, uint16_t time)
         return ADCS_ERROR_CONFIG;
     }
 
-    uint8_t packet[9] = {
-            START_PWM,
-            pwm.x & 0xFF, pwm.x >> 8,
-            pwm.y & 0xFF, pwm.y >> 8,
-            pwm.z & 0xFF, pwm.z >> 8,
-            time & 0xFF, time >> 8
-    };
+    uint8_t packet[9]
+        = { START_PWM,    pwm.x & 0xFF, pwm.x >> 8,  pwm.y & 0xFF, pwm.y >> 8,
+            pwm.z & 0xFF, pwm.z >> 8,   time & 0xFF, time >> 8 };
 
     imtq_resp_header response;
 
@@ -293,11 +284,8 @@ KADCSStatus k_imtq_start_actuation_PWM(imtq_axis_data pwm, uint16_t time)
 
 KADCSStatus k_imtq_start_test(ADCSTestType axis)
 {
-    KADCSStatus status    = ADCS_OK;
-    uint8_t     packet[2] = {
-            START_TEST,
-            (uint8_t) axis
-    };
+    KADCSStatus      status    = ADCS_OK;
+    uint8_t          packet[2] = { START_TEST, (uint8_t) axis };
     imtq_resp_header response;
 
     status = kprv_imtq_transfer(packet, sizeof(packet), (uint8_t *) &response,
@@ -314,11 +302,8 @@ KADCSStatus k_imtq_start_test(ADCSTestType axis)
 
 KADCSStatus k_imtq_start_detumble(uint16_t time)
 {
-    KADCSStatus status    = ADCS_OK;
-    uint8_t     packet[3] = {
-            START_BDOT,
-            time & 0xFF, time >> 8
-    };
+    KADCSStatus      status    = ADCS_OK;
+    uint8_t          packet[3] = { START_BDOT, time & 0xFF, time >> 8 };
     imtq_resp_header response;
 
     status = kprv_imtq_transfer(packet, sizeof(packet), (uint8_t *) &response,

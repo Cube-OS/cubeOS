@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-//! Kubos File Transfer Protocol
+//! CubeOS File Transfer Protocol
 //!
 //! # Examples
 //!

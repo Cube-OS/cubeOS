@@ -1,7 +1,7 @@
-Using Python with the Kubos SDK
+Using Python with the CubeOS SDK
 ===============================
 
-The Kubos SDK Vagrant box comes with a Python interperter and all the modules needed to develop a
+The CubeOS SDK Vagrant box comes with a Python interperter and all the modules needed to develop a
 basic hardware service or mission application.
 Services can be tested locally in the Vagrant box up until the point that they need hardware
 interaction.
@@ -9,7 +9,7 @@ interaction.
 .. note::
 
     The SDK comes with support for both Python2.7 and Python3.7.
-    However, only Python3.7 is available on OBCs running Kubos Linux.
+    However, only Python3.7 is available on OBCs running CubeOS Linux.
 
 Transferring to Target
 ----------------------
@@ -18,16 +18,16 @@ Transferring to Target
 
    The ISIS-OBC does not currently support Python due to size constraints
 
-There are currently two ways to add Python scripts and libraries to a system running Kubos Linux:
+There are currently two ways to add Python scripts and libraries to a system running CubeOS Linux:
 
-- Add a new Python package to a custom Kubos Linux build
+- Add a new Python package to a custom CubeOS Linux build
 
-    - Fork and clone `kubos-linux-build <https://github.com/kubos/kubos-linux-build>`__
+    - Fork and clone `cubeos-linux-build <https://github.com/cubeos/cubeos-linux-build>`__
       and add additional Python packages to the `package/python` directory
     - You can see our current system packages and how they are structured
-      `here <https://github.com/kubos/kubos-linux-build/tree/master/package/python>`__.
-    - See the :ref:`custom Kubos Linux docs <custom-klb>` for more information on
-      building Kubos Linux.
+      `here <https://github.com/cubeos/cubeos-linux-build/tree/master/package/python>`__.
+    - See the :ref:`custom CubeOS Linux docs <custom-klb>` for more information on
+      building CubeOS Linux.
 
 - Add individual Python files on the fly by transferring them to an attached hardware target
 

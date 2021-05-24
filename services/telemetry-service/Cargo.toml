@@ -8,8 +8,8 @@ edition = "2018"
 diesel = { version = "1.0.0", features = ["sqlite"] }
 flate2 = "1.0"
 juniper =  "0.11"
-kubos-service = { path = "../kubos-service" }
-kubos-telemetry-db = { path = "../../apis/telemetry-db-api" }
+cubeos-service = { path = "../cubeos-service" }
+cubeos-telemetry-db = { path = "../../apis/telemetry-db-api" }
 log = "^0.4.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_derive = "1.0"

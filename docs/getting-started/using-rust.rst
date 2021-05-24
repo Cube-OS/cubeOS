@@ -1,7 +1,7 @@
-Getting Started with KubOS and Rust
+Getting Started with CubeOS and Rust
 ===================================
 
-This document will cover getting started using Rust for local KubOS development.
+This document will cover getting started using Rust for local CubeOS development.
 You will need to have the build dependencies listed in :ref:`local build dependencies <build-dependencies>`
 installed prior to using Rust. After these dependencies have been installed,
 you are ready to begin creating and running your own Rust projects.
@@ -15,7 +15,7 @@ A new Rust project can be created by running the following command::
 
 Cargo will create the project folder and a basic folder structure.
 It is suggested that you create custom mission applications or services
-outside of the Kubos source repo, preferably in your own project's repo folder.
+outside of the CubeOS source repo, preferably in your own project's repo folder.
 
 Compiling and Running
 ---------------------
@@ -60,11 +60,11 @@ Next Steps
 
 Ready to create a mission application in Rust? Take a look at the :doc:`Python mission application <../tutorials/first-mission-app>`
 tutorial for guidance in the construction of a mission application.
-The `example rust mission application <https://github.com/kubos/kubos/tree/master/examples/rust-mission-app>`__ is a good model for a Rust-based mission application.
+The `example rust mission application <https://github.com/cubeos/cubeos/tree/master/examples/rust-mission-app>`__ is a good model for a Rust-based mission application.
 
 
 Interested in cross-compiling your project for use on hardware? Take a look at the
 :doc:`local cross-compiling <../obc-docs/cross-compile>` guide.
 
-Interested in working on the KubOS Rust source or contributing back? Take a look at
-the :doc:`Contributing to KubOS <../contributing/index>` docs.
+Interested in working on the CubeOS Rust source or contributing back? Take a look at
+the :doc:`Contributing to CubeOS <../contributing/index>` docs.

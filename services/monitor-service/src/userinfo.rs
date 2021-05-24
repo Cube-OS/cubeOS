@@ -94,13 +94,13 @@ mod tests {
         let passwd: &[u8] = b"root:x:0:0:root:/root:/bin/sh\n\
                               daemon:x:1:1:daemon:/usr/sbin:/bin/false\n\
                               bin:x:2:2:bin:/bin:/bin/false\n\
-                              kubos:x:1000:100::/home/kubos:/bin/sh";
+                              cubeos:x:1000:100::/home/cubeos:/bin/sh";
         let username = |uid| UserInfo::name_from_id(passwd, uid);
 
         assert_eq!(username(0), Some("root".into()));
         assert_eq!(username(1), Some("daemon".into()));
         assert_eq!(username(2), Some("bin".into()));
-        assert_eq!(username(1000), Some("kubos".into()));
+        assert_eq!(username(1000), Some("cubeos".into()));
         assert_eq!(username(100), None);
     }
 
@@ -126,9 +126,9 @@ mod tests {
         assert_eq!(operator.user(), Some("operator".into()));
         assert_eq!(operator.group(), Some("operator".into()));
 
-        let kubos = UserInfo::new(1000, 100);
-        assert_eq!(kubos.user(), Some("kubos".into()));
-        assert_eq!(kubos.group(), Some("users".into()));
+        let cubeos = UserInfo::new(1000, 100);
+        assert_eq!(cubeos.user(), Some("cubeos".into()));
+        assert_eq!(cubeos.group(), Some("users".into()));
 
         let system = UserInfo::new(1001, 100);
         assert_eq!(system.user(), Some("system".into()));

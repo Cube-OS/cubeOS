@@ -1,5 +1,5 @@
 /*
- * Kubos Linux
+ * CubeOS Linux
  * Copyright (C) 2017 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,13 +30,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define RESOLUTION 1023     /* 2^(# resolution bits) - 1 */
-#define R_REF 10000         /* Fixed resistor value */
-#define T_NOMINAL 25        /* Nominal temperature */
-#define R_NOMINAL 10000     /* Resistance at nominal temperature */
-#define BCOEFFICIENT 3950   /* Thermistor's beta coefficient */
-#define V_CC 2.4            /* Supplied voltage */
-#define V_REF 3.3           /* Internal reference voltage */
+#define RESOLUTION 1023 /* 2^(# resolution bits) - 1 */
+#define R_REF 10000 /* Fixed resistor value */
+#define T_NOMINAL 25 /* Nominal temperature */
+#define R_NOMINAL 10000 /* Resistance at nominal temperature */
+#define BCOEFFICIENT 3950 /* Thermistor's beta coefficient */
+#define V_CC 2.4 /* Supplied voltage */
+#define V_REF 3.3 /* Internal reference voltage */
 
 #define dbg(args...) \
     if (debug) fprintf(stderr, args)
@@ -71,7 +71,8 @@ int therm_read_temperature(float * temp)
 
     float raw = (float) atoi(val);
 
-    /* Convert the raw ADC value into the thermistors current resistance value */
+    /* Convert the raw ADC value into the thermistors current resistance value
+     */
 
     float res = R_REF * (((RESOLUTION * raw) * (V_REF / V_CC)) - 1);
 

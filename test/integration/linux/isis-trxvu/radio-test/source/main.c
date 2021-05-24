@@ -1,5 +1,5 @@
 /*
- * Kubos Linux
+ * CubeOS Linux
  * Copyright (C) 2018 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,13 +18,12 @@
  */
 
 #include <errno.h>
+#include <getopt.h>
 #include <signal.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <getopt.h>
-#include <stdint.h>
 
 #include "trxvu.h"
 
@@ -42,8 +41,8 @@
 
 KRadioStatus get_tx_telem()
 {
-    KRadioStatus       status;
-    radio_telem tx_telem1 = { 0 };
+    KRadioStatus status;
+    radio_telem  tx_telem1 = { 0 };
     status = k_radio_get_telemetry(&tx_telem1, RADIO_TX_TELEM_ALL);
     if (status != RADIO_OK)
     {
@@ -54,12 +53,18 @@ KRadioStatus get_tx_telem()
     {
         printf("TRXVU Transmitter Telemetry - All\n"
                "---------------------------------\n");
-        printf("TX inst RF reflected: %f dBm\n", get_rf_power_dbm(tx_telem1.tx_telem.inst_RF_reflected));
-        printf("TX inst RF forward:   %f dBm\n", get_rf_power_dbm(tx_telem1.tx_telem.inst_RF_forward));
-        printf("TX supply voltage:    %f V\n", get_voltage(tx_telem1.tx_telem.supply_voltage));
-        printf("TX supply current:    %f mA\n", get_current(tx_telem1.tx_telem.supply_current));
-        printf("TX power amp temp:    %f C\n", get_temperature(tx_telem1.tx_telem.temp_power_amp));
-        printf("TX oscillator temp:   %f C\n\n", get_temperature(tx_telem1.tx_telem.temp_oscillator));
+        printf("TX inst RF reflected: %f dBm\n",
+               get_rf_power_dbm(tx_telem1.tx_telem.inst_RF_reflected));
+        printf("TX inst RF forward:   %f dBm\n",
+               get_rf_power_dbm(tx_telem1.tx_telem.inst_RF_forward));
+        printf("TX supply voltage:    %f V\n",
+               get_voltage(tx_telem1.tx_telem.supply_voltage));
+        printf("TX supply current:    %f mA\n",
+               get_current(tx_telem1.tx_telem.supply_current));
+        printf("TX power amp temp:    %f C\n",
+               get_temperature(tx_telem1.tx_telem.temp_power_amp));
+        printf("TX oscillator temp:   %f C\n\n",
+               get_temperature(tx_telem1.tx_telem.temp_oscillator));
     }
 
     radio_telem tx_telem2 = { 0 };
@@ -73,12 +78,18 @@ KRadioStatus get_tx_telem()
     {
         printf("TRXVU Transmitter Telemetry - Last\n"
                "---------------------------------\n");
-        printf("TX inst RF reflected: %f dBm\n", get_rf_power_dbm(tx_telem2.tx_telem.inst_RF_reflected));
-        printf("TX inst RF forward:   %f dBm\n", get_rf_power_dbm(tx_telem2.tx_telem.inst_RF_forward));
-        printf("TX supply voltage:    %f V\n", get_voltage(tx_telem2.tx_telem.supply_voltage));
-        printf("TX supply current:    %f mA\n", get_current(tx_telem2.tx_telem.supply_current));
-        printf("TX power amp temp:    %f C\n", get_temperature(tx_telem2.tx_telem.temp_power_amp));
-        printf("TX oscillator temp:   %f C\n\n", get_temperature(tx_telem2.tx_telem.temp_oscillator));
+        printf("TX inst RF reflected: %f dBm\n",
+               get_rf_power_dbm(tx_telem2.tx_telem.inst_RF_reflected));
+        printf("TX inst RF forward:   %f dBm\n",
+               get_rf_power_dbm(tx_telem2.tx_telem.inst_RF_forward));
+        printf("TX supply voltage:    %f V\n",
+               get_voltage(tx_telem2.tx_telem.supply_voltage));
+        printf("TX supply current:    %f mA\n",
+               get_current(tx_telem2.tx_telem.supply_current));
+        printf("TX power amp temp:    %f C\n",
+               get_temperature(tx_telem2.tx_telem.temp_power_amp));
+        printf("TX oscillator temp:   %f C\n\n",
+               get_temperature(tx_telem2.tx_telem.temp_oscillator));
     }
 
     radio_telem tx_up;
@@ -95,8 +106,8 @@ KRadioStatus get_tx_telem()
         printf("TX Uptime: %d\n\n", tx_up.uptime);
     }
 
-    radio_telem tx_state = {0};
-    status = k_radio_get_telemetry(&tx_state, RADIO_TX_STATE);
+    radio_telem tx_state = { 0 };
+    status               = k_radio_get_telemetry(&tx_state, RADIO_TX_STATE);
     if (status != RADIO_OK)
     {
         printf("Failed to get state: %d\n", status);
@@ -108,11 +119,11 @@ KRadioStatus get_tx_telem()
                "---------------------------------\n");
         printf("State: %x\n", tx_state.tx_state);
         printf("TX Idle On:   %s\n",
-                tx_state.tx_state & RADIO_STATE_IDLE_ON ? "True" : "False");
+               tx_state.tx_state & RADIO_STATE_IDLE_ON ? "True" : "False");
         printf("TX Beacon:    %s\n",
-                tx_state.tx_state & RADIO_STATE_BEACON_ACTIVE ? "On" : "Off");
+               tx_state.tx_state & RADIO_STATE_BEACON_ACTIVE ? "On" : "Off");
 
-        char rate[] = "1200";
+        char    rate[]    = "1200";
         uint8_t rate_flag = tx_state.tx_state >> 2;
         if (rate_flag == RADIO_STATE_RATE_9600)
         {
@@ -135,8 +146,8 @@ KRadioStatus get_tx_telem()
 
 KRadioStatus get_rx_telem()
 {
-    KRadioStatus       status;
-    radio_telem rx_telem = { 0 };
+    KRadioStatus status;
+    radio_telem  rx_telem = { 0 };
     status = k_radio_get_telemetry(&rx_telem, RADIO_RX_TELEM_ALL);
     if (status != RADIO_OK)
     {
@@ -147,13 +158,18 @@ KRadioStatus get_rx_telem()
     {
         printf("TRXVU Receiver Telemetry - All\n"
                "------------------------------\n");
-        printf("RX inst doppler offset:    %f Hz\n", get_doppler_offset(rx_telem.rx_telem.inst_doppler_offset));
+        printf("RX inst doppler offset:    %f Hz\n",
+               get_doppler_offset(rx_telem.rx_telem.inst_doppler_offset));
         printf("RX inst signal strength:   %f dBm\n",
                get_signal_strength(rx_telem.rx_telem.inst_signal_strength));
-        printf("RX supply voltage:         %f V\n", get_voltage(rx_telem.rx_telem.supply_voltage));
-        printf("RX supply current:         %f mA\n", get_current(rx_telem.rx_telem.supply_current));
-        printf("RX power amp temp:         %f C\n", get_temperature(rx_telem.rx_telem.temp_power_amp));
-        printf("RX oscillator temp:        %f C\n\n", get_temperature(rx_telem.rx_telem.temp_oscillator));
+        printf("RX supply voltage:         %f V\n",
+               get_voltage(rx_telem.rx_telem.supply_voltage));
+        printf("RX supply current:         %f mA\n",
+               get_current(rx_telem.rx_telem.supply_current));
+        printf("RX power amp temp:         %f C\n",
+               get_temperature(rx_telem.rx_telem.temp_power_amp));
+        printf("RX oscillator temp:        %f C\n\n",
+               get_temperature(rx_telem.rx_telem.temp_oscillator));
     }
 
     radio_telem rx_up;
@@ -176,9 +192,9 @@ KRadioStatus get_rx_telem()
 KRadioStatus send_message()
 {
     KRadioStatus status;
-    uint8_t message[] = "Radio Test Message";
-    uint8_t len = sizeof(message);
-    uint8_t response;
+    uint8_t      message[] = "Radio Test Message";
+    uint8_t      len       = sizeof(message);
+    uint8_t      response;
 
     status = k_radio_send(message, len, &response);
     if (status != RADIO_OK)
@@ -197,23 +213,14 @@ KRadioStatus send_override()
 {
     KRadioStatus status;
 
-    ax25_callsign to = {
-            .ascii = "KBSTO",
-            .ssid = 1
-    };
+    ax25_callsign to = { .ascii = "KBSTO", .ssid = 1 };
 
-    ax25_callsign from = {
-            .ascii = "KBSFRM",
-            .ssid = 2
-    };
+    ax25_callsign from = { .ascii = "KBSFRM", .ssid = 2 };
 
     uint8_t beacon_msg[] = "Beacon Message";
 
-    radio_tx_beacon beacon = {
-            .interval = 5,
-            .msg = beacon_msg,
-            .len = sizeof(beacon_msg)
-    };
+    radio_tx_beacon beacon
+        = { .interval = 5, .msg = beacon_msg, .len = sizeof(beacon_msg) };
 
     status = k_radio_set_beacon_override(to, from, beacon);
     if (status != RADIO_OK)
@@ -227,7 +234,7 @@ KRadioStatus send_override()
     }
 
     uint8_t message[] = "Radio Test Message";
-    uint8_t len = sizeof(message);
+    uint8_t len       = sizeof(message);
     uint8_t response;
 
     status = k_radio_send_override(to, from, message, len, &response);
@@ -243,12 +250,11 @@ KRadioStatus send_override()
     return status;
 }
 
-
 KRadioStatus read_message()
 {
-    KRadioStatus status;
+    KRadioStatus    status;
     radio_rx_header header;
-    uint8_t message[RX_SIZE];
+    uint8_t         message[RX_SIZE];
 
     uint8_t len;
 
@@ -259,9 +265,9 @@ KRadioStatus read_message()
     }
     else if (status == RADIO_OK)
     {
-        printf("Received message(%d %fHz %fdBm): %s\n",
-                len, get_doppler_offset(header.doppler_offset), get_signal_strength(header.signal_strength),
-                message);
+        printf("Received message(%d %fHz %fdBm): %s\n", len,
+               get_doppler_offset(header.doppler_offset),
+               get_signal_strength(header.signal_strength), message);
     }
     else
     {
@@ -273,17 +279,17 @@ KRadioStatus read_message()
 
 KRadioStatus set_options()
 {
-    radio_config config = {0};
-    char beacon_msg[] = "Radio Beacon Message";
-    char option[1] = {0};
-    int rc;
+    radio_config config       = { 0 };
+    char         beacon_msg[] = "Radio Beacon Message";
+    char         option[1]    = { 0 };
+    int          rc;
 
     printf("Set new 'to' callsign? (y/n)\n");
     rc = scanf("%s", option);
 
     if (option[0] == 'y' || option[0] == 'Y')
     {
-        strncpy(config.to.ascii,"MJRTOM", 6);
+        strncpy(config.to.ascii, "MJRTOM", 6);
     }
 
     printf("Set new 'from' callsign? (y/n)\n");
@@ -291,15 +297,15 @@ KRadioStatus set_options()
 
     if (option[0] == 'y' || option[0] == 'Y')
     {
-        strncpy(config.from.ascii,"HMLTN1", 6);
+        strncpy(config.from.ascii, "HMLTN1", 6);
     }
 
     printf("Enter a data rate: \n\t"
-            "1 - 1200\n\t"
-            "2 - 2400\n\t"
-            "3 - 4800\n\t"
-            "4 - 9600\n\t"
-            "5 - Don't change data rate\n\t");
+           "1 - 1200\n\t"
+           "2 - 2400\n\t"
+           "3 - 4800\n\t"
+           "4 - 9600\n\t"
+           "5 - Don't change data rate\n\t");
     rc = scanf("%s", option);
 
     switch (option[0])
@@ -326,8 +332,8 @@ KRadioStatus set_options()
     if (option[0] == 'y' || option[0] == 'Y')
     {
         config.beacon.interval = 5;
-        config.beacon.msg = beacon_msg;
-        config.beacon.len = sizeof(beacon_msg);
+        config.beacon.msg      = beacon_msg;
+        config.beacon.len      = sizeof(beacon_msg);
     }
 
     printf("Idle On? (y/n/*)\n");
@@ -341,7 +347,6 @@ KRadioStatus set_options()
     {
         config.idle = RADIO_IDLE_OFF;
     }
-
 
     printf("Setting configuration options\n");
 
@@ -372,16 +377,15 @@ int main(int argc, char * argv[])
     action.sa_handler = sigint_handler;
     sigaction(SIGINT, &action, NULL);
 
-
     trx_prop tx = {
-            .addr = 0x60,
-            .max_size = TX_SIZE,
-            .max_frames = 40,
+        .addr       = 0x60,
+        .max_size   = TX_SIZE,
+        .max_frames = 40,
     };
     trx_prop rx = {
-                .addr = 0x61,
-                .max_size = RX_SIZE,
-                .max_frames = 40,
+        .addr       = 0x61,
+        .max_size   = RX_SIZE,
+        .max_frames = 40,
     };
 
     KRadioStatus status;
@@ -391,10 +395,11 @@ int main(int argc, char * argv[])
     status = k_radio_watchdog_start();
     check_status();
 
-    char option[1] = {0};
+    char option[1] = { 0 };
     while (running)
     {
-        printf("Enter a command option (enter 'h' to see list of commands): \n");
+        printf(
+            "Enter a command option (enter 'h' to see list of commands): \n");
         int rc = scanf("%s", option);
 
         switch (option[0])
@@ -411,16 +416,18 @@ int main(int argc, char * argv[])
                 break;
             case 'h':
                 printf("Options: \n\t"
-                        "c - Set configuration options\n\t"
-                        "f - Fetch a message from the receive buffer\n\t"
-                        "h - Print this help\n\t"
-                        "o - Send a beacon and message with non-default callsigns\n\t"
-                        "r - Get receiver telemetry\n\t"
-                        "s - Send a message through the transmitter\n\t"
-                        "t - Get transmitter telemetry\n\t"
-                        "z - Reboot radio\n");
+                       "c - Set configuration options\n\t"
+                       "f - Fetch a message from the receive buffer\n\t"
+                       "h - Print this help\n\t"
+                       "o - Send a beacon and message with non-default "
+                       "callsigns\n\t"
+                       "r - Get receiver telemetry\n\t"
+                       "s - Send a message through the transmitter\n\t"
+                       "t - Get transmitter telemetry\n\t"
+                       "z - Reboot radio\n");
                 break;
-            /* Override - Send a message and beacon with non-default callsigns */
+            /* Override - Send a message and beacon with non-default callsigns
+             */
             case 'o':
                 status = send_override();
                 check_status();

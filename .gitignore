@@ -1,5 +1,5 @@
 html/
-.kubos-link.json
+.cubeos-link.json
 # Object files
 *.o
 *.ko
@@ -56,7 +56,7 @@ doctrees/
 *.swo
 *.swp
 .DS_Store
-.kubos-link.json
+.cubeos-link.json
 .travis.yml
 upload.tar.gz
 

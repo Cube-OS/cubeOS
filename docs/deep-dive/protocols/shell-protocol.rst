@@ -127,7 +127,7 @@ the string 'stdout', and a string of the stdout data.
 
     ``{ channel_id, 'stdout', data }``
 
-Example message - ``ls`` producing directory output of `kubos-shell-client`:
+Example message - ``ls`` producing directory output of `cubeos-shell-client`:
 
     ``{ 12, 'stdout', 'Cargo.toml\nsrc\n' }``
 
@@ -317,7 +317,7 @@ Future Messages
 ---------------
 
 These messages may be implemented in the shell protocol in the future,
-but are not implemented as of KubOS release v1.8.0.
+but are not implemented as of CubeOS release v1.8.0.
 
 Spawn Process
 ~~~~~~~~~~~~~

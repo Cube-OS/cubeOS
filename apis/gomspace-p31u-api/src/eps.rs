@@ -17,7 +17,7 @@
 // ARC Training Centre for CubeSats, UAVs & Their Applications (CUAVA) team (www.cuava.com.au)
 // at the University of Sydney
 
-//! Kubos API wrapper for interacting with [GomSpace p31u EPS]
+//! CubeOS API wrapper for interacting with [GomSpace p31u EPS]
 
 /*
  * Note that the conf save function is not implemented

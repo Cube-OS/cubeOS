@@ -18,11 +18,11 @@
 // at the University of Sydney
 use crate::model::*;
 use crate::objects::*;
+use cubeos_service;
 use gomspace_p31u_api::*;
 use juniper::FieldResult;
-use kubos_service;
 
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 pub struct QueryRoot;
 // Base GraphQL query model

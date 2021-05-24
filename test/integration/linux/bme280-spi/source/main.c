@@ -1,5 +1,5 @@
 /*
- * Kubos Linux
+ * CubeOS Linux
  * Copyright (C) 2017 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#define BME280_REGISTER_CHIPID    0xD0
+#define BME280_REGISTER_CHIPID 0xD0
 #define BME280_REGISTER_SOFTRESET 0xE0
 
 uint8_t chip_select;
@@ -106,7 +106,7 @@ static int read_byte(uint8_t reg, uint8_t * value)
 
 int main(int argc, char * argv[])
 {
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 50000 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 50000 };
 
     /* Get the chip select to use for this test */
     if (argc == 2)

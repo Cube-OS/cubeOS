@@ -22,6 +22,7 @@ MODULES = {
 
 logger = logging.getLogger("pumpkin-mcu-service")
 
+
 class Query(graphene.ObjectType):
     """
     Creates query endpoints exposed by graphene.
@@ -75,7 +76,8 @@ class Query(graphene.ObjectType):
 
             return bin_data.encode("hex")
         except Exception as e:
-            logger.error("Failed to read {} bytes from {}: {}".format(count, module, e))
+            logger.error(
+                "Failed to read {} bytes from {}: {}".format(count, module, e))
             raise
 
     def resolve_mcuTelemetry(self, info, module, fields):
@@ -102,7 +104,8 @@ class Query(graphene.ObjectType):
             out = mcu.read_telemetry(module=module, fields=fields)
             return out
         except Exception as e:
-            logger.error("Failed to read telemetry from {}: {}".format(module, e))
+            logger.error(
+                "Failed to read telemetry from {}: {}".format(module, e))
             raise
 
 
@@ -131,7 +134,8 @@ class Passthrough(graphene.Mutation):
             commandStatus = CommandStatus(status=out[0], command=out[1])
             return commandStatus
         except Exception as e:
-            logger.error("Failed to send passthrough to {}: {}".format(module, e))
+            logger.error(
+                "Failed to send passthrough to {}: {}".format(module, e))
             raise
 
 

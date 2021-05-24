@@ -22,7 +22,7 @@
 use crate::model::{GeoRecordResponse, StateOfHealthResponse, Subsystem};
 use juniper::FieldResult;
 
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 pub struct QueryRoot;
 

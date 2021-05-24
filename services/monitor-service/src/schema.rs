@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
+use cubeos_service;
 use juniper::{self, FieldError, FieldResult};
-use kubos_service;
 
 use crate::meminfo;
 use crate::objects::*;
 use crate::process;
 
-type Context = kubos_service::Context<()>;
+type Context = cubeos_service::Context<()>;
 
 pub struct QueryRoot;
 

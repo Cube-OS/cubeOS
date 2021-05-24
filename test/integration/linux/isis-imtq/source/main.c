@@ -1,5 +1,5 @@
 /*
- * Kubos Linux
+ * CubeOS Linux
  * Copyright (C) 2017 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,9 +17,9 @@
  * ADCS Integration Test for the ISIS iMTQ
  */
 
-#include <imtq.h>
 #include <errno.h>
 #include <getopt.h>
+#include <imtq.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,7 +36,8 @@ KADCSStatus noop()
     if (status != ADCS_OK)
     {
         fprintf(fp, "[No-op Test] Failed to run no-op command: %d\n", status);
-        fprintf(stderr, "[No-op Test] Failed to run no-op command: %d\n", status);
+        fprintf(stderr, "[No-op Test] Failed to run no-op command: %d\n",
+                status);
         return ADCS_ERROR;
     }
 
@@ -64,7 +65,7 @@ KADCSStatus reset()
 
 KADCSStatus mode()
 {
-    KADCSStatus status;
+    KADCSStatus     status;
     adcs_mode_param param = 0;
 
     /* Detumble duration */
@@ -73,14 +74,13 @@ KADCSStatus mode()
     status = k_adcs_set_mode(DETUMBLE, &param);
     if (status != ADCS_OK)
     {
-        fprintf(fp, "[Mode Test] Failed to enter detumble mode: %d\n",
-                status);
+        fprintf(fp, "[Mode Test] Failed to enter detumble mode: %d\n", status);
         fprintf(stderr, "[Mode Test] Failed to enter detumble mode: %d\n",
                 status);
         return ADCS_ERROR;
     }
 
-    const struct timespec DELAY = {.tv_sec = 1, .tv_nsec = 0 };
+    const struct timespec DELAY = { .tv_sec = 1, .tv_nsec = 0 };
 
     nanosleep(&DELAY, NULL);
 
@@ -97,8 +97,7 @@ KADCSStatus mode()
     if (mode != DETUMBLE)
     {
         fprintf(
-            fp,
-            "[Mode Test] Failed to enter detumble mode. Current mode: %d\n",
+            fp, "[Mode Test] Failed to enter detumble mode. Current mode: %d\n",
             mode);
         fprintf(
             stderr,
@@ -143,18 +142,20 @@ KADCSStatus run_test(ADCSTestType type)
     /* Print the results to the file */
     char * temp = json_stringify(test, " ");
 
-    fprintf(fp, "%s Self-Test Results: \n", type == 0 ? "All-Axes" : "Single-Axis");
+    fprintf(fp, "%s Self-Test Results: \n",
+            type == 0 ? "All-Axes" : "Single-Axis");
     fputs(temp, fp);
     fprintf(fp, "\n");
 
     free(temp);
     json_delete(test);
 
-    const struct timespec DELAY = {.tv_sec = 0, .tv_nsec = 300000001 };
+    const struct timespec DELAY = { .tv_sec = 0, .tv_nsec = 300000001 };
 
     nanosleep(&DELAY, NULL);
 
-    fprintf(fp, "[%s Self-Test Test] Test completed successfully\n", type == 0 ? "All-Axes" : "Single-Axis");
+    fprintf(fp, "[%s Self-Test Test] Test completed successfully\n",
+            type == 0 ? "All-Axes" : "Single-Axis");
 
     return ADCS_OK;
 }
@@ -171,7 +172,8 @@ KADCSStatus configure()
     if (status != ADCS_OK)
     {
         fprintf(fp, "[Configure Test] Failed to configure ADCS: %d\n", status);
-        fprintf(stderr, "[Configure Test] Failed to configure ADCS: %d\n", status);
+        fprintf(stderr, "[Configure Test] Failed to configure ADCS: %d\n",
+                status);
         return ADCS_ERROR;
     }
 
@@ -191,13 +193,18 @@ KADCSStatus passthrough()
                                 sizeof(imtq_coil_temp), NULL);
     if (status != ADCS_OK)
     {
-        fprintf(fp, "[Passthrough Test] Failed to get iMTQ coil temperatures: %d\n", status);
-        fprintf(stderr, "[Passthrough Test] Failed to get iMTQ coil temperatures: %d\n", status);
+        fprintf(
+            fp, "[Passthrough Test] Failed to get iMTQ coil temperatures: %d\n",
+            status);
+        fprintf(
+            stderr,
+            "[Passthrough Test] Failed to get iMTQ coil temperatures: %d\n",
+            status);
         return ADCS_ERROR;
     }
 
     fprintf(fp, "[Passthrough test] Coil temps - X: %d, Y: %d, Z: %d\n",
-                data.data.x, data.data.y, data.data.z);
+            data.data.x, data.data.y, data.data.z);
     fprintf(fp, "[Passthrough Test] Test completed successfully\n");
 
     return ADCS_OK;
@@ -211,15 +218,18 @@ KADCSStatus get_power()
     status = k_adcs_get_power_status(&uptime);
     if (status != ADCS_OK)
     {
-        fprintf(fp, "[Power Test] Failed to get ADCS power status: %d\n", status);
-        fprintf(stderr, "[Power Test] Failed to get ADCS power status: %d\n", status);
+        fprintf(fp, "[Power Test] Failed to get ADCS power status: %d\n",
+                status);
+        fprintf(stderr, "[Power Test] Failed to get ADCS power status: %d\n",
+                status);
         return ADCS_ERROR;
     }
 
     if (uptime == 0)
     {
         fprintf(fp, "[Power Test] Test failed. ADCS appears to be offline\n");
-        fprintf(stderr, "[Power Test] Test failed. ADCS appears to be offline\n");
+        fprintf(stderr,
+                "[Power Test] Test failed. ADCS appears to be offline\n");
         return ADCS_ERROR;
     }
 
@@ -237,10 +247,12 @@ KADCSStatus get_orientation()
     status = k_adcs_get_orientation(&data);
     if (status != ADCS_ERROR_NOT_IMPLEMENTED)
     {
-        fprintf(fp, "[Orientation Test] Received unexpected ADCS orientation RC: %d\n",
-                status);
-        fprintf(stderr, "[Orientation Test] Received unexpected ADCS orientation RC: %d\n",
-                status);
+        fprintf(
+            fp, "[Orientation Test] Received unexpected ADCS orientation RC: %d\n",
+            status);
+        fprintf(
+            stderr, "[Orientation Test] Received unexpected ADCS orientation RC: %d\n",
+            status);
         return ADCS_ERROR;
     }
 
@@ -252,13 +264,15 @@ KADCSStatus get_orientation()
 KADCSStatus get_spin()
 {
     KADCSStatus status;
-    adcs_spin data;
+    adcs_spin   data;
 
     status = k_adcs_get_spin(&data);
     if (status != ADCS_ERROR_NOT_IMPLEMENTED)
     {
-        fprintf(fp, "[Spin Test] Received unexpected ADCS spin RC: %d\n", status);
-        fprintf(stderr, "[Spin Test] Received unexpected ADCS spin RC: %d\n", status);
+        fprintf(fp, "[Spin Test] Received unexpected ADCS spin RC: %d\n",
+                status);
+        fprintf(stderr, "[Spin Test] Received unexpected ADCS spin RC: %d\n",
+                status);
         return ADCS_ERROR;
     }
 
@@ -278,26 +292,28 @@ KADCSStatus get_telemetry(ADCSTelemType type)
     status = k_adcs_get_telemetry(type, telem);
     if (status != ADCS_OK)
     {
-        fprintf(fp,
-                "[%s Telemetry Test] Error/s occurred while getting ADCS telemetry: %d\n",
-                type == NOMINAL ? "Nominal" : "Debug", status);
-        fprintf(stderr,
-                "[%s Telemetry Test] Error/s occurred while getting ADCS telemetry: %d\n",
-                type == NOMINAL ? "Nominal" : "Debug", status);
+        fprintf(
+            fp, "[%s Telemetry Test] Error/s occurred while getting ADCS telemetry: %d\n",
+            type == NOMINAL ? "Nominal" : "Debug", status);
+        fprintf(
+            stderr, "[%s Telemetry Test] Error/s occurred while getting ADCS telemetry: %d\n",
+            type == NOMINAL ? "Nominal" : "Debug", status);
         return ADCS_ERROR;
     }
 
     /* Print the results to the file */
     char * temp = json_stringify(telem, " ");
 
-    fprintf(fp, "%s Telemetry Results: \n", type == NOMINAL ? "Nominal" : "Debug");
+    fprintf(fp, "%s Telemetry Results: \n",
+            type == NOMINAL ? "Nominal" : "Debug");
     fputs(temp, fp);
     fprintf(fp, "\n");
 
     free(temp);
     json_delete(telem);
 
-    fprintf(fp, "[%s Telemetry Test] Test completed successfully\n", type == NOMINAL ? "Nominal" : "Debug");
+    fprintf(fp, "[%s Telemetry Test] Test completed successfully\n",
+            type == NOMINAL ? "Nominal" : "Debug");
 
     return ADCS_OK;
 }
@@ -356,7 +372,7 @@ int main(int argc, char * argv[])
     k_adcs_terminate();
 
     fprintf(fp, "\niMTQ ADCS Integration Tests Complete\n"
-                  "------------------------------------\n\n");
+                "------------------------------------\n\n");
 
     if (status == ADCS_OK)
     {
@@ -365,7 +381,8 @@ int main(int argc, char * argv[])
     }
     else
     {
-        fprintf(stderr, "One or more ADCS tests have failed. See imtq-results.txt for info\n");
+        fprintf(stderr, "One or more ADCS tests have failed. See "
+                        "imtq-results.txt for info\n");
         fprintf(fp, "One or more ADCS tests have failed\n");
     }
 

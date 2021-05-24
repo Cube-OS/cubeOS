@@ -1,4 +1,4 @@
-# Kubos Telemetry Database API
+# CubeOS Telemetry Database API
 
 API for interacting with a telemetry database.
-Utilized by the Kubos telemetry DB service. 
+Utilized by the CubeOS telemetry DB service. 

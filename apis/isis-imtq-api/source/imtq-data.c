@@ -24,42 +24,93 @@
  * Array of all possible iMTQ configuration parameters. Used for fetching the
  * current configuration settings for debug telemetry
  */
-const uint16_t adcs_config_params[] = {
-        MTM_SELECT,
-        MTM_INTERNAL_TIME, MTM_EXTERNAL_TIME,
-        MTM_INTERNAL_MAP_X, MTM_INTERNAL_MAP_Y, MTM_INTERNAL_MAP_Z,
-        MTM_EXTERNAL_MAP_X, MTM_EXTERNAL_MAP_Y, MTM_EXTERNAL_MAP_Z,
-        MTM_MATRIX_R1_C1, MTM_MATRIX_R1_C2, MTM_MATRIX_R1_C3, MTM_MATRIX_R2_C1, MTM_MATRIX_R2_C2, MTM_MATRIX_R2_C3, MTM_MATRIX_R3_C1, MTM_MATRIX_R3_C2, MTM_MATRIX_R3_C3,
-        MTM_BIAS_X, MTM_BIAS_Y, MTM_BIAS_Z,
-        ADC_COIL_CURRENT_BIAS_X, ADC_COIL_CURRENT_BIAS_Y, ADC_COIL_CURRENT_BIAS_Z,
-        ADC_COIL_CURRENT_MULT_X, ADC_COIL_CURRENT_MULT_Y, ADC_COIL_CURRENT_MULT_Z,
-        ADC_COIL_CURRENT_DIV_X, ADC_COIL_CURRENT_DIV_Y, ADC_COIL_CURRENT_DIV_Z,
-        ADC_COIL_TEMP_BIAS_X, ADC_COIL_TEMP_BIAS_Y, ADC_COIL_TEMP_BIAS_Z,
-        ADC_COIL_TEMP_MULT_X, ADC_COIL_TEMP_MULT_Y, ADC_COIL_TEMP_MULT_Z,
-        ADC_COIL_TEMP_DIV_X, ADC_COIL_TEMP_DIV_Y, ADC_COIL_TEMP_DIV_Z,
-        DETUMBLE_FREQUENCY, BDOT_GAIN, MTM_FILTER_SENSITIVITY, MTM_FILTER_WEIGHT,
-        COIL_AREA_X, COIL_AREA_Y, COIL_AREA_Z,
-        COIL_CURRENT_LIMIT,
-        CURRENT_FEEDBACK_ENABLE,
-        CURRENT_FEEDBACK_GAIN_X, CURRENT_FEEDBACK_GAIN_Y, CURRENT_FEEDBACK_GAIN_Z,
-        CURRENT_MAP_TEMP_T1, CURRENT_MAP_TEMP_T2, CURRENT_MAP_TEMP_T3, CURRENT_MAP_TEMP_T4, CURRENT_MAP_TEMP_T5, CURRENT_MAP_TEMP_T6, CURRENT_MAP_TEMP_T7,
-        CURRENT_MAX_X_T1, CURRENT_MAX_X_T2, CURRENT_MAX_X_T3, CURRENT_MAX_X_T4, CURRENT_MAX_X_T5, CURRENT_MAX_X_T6, CURRENT_MAX_X_T7,
-        CURRENT_MAX_Y_T1, CURRENT_MAX_Y_T2, CURRENT_MAX_Y_T3, CURRENT_MAX_Y_T4, CURRENT_MAX_Y_T5, CURRENT_MAX_Y_T6, CURRENT_MAX_Y_T7,
-        CURRENT_MAX_Z_T1, CURRENT_MAX_Z_T2, CURRENT_MAX_Z_T3, CURRENT_MAX_Z_T4, CURRENT_MAX_Z_T5, CURRENT_MAX_Z_T6, CURRENT_MAX_Z_T7,
-        HW_CONFIG, WATCHDOG_TIMEOUT, SLAVE_ADDRESS, SOFTWARE_VERSION
-};
+const uint16_t adcs_config_params[] = { MTM_SELECT,
+                                        MTM_INTERNAL_TIME,
+                                        MTM_EXTERNAL_TIME,
+                                        MTM_INTERNAL_MAP_X,
+                                        MTM_INTERNAL_MAP_Y,
+                                        MTM_INTERNAL_MAP_Z,
+                                        MTM_EXTERNAL_MAP_X,
+                                        MTM_EXTERNAL_MAP_Y,
+                                        MTM_EXTERNAL_MAP_Z,
+                                        MTM_MATRIX_R1_C1,
+                                        MTM_MATRIX_R1_C2,
+                                        MTM_MATRIX_R1_C3,
+                                        MTM_MATRIX_R2_C1,
+                                        MTM_MATRIX_R2_C2,
+                                        MTM_MATRIX_R2_C3,
+                                        MTM_MATRIX_R3_C1,
+                                        MTM_MATRIX_R3_C2,
+                                        MTM_MATRIX_R3_C3,
+                                        MTM_BIAS_X,
+                                        MTM_BIAS_Y,
+                                        MTM_BIAS_Z,
+                                        ADC_COIL_CURRENT_BIAS_X,
+                                        ADC_COIL_CURRENT_BIAS_Y,
+                                        ADC_COIL_CURRENT_BIAS_Z,
+                                        ADC_COIL_CURRENT_MULT_X,
+                                        ADC_COIL_CURRENT_MULT_Y,
+                                        ADC_COIL_CURRENT_MULT_Z,
+                                        ADC_COIL_CURRENT_DIV_X,
+                                        ADC_COIL_CURRENT_DIV_Y,
+                                        ADC_COIL_CURRENT_DIV_Z,
+                                        ADC_COIL_TEMP_BIAS_X,
+                                        ADC_COIL_TEMP_BIAS_Y,
+                                        ADC_COIL_TEMP_BIAS_Z,
+                                        ADC_COIL_TEMP_MULT_X,
+                                        ADC_COIL_TEMP_MULT_Y,
+                                        ADC_COIL_TEMP_MULT_Z,
+                                        ADC_COIL_TEMP_DIV_X,
+                                        ADC_COIL_TEMP_DIV_Y,
+                                        ADC_COIL_TEMP_DIV_Z,
+                                        DETUMBLE_FREQUENCY,
+                                        BDOT_GAIN,
+                                        MTM_FILTER_SENSITIVITY,
+                                        MTM_FILTER_WEIGHT,
+                                        COIL_AREA_X,
+                                        COIL_AREA_Y,
+                                        COIL_AREA_Z,
+                                        COIL_CURRENT_LIMIT,
+                                        CURRENT_FEEDBACK_ENABLE,
+                                        CURRENT_FEEDBACK_GAIN_X,
+                                        CURRENT_FEEDBACK_GAIN_Y,
+                                        CURRENT_FEEDBACK_GAIN_Z,
+                                        CURRENT_MAP_TEMP_T1,
+                                        CURRENT_MAP_TEMP_T2,
+                                        CURRENT_MAP_TEMP_T3,
+                                        CURRENT_MAP_TEMP_T4,
+                                        CURRENT_MAP_TEMP_T5,
+                                        CURRENT_MAP_TEMP_T6,
+                                        CURRENT_MAP_TEMP_T7,
+                                        CURRENT_MAX_X_T1,
+                                        CURRENT_MAX_X_T2,
+                                        CURRENT_MAX_X_T3,
+                                        CURRENT_MAX_X_T4,
+                                        CURRENT_MAX_X_T5,
+                                        CURRENT_MAX_X_T6,
+                                        CURRENT_MAX_X_T7,
+                                        CURRENT_MAX_Y_T1,
+                                        CURRENT_MAX_Y_T2,
+                                        CURRENT_MAX_Y_T3,
+                                        CURRENT_MAX_Y_T4,
+                                        CURRENT_MAX_Y_T5,
+                                        CURRENT_MAX_Y_T6,
+                                        CURRENT_MAX_Y_T7,
+                                        CURRENT_MAX_Z_T1,
+                                        CURRENT_MAX_Z_T2,
+                                        CURRENT_MAX_Z_T3,
+                                        CURRENT_MAX_Z_T4,
+                                        CURRENT_MAX_Z_T5,
+                                        CURRENT_MAX_Z_T6,
+                                        CURRENT_MAX_Z_T7,
+                                        HW_CONFIG,
+                                        WATCHDOG_TIMEOUT,
+                                        SLAVE_ADDRESS,
+                                        SOFTWARE_VERSION };
 
 /* Human-readable names for the axis tested in a self-test step */
-const char test_step[8][5] = {
-        "init",
-        "posx",
-        "negx",
-        "posy",
-        "negy",
-        "posz",
-        "negz",
-        "fina"
-};
+const char test_step[8][5]
+    = { "init", "posx", "negx", "posy", "negy", "posz", "negz", "fina" };
 
 /* ADCS API Functions */
 
@@ -165,21 +216,25 @@ KADCSStatus kprv_adcs_get_status_telemetry(JsonNode * buffer)
         switch (state.mode)
         {
             case IDLE:
-                json_append_member(buffer, "system_mode", json_mkstring("IDLE"));
+                json_append_member(buffer, "system_mode",
+                                   json_mkstring("IDLE"));
                 break;
             case DETUMBLE:
-                json_append_member(buffer, "system_mode", json_mkstring("DETUMBLE"));
+                json_append_member(buffer, "system_mode",
+                                   json_mkstring("DETUMBLE"));
                 break;
             case SELFTEST:
-                json_append_member(buffer, "system_mode", json_mkstring("SELFTEST"));
+                json_append_member(buffer, "system_mode",
+                                   json_mkstring("SELFTEST"));
                 break;
         }
 
-        json_append_member(buffer, "system_error", json_mkstring((state.error) ? "yes" : "no"));
-        json_append_member(buffer, "system_configured", json_mkstring((state.config) ? "yes" : "no"));
-        json_append_member(buffer, "system_uptime", json_mknumber((double) state.uptime));
-
-
+        json_append_member(buffer, "system_error",
+                           json_mkstring((state.error) ? "yes" : "no"));
+        json_append_member(buffer, "system_configured",
+                           json_mkstring((state.config) ? "yes" : "no"));
+        json_append_member(buffer, "system_uptime",
+                           json_mknumber((double) state.uptime));
     }
     else if (status == ADCS_ERROR)
     {
@@ -190,7 +245,6 @@ KADCSStatus kprv_adcs_get_status_telemetry(JsonNode * buffer)
 
     return status;
 }
-
 
 KADCSStatus kprv_adcs_get_nominal_telemetry(JsonNode * buffer)
 {
@@ -219,30 +273,52 @@ KADCSStatus kprv_adcs_get_nominal_telemetry(JsonNode * buffer)
     else
     {
         /* Raw ADC values */
-        json_append_member(buffer, "supply_voltage_digital_raw", json_mknumber((double) house_raw.voltage_d));
-        json_append_member(buffer, "supply_voltage_analog_raw", json_mknumber((double) house_raw.voltage_a));
-        json_append_member(buffer, "supply_current_digital_raw", json_mknumber((double) house_raw.current_d));
-        json_append_member(buffer, "supply_current_analog_raw", json_mknumber((double) house_raw.current_a));
-        json_append_member(buffer, "coil_current_x_raw", json_mknumber((double) house_raw.coil_current.x));
-        json_append_member(buffer, "coil_current_y_raw", json_mknumber((double) house_raw.coil_current.y));
-        json_append_member(buffer, "coil_current_z_raw", json_mknumber((double) house_raw.coil_current.z));
-        json_append_member(buffer, "coil_temp_x_raw", json_mknumber((double) house_raw.coil_temp.x));
-        json_append_member(buffer, "coil_temp_y_raw", json_mknumber((double) house_raw.coil_temp.y));
-        json_append_member(buffer, "coil_temp_z_raw", json_mknumber((double) house_raw.coil_temp.z));
-        json_append_member(buffer, "mcu_temp_raw", json_mknumber((double) house_raw.mcu_temp));
+        json_append_member(buffer, "supply_voltage_digital_raw",
+                           json_mknumber((double) house_raw.voltage_d));
+        json_append_member(buffer, "supply_voltage_analog_raw",
+                           json_mknumber((double) house_raw.voltage_a));
+        json_append_member(buffer, "supply_current_digital_raw",
+                           json_mknumber((double) house_raw.current_d));
+        json_append_member(buffer, "supply_current_analog_raw",
+                           json_mknumber((double) house_raw.current_a));
+        json_append_member(buffer, "coil_current_x_raw",
+                           json_mknumber((double) house_raw.coil_current.x));
+        json_append_member(buffer, "coil_current_y_raw",
+                           json_mknumber((double) house_raw.coil_current.y));
+        json_append_member(buffer, "coil_current_z_raw",
+                           json_mknumber((double) house_raw.coil_current.z));
+        json_append_member(buffer, "coil_temp_x_raw",
+                           json_mknumber((double) house_raw.coil_temp.x));
+        json_append_member(buffer, "coil_temp_y_raw",
+                           json_mknumber((double) house_raw.coil_temp.y));
+        json_append_member(buffer, "coil_temp_z_raw",
+                           json_mknumber((double) house_raw.coil_temp.z));
+        json_append_member(buffer, "mcu_temp_raw",
+                           json_mknumber((double) house_raw.mcu_temp));
 
         /* Converted values */
-        json_append_member(buffer, "supply_voltage_digital_eng", json_mknumber((double) house_eng.voltage_d));
-        json_append_member(buffer, "supply_voltage_analog_eng", json_mknumber((double) house_eng.voltage_a));
-        json_append_member(buffer, "supply_current_digital_eng", json_mknumber((double) house_eng.current_d));
-        json_append_member(buffer, "supply_current_analog_eng", json_mknumber((double) house_eng.current_a));
-        json_append_member(buffer, "coil_current_x_eng", json_mknumber((double) house_eng.coil_current.x));
-        json_append_member(buffer, "coil_current_y_eng", json_mknumber((double) house_eng.coil_current.y));
-        json_append_member(buffer, "coil_current_z_eng", json_mknumber((double) house_eng.coil_current.z));
-        json_append_member(buffer, "coil_temp_x_eng", json_mknumber((double) house_eng.coil_temp.x));
-        json_append_member(buffer, "coil_temp_y_eng", json_mknumber((double) house_eng.coil_temp.y));
-        json_append_member(buffer, "coil_temp_z_eng", json_mknumber((double) house_eng.coil_temp.z));
-        json_append_member(buffer, "mcu_temp_eng", json_mknumber((double) house_eng.mcu_temp));
+        json_append_member(buffer, "supply_voltage_digital_eng",
+                           json_mknumber((double) house_eng.voltage_d));
+        json_append_member(buffer, "supply_voltage_analog_eng",
+                           json_mknumber((double) house_eng.voltage_a));
+        json_append_member(buffer, "supply_current_digital_eng",
+                           json_mknumber((double) house_eng.current_d));
+        json_append_member(buffer, "supply_current_analog_eng",
+                           json_mknumber((double) house_eng.current_a));
+        json_append_member(buffer, "coil_current_x_eng",
+                           json_mknumber((double) house_eng.coil_current.x));
+        json_append_member(buffer, "coil_current_y_eng",
+                           json_mknumber((double) house_eng.coil_current.y));
+        json_append_member(buffer, "coil_current_z_eng",
+                           json_mknumber((double) house_eng.coil_current.z));
+        json_append_member(buffer, "coil_temp_x_eng",
+                           json_mknumber((double) house_eng.coil_temp.x));
+        json_append_member(buffer, "coil_temp_y_eng",
+                           json_mknumber((double) house_eng.coil_temp.y));
+        json_append_member(buffer, "coil_temp_z_eng",
+                           json_mknumber((double) house_eng.coil_temp.z));
+        json_append_member(buffer, "mcu_temp_eng",
+                           json_mknumber((double) house_eng.mcu_temp));
     }
 
     /* Data during last detumble loop */
@@ -253,24 +329,42 @@ KADCSStatus kprv_adcs_get_nominal_telemetry(JsonNode * buffer)
     }
     else
     {
-        json_append_member(buffer, "detumble_calib_mtm_x", json_mknumber((double) detumble.mtm_calib.x));
-        json_append_member(buffer, "detumble_calib_mtm_y", json_mknumber((double) detumble.mtm_calib.y));
-        json_append_member(buffer, "detumble_calib_mtm_z", json_mknumber((double) detumble.mtm_calib.z));
-        json_append_member(buffer, "detumble_filter_mtm_x", json_mknumber((double) detumble.mtm_filter.x));
-        json_append_member(buffer, "detumble_filter_mtm_y", json_mknumber((double) detumble.mtm_filter.y));
-        json_append_member(buffer, "detumble_filter_mtm_z", json_mknumber((double) detumble.mtm_filter.z));
-        json_append_member(buffer, "detumble_bdot_x", json_mknumber((double) detumble.bdot.x));
-        json_append_member(buffer, "detumble_bdot_y", json_mknumber((double) detumble.bdot.y));
-        json_append_member(buffer, "detumble_bdot_z", json_mknumber((double) detumble.bdot.z));
-        json_append_member(buffer, "detumble_dipole_x", json_mknumber((double) detumble.dipole.x));
-        json_append_member(buffer, "detumble_dipole_y", json_mknumber((double) detumble.dipole.y));
-        json_append_member(buffer, "detumble_dipole_z", json_mknumber((double) detumble.dipole.z));
-        json_append_member(buffer, "detumble_cmd_current_x", json_mknumber((double) detumble.cmd_current.x));
-        json_append_member(buffer, "detumble_cmd_current_y", json_mknumber((double) detumble.cmd_current.y));
-        json_append_member(buffer, "detumble_cmd_current_z", json_mknumber((double) detumble.cmd_current.z));
-        json_append_member(buffer, "detumble_coil_current_x", json_mknumber((double) detumble.coil_current.x));
-        json_append_member(buffer, "detumble_coil_current_y", json_mknumber((double) detumble.coil_current.y));
-        json_append_member(buffer, "detumble_coil_current_z", json_mknumber((double) detumble.coil_current.z));
+        json_append_member(buffer, "detumble_calib_mtm_x",
+                           json_mknumber((double) detumble.mtm_calib.x));
+        json_append_member(buffer, "detumble_calib_mtm_y",
+                           json_mknumber((double) detumble.mtm_calib.y));
+        json_append_member(buffer, "detumble_calib_mtm_z",
+                           json_mknumber((double) detumble.mtm_calib.z));
+        json_append_member(buffer, "detumble_filter_mtm_x",
+                           json_mknumber((double) detumble.mtm_filter.x));
+        json_append_member(buffer, "detumble_filter_mtm_y",
+                           json_mknumber((double) detumble.mtm_filter.y));
+        json_append_member(buffer, "detumble_filter_mtm_z",
+                           json_mknumber((double) detumble.mtm_filter.z));
+        json_append_member(buffer, "detumble_bdot_x",
+                           json_mknumber((double) detumble.bdot.x));
+        json_append_member(buffer, "detumble_bdot_y",
+                           json_mknumber((double) detumble.bdot.y));
+        json_append_member(buffer, "detumble_bdot_z",
+                           json_mknumber((double) detumble.bdot.z));
+        json_append_member(buffer, "detumble_dipole_x",
+                           json_mknumber((double) detumble.dipole.x));
+        json_append_member(buffer, "detumble_dipole_y",
+                           json_mknumber((double) detumble.dipole.y));
+        json_append_member(buffer, "detumble_dipole_z",
+                           json_mknumber((double) detumble.dipole.z));
+        json_append_member(buffer, "detumble_cmd_current_x",
+                           json_mknumber((double) detumble.cmd_current.x));
+        json_append_member(buffer, "detumble_cmd_current_y",
+                           json_mknumber((double) detumble.cmd_current.y));
+        json_append_member(buffer, "detumble_cmd_current_z",
+                           json_mknumber((double) detumble.cmd_current.z));
+        json_append_member(buffer, "detumble_coil_current_x",
+                           json_mknumber((double) detumble.coil_current.x));
+        json_append_member(buffer, "detumble_coil_current_y",
+                           json_mknumber((double) detumble.coil_current.y));
+        json_append_member(buffer, "detumble_coil_current_z",
+                           json_mknumber((double) detumble.coil_current.z));
     }
 
     /* Current magnetometer measurements */
@@ -282,7 +376,7 @@ KADCSStatus kprv_adcs_get_nominal_telemetry(JsonNode * buffer)
     else
     {
         const struct timespec TRANSFER_DELAY
-            = {.tv_sec = 0, .tv_nsec = 1000001 };
+            = { .tv_sec = 0, .tv_nsec = 1000001 };
 
         nanosleep(&TRANSFER_DELAY, NULL);
 
@@ -295,13 +389,21 @@ KADCSStatus kprv_adcs_get_nominal_telemetry(JsonNode * buffer)
         }
         else
         {
-            json_append_member(buffer, "mtm_actuating", json_mkstring((mtm_raw.act_status) ? "yes" : "no"));
-            json_append_member(buffer, "mtm_x_raw", json_mknumber((double) mtm_raw.data.x));
-            json_append_member(buffer, "mtm_y_raw", json_mknumber((double) mtm_raw.data.y));
-            json_append_member(buffer, "mtm_z_raw", json_mknumber((double) mtm_raw.data.z));
-            json_append_member(buffer, "mtm_x_calib", json_mknumber((double) mtm_calib.data.x));
-            json_append_member(buffer, "mtm_y_calib", json_mknumber((double) mtm_calib.data.y));
-            json_append_member(buffer, "mtm_z_calib", json_mknumber((double) mtm_calib.data.z));
+            json_append_member(
+                buffer, "mtm_actuating",
+                json_mkstring((mtm_raw.act_status) ? "yes" : "no"));
+            json_append_member(buffer, "mtm_x_raw",
+                               json_mknumber((double) mtm_raw.data.x));
+            json_append_member(buffer, "mtm_y_raw",
+                               json_mknumber((double) mtm_raw.data.y));
+            json_append_member(buffer, "mtm_z_raw",
+                               json_mknumber((double) mtm_raw.data.z));
+            json_append_member(buffer, "mtm_x_calib",
+                               json_mknumber((double) mtm_calib.data.x));
+            json_append_member(buffer, "mtm_y_calib",
+                               json_mknumber((double) mtm_calib.data.y));
+            json_append_member(buffer, "mtm_z_calib",
+                               json_mknumber((double) mtm_calib.data.z));
         }
     }
 
@@ -313,9 +415,12 @@ KADCSStatus kprv_adcs_get_nominal_telemetry(JsonNode * buffer)
     }
     else
     {
-        json_append_member(buffer, "dipole_x", json_mknumber((double) dipole.data.x));
-        json_append_member(buffer, "dipole_y", json_mknumber((double) dipole.data.y));
-        json_append_member(buffer, "dipole_z", json_mknumber((double) dipole.data.z));
+        json_append_member(buffer, "dipole_x",
+                           json_mknumber((double) dipole.data.x));
+        json_append_member(buffer, "dipole_y",
+                           json_mknumber((double) dipole.data.y));
+        json_append_member(buffer, "dipole_z",
+                           json_mknumber((double) dipole.data.z));
     }
 
     return status;
@@ -348,46 +453,68 @@ KADCSStatus kprv_adcs_get_debug_telemetry(JsonNode * buffer)
             switch (adcs_config_params[i] >> 12)
             {
                 case 0x1:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.int8_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.int8_val));
                     break;
                 case 0x2:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.uint8_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.uint8_val));
                     break;
                 case 0x3:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.int16_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.int16_val));
                     break;
                 case 0x4:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.uint16_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.uint16_val));
                     break;
                 case 0x5:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.int32_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.int32_val));
                     break;
                 case 0x6:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.uint32_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.uint32_val));
                     break;
                 case 0x7:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.float_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.float_val));
                     break;
                 case 0x8:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.int64_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.int64_val));
                     break;
                 case 0x9:
-                    json_append_member(buffer, param, json_mknumber((double) config_data.value.uint64_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber((double) config_data.value.uint64_val));
                     break;
                 case 0xA:
-                    json_append_member(buffer, param, json_mknumber(config_data.value.double_val));
+                    json_append_member(
+                        buffer, param,
+                        json_mknumber(config_data.value.double_val));
                     break;
                 default:
                     /* We shouldn't ever get here... */
-                    fprintf(stderr, "Unknown iMTQ configuration parameter "
-                                    "type passed: %s\n",
+                    fprintf(stderr,
+                            "Unknown iMTQ configuration parameter "
+                            "type passed: %s\n",
                             param);
                     status = ADCS_ERROR;
             }
         }
         else
         {
-            fprintf(stderr, "Failed to fetch iMTQ param %#x: %d\n", adcs_config_params[i], status);
+            fprintf(stderr, "Failed to fetch iMTQ param %#x: %d\n",
+                    adcs_config_params[i], status);
             status = ADCS_ERROR;
             continue;
         }
@@ -438,9 +565,9 @@ void kprv_adcs_process_test(JsonNode * parent, imtq_test_result test)
          * This will most likely only happen while returning the last
          * self-test results for debug telemetry.
          * For simplicity, that logic attempts to process the results of an
-         * all-axes self-test. If the last test was a single axis, then the 
+         * all-axes self-test. If the last test was a single axis, then the
          * last 5 step results will be empty.
-         * This results in some calls to this function being made with 
+         * This results in some calls to this function being made with
          * empty test data.
          */
         return;
@@ -478,18 +605,30 @@ void kprv_adcs_process_test(JsonNode * parent, imtq_test_result test)
     sprintf(coil_temp_z, "tr_%s_coil_temp_z", step);
 
     json_append_member(parent, error, json_mknumber((double) test.error));
-    json_append_member(parent, mtm_raw_x, json_mknumber((double) test.mtm_raw.x));
-    json_append_member(parent, mtm_raw_y, json_mknumber((double) test.mtm_raw.y));
-    json_append_member(parent, mtm_raw_z, json_mknumber((double) test.mtm_raw.z));
-    json_append_member(parent, mtm_calib_x, json_mknumber((double) test.mtm_calib.x));
-    json_append_member(parent, mtm_calib_y, json_mknumber((double) test.mtm_calib.y));
-    json_append_member(parent, mtm_calib_z, json_mknumber((double) test.mtm_calib.z));
-    json_append_member(parent, coil_current_x, json_mknumber((double) test.coil_current.x));
-    json_append_member(parent, coil_current_y, json_mknumber((double) test.coil_current.y));
-    json_append_member(parent, coil_current_z, json_mknumber((double) test.coil_current.z));
-    json_append_member(parent, coil_temp_x, json_mknumber((double) test.coil_temp.x));
-    json_append_member(parent, coil_temp_y, json_mknumber((double) test.coil_temp.y));
-    json_append_member(parent, coil_temp_z, json_mknumber((double) test.coil_temp.z));
+    json_append_member(parent, mtm_raw_x,
+                       json_mknumber((double) test.mtm_raw.x));
+    json_append_member(parent, mtm_raw_y,
+                       json_mknumber((double) test.mtm_raw.y));
+    json_append_member(parent, mtm_raw_z,
+                       json_mknumber((double) test.mtm_raw.z));
+    json_append_member(parent, mtm_calib_x,
+                       json_mknumber((double) test.mtm_calib.x));
+    json_append_member(parent, mtm_calib_y,
+                       json_mknumber((double) test.mtm_calib.y));
+    json_append_member(parent, mtm_calib_z,
+                       json_mknumber((double) test.mtm_calib.z));
+    json_append_member(parent, coil_current_x,
+                       json_mknumber((double) test.coil_current.x));
+    json_append_member(parent, coil_current_y,
+                       json_mknumber((double) test.coil_current.y));
+    json_append_member(parent, coil_current_z,
+                       json_mknumber((double) test.coil_current.z));
+    json_append_member(parent, coil_temp_x,
+                       json_mknumber((double) test.coil_temp.x));
+    json_append_member(parent, coil_temp_y,
+                       json_mknumber((double) test.coil_temp.y));
+    json_append_member(parent, coil_temp_z,
+                       json_mknumber((double) test.coil_temp.z));
 }
 
 /* iMTQ-specific functions */
@@ -658,8 +797,8 @@ KADCSStatus k_imtq_get_test_results_all(imtq_test_result_all * data)
                                 sizeof(imtq_test_result_all), NULL);
     if (status != ADCS_OK)
     {
-        fprintf(stderr,
-                "Failed to get iMTQ self-test result (all-axes): %d\n", status);
+        fprintf(stderr, "Failed to get iMTQ self-test result (all-axes): %d\n",
+                status);
         return status;
     }
 

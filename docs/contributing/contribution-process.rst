@@ -1,17 +1,17 @@
-Kubos Contribution Process
+CubeOS Contribution Process
 ==========================
 
 This is the workflow you should go through in order to create and
-complete a task to contribute to the KubOS project
+complete a task to contribute to the CubeOS project
 
 Sign the CLA
 ------------
 
-All contributors must sign the Kubos Contributor License Agreement
+All contributors must sign the CubeOS Contributor License Agreement
 before their changes can be merged into the main codebase.
 
-The Kubos CLA can be found
-`here <https://cla-assistant.io/kubos/kubos>`__.
+The CubeOS CLA can be found
+`here <https://cla-assistant.io/cubeos/cubeos>`__.
 
 Create or Select an Issue
 -------------------------
@@ -40,14 +40,14 @@ Create a Branch of the Code You Want to Work On
 -----------------------------------------------
 
 All code changes should initially be made in a branch of the relavent
-Kubos repo either in the main repo, or in a personal copy (if you don't
+CubeOS repo either in the main repo, or in a personal copy (if you don't
 have access) and then be submitted against the master branch as a pull
 request:
 
 To create your own repo:
 
 -  Navigate to the GitHub page of the main code that you want to work
-   on. For example, https://github.com/kubos/kubos.
+   on. For example, https://github.com/cubeos/cubeos.
 -  Click the 'Fork' button in the upper right-hand corner.
 -  If you see a dialog 'Where should we fork this repository?', click
    the icon with your username.
@@ -60,13 +60,13 @@ Clone the repo that you want to modify onto your local machine
 
 ::
 
-    $ git clone http://github.com/kubos/kubos
+    $ git clone http://github.com/cubeos/cubeos
 
 Move into the repo folder
 
 ::
 
-    $ cd kubos
+    $ cd cubeos
 
 Create a local branch to make your changes
 
@@ -79,7 +79,7 @@ Make Your Changes
 
 The code. Write it. Test it.
 
-The :doc:`Kubos Standards <kubos-standards>` doc has some basic
+The :doc:`CubeOS Standards <cubeos-standards>` doc has some basic
 naming and coding standards that should be adhered to. When in doubt,
 try to match the styling of the surrounding code.
 
@@ -92,8 +92,8 @@ Update any documentation areas that are affected by your changes.
   - Browse to your doc updates to verify
 
 Add or update any unit tests that are affected by your changes. For
-instance, if support for SPI is added for the Kubos Linux HAL,
-then a new test folder would be added to `hal/kubos-hal/test` with the
+instance, if support for SPI is added for the CubeOS Linux HAL,
+then a new test folder would be added to `hal/cubeos-hal/test` with the
 relavent new test cases.
 
 Commit your changes and push to your remote branch (the branch will be
@@ -105,7 +105,7 @@ created automatically if it doesn't exist):
     $ git commit -m "Descriptive message about the changes you made"
     $ git push {remote name} {local branch name}
 
-If you're committing against a Kubos repo, then the remote name will
+If you're committing against a CubeOS repo, then the remote name will
 likely be "origin". If you're committing against your personal fork,
 then the remote name will match what you specified in the
 ``git remote add`` command.
@@ -169,7 +169,7 @@ Git will edit any files with conflicts. Conflicts will look like this:
             New local changes
         ==========
             New master changes
-        <<<kubos
+        <<<cubeos
         
 
 Edit the files to resolve the conflicts. Push the resolved changed to
@@ -200,8 +200,8 @@ failed.
 From there, you can review the test output and determine what needs to be fixed.
 
 If you're having a difficult time parsing the test output, or if something fails which appears to be
-unrelated to your changes, please feel free to contact a Kubos team member via
-`Slack <https://slack.kubos.co/>`__ for support.
+unrelated to your changes, please feel free to contact a CubeOS team member via
+`Slack <https://slack.cubeos-doc-website/>`__ for support.
 
 All tests must pass before your PR can be approved.
 
@@ -218,7 +218,7 @@ environment and then commit and push them into your remote repo. As long
 as you're still using the same local branch, these new changes will be
 automatically added to your existing pull request.
 
-Once all changes have been approved, a Kubos engineer will merge the changes
+Once all changes have been approved, a CubeOS engineer will merge the changes
 into the master branch.
 
 Close the Issue

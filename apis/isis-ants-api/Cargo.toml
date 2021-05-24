@@ -3,7 +3,7 @@ name = "isis-ants-api"
 version = "0.1.0"
 authors = ["Catherine Garabedian <catherine@kubos.co>"]
 license = "Apache-2.0"
-repository = "https://github.com/kubos/kubos"
+repository = "https://github.com/cubeos/cubeos"
 edition = "2018"
 
 [features]
@@ -15,4 +15,4 @@ nom = "4.0.0-beta1"
 rust-i2c = { path = "../../hal/rust-hal/rust-i2c", optional = true }
 
 [build-dependencies]
-kubos-build-helper = {path = "../../kubos-build-helper"}
+cubeos-build-helper = {path = "../../cubeos-build-helper"}

@@ -24,16 +24,18 @@ static uint8_t supervisor_crctable[256];
 void checksum_prepare_LUTCRC8(uint8_t polynomial, uint8_t * LUT)
 {
     unsigned short i;
-    uint8_t data;
+    uint8_t        data;
 
     for (i = 0; i < 256; i++)
     {
-        data = i;
+        data   = i;
         LUT[i] = checksum_calculate_CRC8(&data, 1, polynomial, 0x00, true);
     }
 }
 
-uint8_t checksum_calculate_CRC8LUT(const uint8_t * data, unsigned int length, const uint8_t * LUT, uint8_t start_remainder, bool endofdata)
+uint8_t checksum_calculate_CRC8LUT(const uint8_t * data, unsigned int length,
+                                   const uint8_t * LUT,
+                                   uint8_t start_remainder, bool endofdata)
 {
     unsigned int i;
 
@@ -50,12 +52,16 @@ uint8_t checksum_calculate_CRC8LUT(const uint8_t * data, unsigned int length, co
     return start_remainder;
 }
 
-uint8_t checksum_calculate_CRC8(const uint8_t * data, unsigned int length, uint8_t polynomial, uint8_t start_remainder, bool endofdata)
+uint8_t checksum_calculate_CRC8(const uint8_t * data, unsigned int length,
+                                uint8_t polynomial, uint8_t start_remainder,
+                                bool endofdata)
 {
-    uint8_t bit_mask, byte; // bit counter, XOR flag, bit mask, current byte
-    uint8_t xor_flag;
-    unsigned int i; // byte counter
-    unsigned int total_length = length; // original length + one 0x00 bytes for end of data
+    uint8_t bit_mask, byte;    // bit counter, XOR flag, bit mask, current
+                               // byte
+    uint8_t      xor_flag;
+    unsigned int i;    // byte counter
+    unsigned int total_length = length;    // original length + one 0x00 bytes
+                                           // for end of data
 
     if (endofdata)
     {
@@ -109,8 +115,8 @@ uint8_t checksum_calculate_CRC8(const uint8_t * data, unsigned int length, uint8
 
 uint8_t supervisor_calculate_CRC(const uint8_t * data, unsigned int length)
 {
-    unsigned int i = 0;
-    uint8_t crcvalue = 0;
+    unsigned int i        = 0;
+    uint8_t      crcvalue = 0;
     checksum_prepare_LUTCRC8(CRC8_POLYNOMIAL, supervisor_crctable);
 
     for (i = 0; i < length; i++)

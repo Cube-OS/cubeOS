@@ -1,7 +1,7 @@
-Kubos Applications Service
+CubeOS Applications Service
 ==========================
 
-The Kubos applications service is responsible for monitoring and managing all mission applications for a system.
+The CubeOS applications service is responsible for monitoring and managing all mission applications for a system.
 
 The service is capable of tracking multiple versions of each application, allowing users to easily
 upgrade and rollback their mission applications when necessary.
@@ -12,7 +12,7 @@ upgrade and rollback their mission applications when necessary.
 
 Whenever a new application is registered with the service, its manifest file and all other files in
 the specified directory are copied into the service's application registry.
-By default, this registry is stored under `/home/system/kubos/apps`.
+By default, this registry is stored under `/home/system/cubeos/apps`.
 
 .. uml::
 
@@ -42,7 +42,7 @@ The applications service uses the same HTTP+GraphQL communication scheme as the 
 
 Users will send GraphQL queries and mutations to the service's HTTP listener port.
 The port number can be found in the system's :doc:`configuration file <../services/service-config>`
-in `/etc/kubos-config.toml`
+in `/etc/cubeos-config.toml`
 
 Querying
 --------
@@ -221,7 +221,7 @@ Once registered, users may delete the original application files.
 For example::
 
     mutation {
-        register(path: "/home/kubos/payload-app") {
+        register(path: "/home/cubeos/payload-app") {
             success,
             errors,
             entry {
@@ -307,7 +307,7 @@ The mutation will return three fields:
 For example::
 
     mutation {
-        startApp(name: "mission-app", config: "/home/kubos/config.toml", args: ["-m", "safemode"]) {
+        startApp(name: "mission-app", config: "/home/cubeos/config.toml", args: ["-m", "safemode"]) {
             success,
             errors,
             pid
@@ -404,7 +404,7 @@ rejected.
 ::
     
     mutation {
-        register(path: "/home/kubos/payload-app") {
+        register(path: "/home/cubeos/payload-app") {
             active,
             app {
                 name,
@@ -435,7 +435,7 @@ the current version.
 Customizing the Applications Service
 ------------------------------------
 
-The configuration for the applications service is saved in `/etc/kubos-config.toml`.
+The configuration for the applications service is saved in `/etc/cubeos-config.toml`.
 This file can be editted to add or modify the following fields:
 
 - ``[app-service.addr]``
@@ -445,4 +445,4 @@ This file can be editted to add or modify the following fields:
 
 - ``[app-service]``
 
-    - ``registry-dir`` - *(Default: /home/system/kubos/apps)* The directory under which all registry entries should be stored
+    - ``registry-dir`` - *(Default: /home/system/cubeos/apps)* The directory under which all registry entries should be stored

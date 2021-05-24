@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Example client program for interacting with a Kubos Service using UDP
+// Example client program for interacting with a CubeOS Service using UDP
 //
 
 use nix::{convert_ioctl_res, ioctl};

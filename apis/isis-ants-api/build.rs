@@ -2,5 +2,5 @@
 /// yotta module and exporting it as a Rust crate
 
 fn main() {
-    kubos_build_helper::build_module();
+    cubeos_build_helper::build_module();
 }

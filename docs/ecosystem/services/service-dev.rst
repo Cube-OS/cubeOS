@@ -1,9 +1,9 @@
-Developing a KubOS Service
+Developing a CubeOS Service
 ==========================
 
-This document goes over the basic components of creating a new service for KubOS.
+This document goes over the basic components of creating a new service for CubeOS.
 
-It assumes you already have a good base understanding of the KubOS ecosystem and is intended as more
+It assumes you already have a good base understanding of the CubeOS ecosystem and is intended as more
 of a reference document, rather than a detailed tutorial.
 
 If you are unfamiliar with the system, we recommend first going through our
@@ -29,13 +29,13 @@ The following are recommended example services:
 Rust
 ~~~~
 
-- `Clyde 3G 1U EPS Service <https://github.com/kubos/kubos/tree/master/services/clyde-3g-eps-service>`__
-- `NSL EyeStar-D2 Duplex Radio Service <https://github.com/kubos/kubos/tree/master/services/nsl-duplex-d2-comms-service>`__
+- `Clyde 3G 1U EPS Service <https://github.com/cubeos/cubeos/tree/master/services/clyde-3g-eps-service>`__
+- `NSL EyeStar-D2 Duplex Radio Service <https://github.com/cubeos/cubeos/tree/master/services/nsl-duplex-d2-comms-service>`__
 
 Python
 ~~~~~~
 
-- `Pumpkin MCU Service <https://github.com/kubos/kubos/tree/master/services/pumpkin-mcu-service>`__
+- `Pumpkin MCU Service <https://github.com/cubeos/cubeos/tree/master/services/pumpkin-mcu-service>`__
 
 Recommended Libraries
 ---------------------
@@ -46,7 +46,7 @@ service.
 Python
 ~~~~~~
 
-- `kubos-service <https://github.com/kubos/kubos/tree/master/libs/kubos-service>`__  - Abstracts the
+- `cubeos-service <https://github.com/cubeos/cubeos/tree/master/libs/cubeos-service>`__  - Abstracts the
   process needed to create and start a GraphQL server over HTTP.
   It is built on top of `Flask <https://github.com/graphql-python/flask-graphql>`__ and
   automatically creates the the GraphQL and :ref:`GraphiQL <graphiql>` endpoints.
@@ -55,7 +55,7 @@ Python
 Rust
 ~~~~
 
-- `kubos-service <https://github.com/kubos/kubos/tree/master/services/kubos-service>`__
+- `cubeos-service <https://github.com/cubeos/cubeos/tree/master/services/cubeos-service>`__
 
     - Abstracts the process of starting a service. Automatically fetches the IP information from
       the config file and presents the GraphQL and :ref:`GraphiQL <graphiql>` endpoints
@@ -106,7 +106,7 @@ You may also choose to echo the messages to ``stdout``, however that is not a re
     issue messages to ``stdout`` if you log into the OBC at a later time.
 
 Services should use the daemon logging facility (rather than the user facility).
-This will cause all service log messages to be routed to the `/var/log/kubos-*.log` files.
+This will cause all service log messages to be routed to the `/var/log/cubeos-*.log` files.
 
 Please refer to the :doc:`logging <../linux-docs/logging>` doc for more information about the setup
 and behavior of log messages.
@@ -119,7 +119,7 @@ in the system's `config.toml` file.
 It is generally assumed that any port which is not already listed in the config file is available
 for use, however there are some existing conventions:
 
-- Kubos core services use ports 8000-8079
+- CubeOS core services use ports 8000-8079
 - Communications services use ports 8080-8099 for their downlink ports
 - Hardware services use ports 8100 and up
 
@@ -139,7 +139,7 @@ The :ref:`GraphiQL <graphiql>` interface provides a good way to dynamically test
 service's operations.
 
 Unit and integration tests are a good way to ensure that your service remains functional and
-compatible with the KubOS ecosystem over time.
+compatible with the CubeOS ecosystem over time.
 More information about setting up testing can be found in our :doc:`testing <../../contributing/testing>`
 doc.
 
@@ -148,7 +148,7 @@ Creating an Init Script
 
 If you would like your service to be automatically started at system boot, you will need to create
 an init script.
-KubOS uses BusyBox's init system, so the init scripts will need to use the following naming
+CubeOS uses BusyBox's init system, so the init scripts will need to use the following naming
 convention: ``S{run-level}{application-name}``. The run-level value should be between 1 and 99.
 The lower the value, the earlier it will be run in the system boot process.
 
@@ -157,11 +157,11 @@ The lower the value, the earlier it will be run in the system boot process.
     The BusyBox init system does *not* require compliance with the `LSB init script <https://wiki.debian.org/LSBInitScripts>`__
     standard.
 
-For Rust-based services, the `monitor service's <https://github.com/kubos/kubos-linux-build/blob/master/package/kubos/kubos-monitor/kubos-monitor>`__
+For Rust-based services, the `monitor service's <https://github.com/cubeos/cubeos-linux-build/blob/master/package/cubeos/cubeos-monitor/cubeos-monitor>`__
 init script provides a good example.
 Rust services (and other executables) should be started using `start-stop-daemon <http://man7.org/linux/man-pages/man8/start-stop-daemon.8.html>`__.
 
-For Python-based services, please refer to the `Pumpkin MCU service <https://github.com/kubos/kubos-linux-build/blob/master/package/kubos/kubos-pumpkin-mcu/kubos-pumpkin-mcu>`__
+For Python-based services, please refer to the `Pumpkin MCU service <https://github.com/cubeos/cubeos-linux-build/blob/master/package/cubeos/cubeos-pumpkin-mcu/cubeos-pumpkin-mcu>`__
 init script for reference.
 Python services should be started by using the `python` command to start the service as a
 background process.
@@ -177,7 +177,7 @@ If the service interacts with core avionics or communications hardware, and is n
 change after launch, we recommend including it in the root file system for recovery purposes.
 Only services included in the root file system are recovered automatically by the OS recovery
 process.
-Please refer to our :doc:`recovery architecture doc <../linux-docs/kubos-linux-recovery>` for
+Please refer to our :doc:`recovery architecture doc <../linux-docs/cubeos-linux-recovery>` for
 more information about our OS recovery system.
 
 In either case, you will need to update your system's `config.toml` file in order to define the
@@ -197,7 +197,7 @@ Root File System
 ~~~~~~~~~~~~~~~~
 
 In order for your service to be installed into the root file system, you will need to create a
-custom Buildroot package and then generate your own KubOS image.
+custom Buildroot package and then generate your own CubeOS image.
 
-More information about creating custom packages can be found in the :ref:`Configuring KubOS <custom-packages>`
+More information about creating custom packages can be found in the :ref:`Configuring CubeOS <custom-packages>`
 doc.

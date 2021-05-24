@@ -1,12 +1,12 @@
 # NovAtel OEM6 Service
 
-Kubos Service for interacting with a [NovAtel OEM6 High Precision GNSS Receiver](https://www.novatel.com/products/gnss-receivers/oem-receiver-boards/oem6-receivers/)
+CubeOS Service for interacting with a [NovAtel OEM6 High Precision GNSS Receiver](https://www.novatel.com/products/gnss-receivers/oem-receiver-boards/oem6-receivers/)
 
 Note: This service may also be compatible with the OEM7 devices
 
 # Configuration
 
-The service can be configured in the `/etc/kubos-config.toml` with the following fields:
+The service can be configured in the `/etc/cubeos-config.toml` with the following fields:
 
 - `bus` - Specifies the UART bus the OEM6 is connected to
 - `ip` - Specifies the service's IP address
@@ -29,11 +29,11 @@ The service should be started automatically by its init script, but may also be 
 
 ```bash
 $ novatel-oem6-service
-Kubos OEM6 service started
+CubeOS OEM6 service started
 Listening on: 10.63.1.20:8130
 ```
 
-If no config file is specified, then the service will look at `/etc/kubos-config.toml`.
+If no config file is specified, then the service will look at `/etc/cubeos-config.toml`.
 An alternative config file may be specified on the command line at run time:
 
 ```bash
@@ -78,7 +78,7 @@ Get all errors encountered since the last time this field was queried
 Get the current power state of the system
 
 Note: `uptime` is included as an available field in order to conform to
-      the Kubos Service Outline, but cannot be implemented for this device,
+      the CubeOS Service Outline, but cannot be implemented for this device,
       so the value will be 1 if the device is on and 0 if the device is off
 
 ```json

@@ -48,7 +48,8 @@
 /**
  * Generic reply from the Supervisor Controller.
  */
-typedef union __attribute__((__packed__)) {
+typedef union __attribute__((__packed__))
+{
     /** Raw value of the generic reply bytes */
     uint8_t raw_value[LENGTH_GENERIC_REPLY];
     /** Individual reply fields */
@@ -65,8 +66,6 @@ typedef union __attribute__((__packed__)) {
 
 /** Length of the compile information. */
 #define LENGTH_COMPILE_INFORMATION 19
-
- 
 
 /**
  * Supervisor version and configuration bytes.
@@ -115,7 +114,8 @@ typedef union __attribute__((__packed__)) {
     |_________________________________|
  * @endcode
  */
-typedef union __attribute__((__packed__)) {
+typedef union __attribute__((__packed__))
+{
     /** Raw value of the version configuration bytes */
     uint8_t raw_value[LENGTH_TELEMETRY_GET_VERSION];
     /** Individual version fields */
@@ -147,7 +147,6 @@ typedef union __attribute__((__packed__)) {
         uint8_t crc8;
     } /** Individual version fields */ fields;
 } supervisor_version_t;
-
 
 /**
  * Enable status structure.
@@ -195,26 +194,25 @@ typedef union __attribute__((__packed__)) {
     |____________________________________________|
  * @endcode
  */
-typedef union __attribute__((__packed__)) {
+typedef union __attribute__((__packed__))
+{
     /** Raw value of the version configuration bytes. */
     uint8_t raw_value;
     /** Individual enable status fields */
     struct __attribute__((__packed__)) supervisor_enable_status_fields_t
     {
-                
+
         uint8_t
-                /** OBC Power. */
-                power_obc : 1, 
-                /** Output power to the RTC. */
-                power_rtc : 1,
-                /** Supervisor mode. */
-                is_in_supervisor_mode : 1, 
-                : 1, : 1,
-                /** RTC is busy. */
-                busy_rtc : 1,
-                /** RTC is doing power off. */
-                power_off_rtc : 1,
-                : 1;
+            /** OBC Power. */
+            power_obc : 1,
+            /** Output power to the RTC. */
+            power_rtc : 1,
+            /** Supervisor mode. */
+            is_in_supervisor_mode : 1, : 1, : 1,
+            /** RTC is busy. */
+            busy_rtc : 1,
+            /** RTC is doing power off. */
+            power_off_rtc : 1, : 1;
     } /** Individual enable status fields */ fields;
 } supervisor_enable_status_t;
 
@@ -224,7 +222,8 @@ typedef union __attribute__((__packed__)) {
 /**
  * Supervisor housekeeping.
  */
-typedef union __attribute__((__packed__))  {
+typedef union __attribute__((__packed__))
+{
     /** Raw value of the version configuration bytes */
     uint8_t raw_value[LENGTH_TELEMETRY_HOUSEKEEPING];
     /** Individual housekeeping fields */
@@ -241,7 +240,7 @@ typedef union __attribute__((__packed__))  {
         /** IOBC Uptime as measured by Supervisor Controller. */
         uint32_t iobc_uptime;
         /** IOBC Reset Count. */
-        uint32_t iobc_reset_count; 
+        uint32_t iobc_reset_count;
         /** ADC Data. */
         uint16_t adc_data[SUPERVISOR_NUMBER_OF_ADC_CHANNELS];
         /** ADC Update Flag. */
@@ -252,15 +251,17 @@ typedef union __attribute__((__packed__))  {
 } supervisor_housekeeping_t;
 
 /**
- * @brief Performs a software reset of the microcontroller directly without shutting down its components.
- * As this command is considered unsafe for the hardware and the software of the IOBC-S, use supervisor_reset() instead.
+ * @brief Performs a software reset of the microcontroller directly without
+ * shutting down its components. As this command is considered unsafe for the
+ * hardware and the software of the IOBC-S, use supervisor_reset() instead.
  *
  * @return true if command is sent successfully, otherwise false
  */
 bool supervisor_emergency_reset();
 
 /**
- * @brief Assert a reset to the IOBC-S and make sure that the conditions prior to reset operations are met.
+ * @brief Assert a reset to the IOBC-S and make sure that the conditions prior
+ * to reset operations are met.
  *
  * @return true if command is sent successfully, otherwise false
  */
@@ -277,7 +278,8 @@ bool supervisor_powercycle();
 /**
  * @brief Getting Version from Supervisor Controller.
  *
- * @param[out] version Version and configuration read back from the Supervisor Controller.
+ * @param[out] version Version and configuration read back from the Supervisor
+ * Controller.
  * @return true if command is sent and response has valid CRC, otherwise false
  */
 bool supervisor_get_version(supervisor_version_t * version);
@@ -285,7 +287,8 @@ bool supervisor_get_version(supervisor_version_t * version);
 /**
  * @brief Getting Housekeeping from Supervisor Controller.
  *
- * @param[out] housekeeping Housekeeping read back from the Supervisor Controller.
+ * @param[out] housekeeping Housekeeping read back from the Supervisor
+ * Controller.
  * @return true if command is sent and response has valid CRC, otherwise false
  */
 bool supervisor_get_housekeeping(supervisor_housekeeping_t * housekeeping);

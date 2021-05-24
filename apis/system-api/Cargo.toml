@@ -1,5 +1,5 @@
 [package]
-name = "kubos-system"
+name = "cubeos-system"
 version = "0.1.0"
 authors = ["Marshall Culpepper <marshall@kubos.com>"]
 edition = "2018"

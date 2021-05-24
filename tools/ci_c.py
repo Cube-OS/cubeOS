@@ -8,12 +8,12 @@ projects = [
     "./cmocka",
     "./ccan/json",
     "./examples/adc-thermistor",
-    "./examples/kubos-linux-uarttx",
-    "./examples/kubos-linux-uartrx",
-    "./examples/kubos-linux-example",
-    "./examples/kubos-linux-tcprx",
+    "./examples/cubeos-linux-uarttx",
+    "./examples/cubeos-linux-uartrx",
+    "./examples/cubeos-linux-example",
+    "./examples/cubeos-linux-tcprx",
     "./examples/rust-c-service/extern-lib",
-    "./examples/kubos-linux-tcptx",
+    "./examples/cubeos-linux-tcptx",
     "./test/integration/linux/iobc-supervisor-test",
     "./test/integration/linux/isis-imtq",
     "./test/integration/linux/bme280-spi",
@@ -22,7 +22,7 @@ projects = [
     "./test/integration/linux/nanopower-p31u",
     "./test/integration/linux/lsm303dlhc-i2c",
     "./test/integration/linux/hello-world",
-    "./hal/kubos-hal",
+    "./hal/cubeos-hal",
     "./apis/gomspace-p31u-api",
     "./apis/isis-ants-api",
     "./apis/isis-imtq-api",
@@ -30,9 +30,11 @@ projects = [
     "./apis/isis-iobc-supervisor",
 ]
 
+
 def clean(dir):
     build_dir = "build"
     shutil.rmtree(build_dir, ignore_errors=True)
+
 
 def build(dir):
     build_dir = "build"
@@ -41,10 +43,12 @@ def build(dir):
     subprocess.run(["cmake", cmake_dir], cwd=build_dir, check=True)
     subprocess.run(["make"], cwd=build_dir, check=True)
 
+
 def run_test(dir):
     build_dir = "build"
     os.environ["CTEST_OUTPUT_ON_FAILURE"] = "1"
     subprocess.run(["make", "test"], cwd=build_dir, check=True)
+
 
 def test(dir):
     test_dir = "{}/test".format(dir)
@@ -52,6 +56,7 @@ def test(dir):
         clean(test_dir)
         build(test_dir)
         run_test(test_dir)
+
 
 def main():
     print("Building C projects")
@@ -61,6 +66,6 @@ def main():
         build(dir)
         test(dir)
 
+
 if __name__ == '__main__':
     main()
-

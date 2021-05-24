@@ -4,10 +4,10 @@ Working with the Pumpkin MBM2
 Overview
 --------
 
-This document covers the Kubos Linux features which are specific to the
+This document covers the CubeOS Linux features which are specific to the
 Pumpkin MBM2 target.
 
-Please refer to :doc:`../../ecosystem/linux-docs/using-kubos-linux` for a general guide to using Kubos Linux.
+Please refer to :doc:`../../ecosystem/linux-docs/using-cubeos-linux` for a general guide to using CubeOS Linux.
 
 Reference Documents
 -------------------
@@ -19,19 +19,19 @@ The :title:`CubeSat Kit Motherboard Module (MBM) 2` reference document
 is available from Pumpkin and is a useful document for learning what
 each of the hardware components are and how they are connected.
 
-Kubos Documentation
+CubeOS Documentation
 ~~~~~~~~~~~~~~~~~~~
 
--  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first KubOS project
--  :doc:`../../ecosystem/linux-docs/using-kubos-linux` - General guide for interacting with Kubos Linux
--  :doc:`../../deep-dive/klb/kubos-linux-on-mbm2` - Steps to build Kubos Linux for the Pumpkin MBM2
--  :doc:`installing-linux-mbm2` - Steps to install Kubos Linux
+-  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first CubeOS project
+-  :doc:`../../ecosystem/linux-docs/using-cubeos-linux` - General guide for interacting with CubeOS Linux
+-  :doc:`../../deep-dive/klb/cubeos-linux-on-mbm2` - Steps to build CubeOS Linux for the Pumpkin MBM2
+-  :doc:`installing-linux-mbm2` - Steps to install CubeOS Linux
 
 Status LEDs
 -----------
 
 There are four LEDs present on the Pumpkin MBM2 which give some indication of what state
-the board is in. When there is only one blinking LED, the board is running Kubos Linux and
+the board is in. When there is only one blinking LED, the board is running CubeOS Linux and
 the system is currently idle. The LEDs will blink in correspondence with CPU and MMC activity.
 If all LEDs are solid, then the system has reached some kind of locked error state.
 
@@ -46,7 +46,7 @@ port on the edge of the board, with the exposed pins facing up.
 The USB cable can then be plugged into your computer. Any required
 drivers should be automatically installed.
 
-This connection will be passed through to a Kubos Vagrant image as
+This connection will be passed through to a CubeOS Vagrant image as
 `/dev/FTDI` and will be used for the serial console.
 
 .. _peripherals-mbm2:
@@ -56,7 +56,7 @@ Peripherals
 
 The Pumpkin MBM2 has several different ports available for interacting
 with peripheral devices. Currently, users should interact with these
-devices using the standard Linux functions. A Kubos HAL will be added
+devices using the standard Linux functions. A CubeOS HAL will be added
 in the future to abstract this process.
 
 ADC
@@ -120,13 +120,13 @@ The ethernet port is configured to have support for static IPv4 addressing and
 can be used with SSH via the included `Dropbear <https://en.wikipedia.org/wiki/Dropbear_(software)>`__
 package.
 
-Kubos Linux currently guarantees support for TCP, UDP, and SCTP.
+CubeOS Linux currently guarantees support for TCP, UDP, and SCTP.
 Other protocols might be supported by default, but have not been verified.
 
 Resources
 ^^^^^^^^^
 
-- :ref:`Kubos Ethernet Communication Guide <ethernet>`
+- :ref:`CubeOS Ethernet Communication Guide <ethernet>`
 - `TCP tutorial <http://www.linuxhowtos.org/C_C++/socket.htm>`__
 - `UDP tutorial <https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html>`__
 - `SCTP tutorial <http://petanode.com/blog/posts/introduction-to-the-sctp-socket-api-in-linux.html>`__
@@ -143,10 +143,10 @@ By default the address is ``10.0.2.20``.
 Examples
 ^^^^^^^^
 
-A couple example programs using the ethernet port can be found in the `examples` folder of the `kubos repo <https://github.com/kubos/kubos/tree/master/examples>`__:
+A couple example programs using the ethernet port can be found in the `examples` folder of the `cubeos repo <https://github.com/cubeos/cubeos/tree/master/examples>`__:
 
-- `kubos-linux-tcprx <https://github.com/kubos/kubos/tree/master/examples/kubos-linux-tcprx>`__ - Receive TCP packets and then reply to the sender
-- `kubos-linux-tcptx <https://github.com/kubos/kubos/tree/master/examples/kubos-linux-tcptx>`__ - Send TCP packets to specified IP address and port
+- `cubeos-linux-tcprx <https://github.com/cubeos/cubeos/tree/master/examples/cubeos-linux-tcprx>`__ - Receive TCP packets and then reply to the sender
+- `cubeos-linux-tcptx <https://github.com/cubeos/cubeos/tree/master/examples/cubeos-linux-tcptx>`__ - Send TCP packets to specified IP address and port
 
 GPIO
 ~~~~
@@ -267,12 +267,12 @@ of the CubeSat Kit Bus connectors.
 `I2C Standards
 Doc <http://www.nxp.com/documents/user_manual/UM10204.pdf>`__
 
-Kubos Linux is currently configured to support the I2C standard-mode
+CubeOS Linux is currently configured to support the I2C standard-mode
 speed of 100kHz.
 
-For examples and instructions, see the :doc:`I2C HAL documentation <../../deep-dive/apis/kubos-hal/i2c-hal/index>`.
+For examples and instructions, see the :doc:`I2C HAL documentation <../../deep-dive/apis/cubeos-hal/i2c-hal/index>`.
 
-.. note:: The I2C bus is available through the Kubos C HAL as ``K_I2C1``.
+.. note:: The I2C bus is available through the CubeOS C HAL as ``K_I2C1``.
 
 RTC
 ~~~

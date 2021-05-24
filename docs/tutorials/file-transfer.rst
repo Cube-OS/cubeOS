@@ -7,22 +7,22 @@ transfer files both to and from the ground.
 Pre-Requisites
 --------------
 
-- :doc:`Install the Kubos SDK <../sdk-docs/sdk-installing>` or set up the dependencies
+- :doc:`Install the CubeOS SDK <../sdk-docs/sdk-installing>` or set up the dependencies
   required for a :doc:`local dev environment <../getting-started/local-setup>`
 - Have an OBC available with ethernet capabilities
-  (preferably with an :doc:`installation of Kubos Linux <../obc-docs/index>`)
+  (preferably with an :doc:`installation of CubeOS Linux <../obc-docs/index>`)
 
     - :ref:`Configuring Ethernet <ethernet>`
 
-- Have the file transfer service running on a target OBC (this happens by default when running KubOS)
+- Have the file transfer service running on a target OBC (this happens by default when running CubeOS)
 - Windows users: :ref:`Make sure Windows is setup to allow UDP packets from the OBC <windows-udp>`
 
-We'll be using the `file transfer client <https://github.com/kubos/kubos/tree/master/clients/kubos-file-client>`__
+We'll be using the `file transfer client <https://github.com/cubeos/cubeos/tree/master/clients/cubeos-file-client>`__
 in order to communicate with the file transfer service on our OBC, which is automatically included
-with the Kubos SDK (as of v1.8.0).
+with the CubeOS SDK (as of v1.8.0).
 
 If you are using a local development environment, instead of an instance of the SDK, you'll need to
-clone the repo and navigate to the `clients/kubos-file-client` folder.
+clone the repo and navigate to the `clients/cubeos-file-client` folder.
 You'll then run the program with ``cargo run -- {command args}``.
 
 Syntax
@@ -30,7 +30,7 @@ Syntax
 
 The file transfer client has the following command syntax::
 
-    kubos-file-client [options] (upload | download | cleanup) source-file [target-file]
+    cubeos-file-client [options] (upload | download | cleanup) source-file [target-file]
     
 Required arguments:
 
@@ -71,7 +71,7 @@ Sending a File to an OBC
 
 We'll start by transferring a file to our OBC.
 For this tutorial, we'll be transferring the application file that was created as part of the
-:doc:`mission application on an OBC <first-obc-project>` tutorial to the ``kubos`` user's home directory on the
+:doc:`mission application on an OBC <first-obc-project>` tutorial to the ``cubeos`` user's home directory on the
 OBC.
 
 We'll need to specify the OBC's IP address and the port that the file transfer service is listening
@@ -82,20 +82,20 @@ back on. By default, the file transfer service sends responses to port 8080.
 
 Our transfer command should look like this::
 
-    $ kubos-file-client -r 10.0.2.20 -p 8040 -P 8080 upload /home/vagrant/my-app/my-mission-app.py /home/kubos/my-mission-app.py
+    $ cubeos-file-client -r 10.0.2.20 -p 8040 -P 8080 upload /home/vagrant/my-app/my-mission-app.py /home/cubeos/my-mission-app.py
     
 Or, from your local dev environment::
 
-    $ cargo run -- -r 10.0.2.20 -p 8040 -P 8080 upload /home/vagrant/my-app/my-mission-app.py /home/kubos/my-mission-app.py
+    $ cargo run -- -r 10.0.2.20 -p 8040 -P 8080 upload /home/vagrant/my-app/my-mission-app.py /home/cubeos/my-mission-app.py
     
 The output from the client should look like this:
 
 .. code-block:: none
 
     16:55:56 [INFO] Starting file transfer client
-    16:55:56 [INFO] Uploading local:/home/vagrant/new-user/my-mission-app.py to remote:/home/kubos/my-mission-app.py
+    16:55:56 [INFO] Uploading local:/home/vagrant/new-user/my-mission-app.py to remote:/home/cubeos/my-mission-app.py
     16:55:56 [INFO] -> { 768720, 62c3491309b0bf9af5b367bea18471b8, 1 }
-    16:55:56 [INFO] -> { 768720, export, 62c3491309b0bf9af5b367bea18471b8, /home/kubos/my-mission-app.py, 33277 }
+    16:55:56 [INFO] -> { 768720, export, 62c3491309b0bf9af5b367bea18471b8, /home/cubeos/my-mission-app.py, 33277 }
     16:55:56 [INFO] <- { 768720, 62c3491309b0bf9af5b367bea18471b8, false, [(0, 1)] }
     16:55:56 [INFO] -> { 768720, 62c3491309b0bf9af5b367bea18471b8, 0, chunk_data }
     16:55:58 [INFO] <- { 62c3491309b0bf9af5b367bea18471b8, true }
@@ -108,9 +108,9 @@ As a result, if you run the upload command again, you should see a slightly trun
 .. code-block:: none
 
     16:15:08 [INFO] Starting file transfer client
-    16:15:08 [INFO] Uploading local:/home/vagrant/new-user/my-mission-app.py to remote:/home/kubos/my-mission-app.py
+    16:15:08 [INFO] Uploading local:/home/vagrant/new-user/my-mission-app.py to remote:/home/cubeos/my-mission-app.py
     16:15:08 [INFO] -> { 184278, 62c3491309b0bf9af5b367bea18471b8, 1 }
-    16:15:08 [INFO] -> { 184278, export, 62c3491309b0bf9af5b367bea18471b8, /home/kubos/my-mission-app.py, 33277 }
+    16:15:08 [INFO] -> { 184278, export, 62c3491309b0bf9af5b367bea18471b8, /home/cubeos/my-mission-app.py, 33277 }
     16:15:08 [INFO] <- { 62c3491309b0bf9af5b367bea18471b8, true }
     16:15:08 [INFO] <- { 184278, true }
     16:15:08 [INFO] Operation successful
@@ -120,7 +120,7 @@ Receiving a File from an OBC
 
 Next, we'll request that the OBC send us the application debug log file::
 
-    $ kubos-file-client -r 10.0.2.20 -p 8040 -P 8081 download /var/log/app-debug.log
+    $ cubeos-file-client -r 10.0.2.20 -p 8040 -P 8081 download /var/log/app-debug.log
     
 We're not specifying a destination file, which will result in the transferred file being saved as
 `app-debug.log` in our current directory.
@@ -142,5 +142,5 @@ The output from the client should look like this:
 We can then check the contents of the transferred file::
 
     $ cat /var/log/app-debug.log
-    1970-01-01T03:23:13.246358+00:00 Kubos my-mission-app:<info> Current available memory: 497060 kB
-    1970-01-01T03:23:13.867534+00:00 Kubos my-mission-app:<info> Telemetry insert completed successfully
+    1970-01-01T03:23:13.246358+00:00 CubeOS my-mission-app:<info> Current available memory: 497060 kB
+    1970-01-01T03:23:13.867534+00:00 CubeOS my-mission-app:<info> Telemetry insert completed successfully

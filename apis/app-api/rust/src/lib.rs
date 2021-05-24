@@ -21,7 +21,7 @@
 //!
 //! ```ignore
 //! use failure::{bail, Error};
-//! use kubos_app::*;
+//! use cubeos_app::*;
 //! use std::time::Duration;
 //!
 //! fn main() -> Result<(), Error> {
@@ -68,4 +68,4 @@ mod tests;
 
 pub use crate::framework::*;
 pub use crate::query::query;
-pub use kubos_system::Config as ServiceConfig;
+pub use cubeos_system::Config as ServiceConfig;

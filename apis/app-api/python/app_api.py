@@ -15,7 +15,7 @@ import socket
 import sys
 import toml
 
-SERVICE_CONFIG_PATH = "/etc/kubos-config.toml"
+SERVICE_CONFIG_PATH = "/etc/cubeos-config.toml"
 UDP_BUFF_LEN = 1024
 DEFAULT_TIMEOUT = 10.0  # Seconds
 
@@ -27,24 +27,24 @@ class Services:
 
     def query(self, service, query, timeout=DEFAULT_TIMEOUT):
         """Send a GraphQL request to a service
-        
+
         Args:
-        
+
             - service (str): The service that the request should be sent to. Must be defined in
               the system's ``config.toml`` file
             - query (str): The GraphQL request
             - timeout (int): The amount of time that this function should wait for a response from the
               service
-        
+
         Returns:
             The JSON response from the service
-            
+
         Raises:
             EnvironmentError: An error was returned within the JSON response from the service
             KeyError: The `service` value was invalid
             TimeoutError: The function timed out while waiting for a response from teh service
             TypeError: The `query` value was invalid
-            
+
         """
         # Check inputs
         if service not in self.config:
@@ -52,7 +52,7 @@ class Services:
                 "Service name invalid. Check config file for service names.")
         if type(query) not in [str, bytes]:
             raise TypeError("Query must be str or bytes.")
-        
+
         if type(query) is bytes:
             query = query.decode()
 
@@ -72,27 +72,26 @@ class Services:
                 "{} Endpoint Error: {}".format(service, errors))
 
         return data
-    
+
     def _http_query(self, query, ip, port, timeout):
-        
+
         # Service connection info
         url = "http://{}:{}".format(ip, port)
-        
+
         # Put our query in the message body as JSON
-        body = {'query':query} 
-        
+        body = {'query': query}
+
         # Send the request and wait for the response
         response = requests.post(str.encode(url), json=body, timeout=timeout)
-        
+
         # Make sure that we got a good response
         response.raise_for_status()
-        
+
         # Return the good message body
         return response.text
 
     def _format(self, response, service):
-        
-        
+
         # Parse JSON response
         try:
             response = json.loads(response)
@@ -106,17 +105,17 @@ class Services:
         # Check that it follows GraphQL format
         data = ""
         errors = ""
-        
-        for key,value in response.items():
+
+        for key, value in response.items():
             if key not in ['data', 'errors']:
                 raise KeyError(
                     "{} Endpoint Error: ".format(service) +
                     "Response contains incorrect fields: \n{}".format(response))
-        
+
         if 'errors' in response:
             # Collect any errors
             errors = response['errors']
-        
+
         if 'data' in response:
             data = response['data']
         else:
@@ -128,13 +127,14 @@ class Services:
 
         return (data, errors)
 
-def logging_setup(app_name, level = logging.DEBUG):
+
+def logging_setup(app_name, level=logging.DEBUG):
     """Set up the logger for the program
     All log messages will be sent to rsyslog using the User facility.
     Additionally, they will also be echoed to ``stdout``
-    
+
     Args:
-    
+
         - app_name (:obj:`str`): The application name which should be used for all log messages
         - level (:obj:`logging.level`): The minimum logging level which should be recorded.
           Default: `logging.DEBUG`
@@ -148,17 +148,17 @@ def logging_setup(app_name, level = logging.DEBUG):
     logger.setLevel(level)
     # Set the log message template
     formatter = logging.Formatter(app_name + ' %(message)s')
-    
+
     # Set up a handler for logging to syslog
     syslog = SysLogHandler(address='/dev/log', facility=SysLogHandler.LOG_USER)
     syslog.setFormatter(formatter)
-    
+
     # Set up a handler for logging to stdout
     stdout = logging.StreamHandler(stream=sys.stdout)
     stdout.setFormatter(formatter)
-    
+
     # Finally, add our handlers to our logger
     logger.addHandler(syslog)
     logger.addHandler(stdout)
-    
+
     return logger

@@ -51,7 +51,7 @@ pub struct StartResponse {
 pub struct KApp(pub app_entry::App);
 
 graphql_object!(KApp: () as "App" where Scalar = <S> |&self| {
-    description: "Kubos Application"
+    description: "CubeOS Application"
 
     field name() -> &String
         as "Name"

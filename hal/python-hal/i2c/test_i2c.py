@@ -12,6 +12,7 @@ import unittest
 import i2c
 import mock
 
+
 class TestI2C(unittest.TestCase):
 
     def setUp(self):

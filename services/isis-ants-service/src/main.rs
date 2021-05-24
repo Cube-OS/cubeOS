@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-//! Kubos Service for interacting with [ISIS Antenna Systems](https://www.isispace.nl/product-category/products/antenna-systems/)
+//! CubeOS Service for interacting with [ISIS Antenna Systems](https://www.isispace.nl/product-category/products/antenna-systems/)
 //!
 //! # Configuration
 //!
-//! The service must be configured in `/etc/kubos-config.toml` with the following fields:
+//! The service must be configured in `/etc/cubeos-config.toml` with the following fields:
 //!
 //! - `[isis-ants-service.addr]`
 //!
@@ -54,7 +54,7 @@
 //!
 //! ```shell
 //! $ isis-ants-service
-//! Kubos antenna systems service started
+//! CubeOS antenna systems service started
 //! Listening on: 0.0.0.0:8006
 //! ```
 //!
@@ -355,9 +355,9 @@ extern crate juniper;
 use crate::model::Subsystem;
 pub use crate::objects::*;
 use crate::schema::{MutationRoot, QueryRoot};
+use cubeos_service::{Config, Logger, Service};
 use failure::format_err;
 use isis_ants_api::AntSResult;
-use kubos_service::{Config, Logger, Service};
 use log::error;
 
 mod model;

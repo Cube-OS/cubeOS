@@ -1,4 +1,4 @@
-Installing the Kubos SDK
+Installing the CubeOS SDK
 ========================
 
 Prerequisites
@@ -7,7 +7,7 @@ Prerequisites
 System Requirements
 ~~~~~~~~~~~~~~~~~~~
 
-The Kubos SDK has several hardware requirements, including:
+The CubeOS SDK has several hardware requirements, including:
 
 -  64-bit processor with AMD-V or Intel VT-x virtualization support
 -  Mac OS (10.9 +), Windows 7 SP1 (or more recent), or a mainstream
@@ -49,7 +49,7 @@ Install VirtualBox
 ~~~~~~~~~~~~~~~~~~
 
 Vagrant requires a virtualization "provider". Currently the only
-provider that Kubos officially supports is VirtualBox.
+provider that CubeOS officially supports is VirtualBox.
 
 -  `Download VirtualBox <https://www.virtualbox.org/wiki/Downloads>`__
 
@@ -85,14 +85,14 @@ command should print something similar to the following output:
 Setup
 -----
 
-Create your Kubos SDK Instance:
+Create your CubeOS SDK Instance:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To create an instance of the SDK box follow these steps:
 
 ::
 
-       $ vagrant init kubos/kubos-dev
+       $ vagrant init cubeos/cubeos-dev
        $ vagrant up
 
 This will create a Vagrantfile in your current directory. Vagrantfiles
@@ -102,7 +102,7 @@ they were created in. To interact with this box in the future you will
 need to navigate back to this directory.
 
 If the output of ``vagrant up`` mentions there's a new version of the
-kubos-dev box available you can upgrade your box with the following
+cubeos-dev box available you can upgrade your box with the following
 command:
 
 .. warning:: THIS WILL OVERWRITE ALL FILES IN YOUR EXISTING BOX
@@ -130,7 +130,7 @@ your box is destroyed or re-built.
     Windows does not support Linux symlinks. If, for some reason, you need to create symlinks in
     your project, you will need to do so in a directory which lives entirely within the VM.
     
-    KubOS does not currently leverage any symlinks, so this should not be an issue for the average
+    CubeOS does not currently leverage any symlinks, so this should not be an issue for the average
     developer's workflow.
 
 To mount a specific directory from your host, open the Vagrantfile
@@ -146,7 +146,7 @@ following lines:
         # config.vm.synced_folder "../data", "/vagrant_data"
 
 .. Note::
-  The default home directory in the Kubos Vagrant boxes is ``/home/vagrant``
+  The default home directory in the CubeOS Vagrant boxes is ``/home/vagrant``
 
 Uncomment the last line in this block and change the paths to match your
 host directory and a desired mount point in the box.
@@ -177,13 +177,13 @@ For more information on mounting volumes see the following `guide <https://www.v
 Exposing Network Ports
 ~~~~~~~~~~~~~~~~~~~~~~
 
-If you would like to interact with Kubos services running inside an SDK instance from your host
+If you would like to interact with CubeOS services running inside an SDK instance from your host
 environment, you will need to update your Vagrantfile to expose either a single port, or your
 entire SDK as with a private network address.
 
 We recommend that you set up a `private network <https://www.vagrantup.com/docs/networking/private_network.html>`__
 connection, since you may want to interact with multiple different network ports while developing
-with KubOS.
+with CubeOS.
 
 To do so, enable the following line in your Vagrantfile::
 
@@ -205,12 +205,12 @@ with your projects.
 
         $ vagrant ssh
 
-This will start an SSH session in the Vagrant box with the Kubos CLI and
+This will start an SSH session in the Vagrant box with the CubeOS CLI and
 all of the required dependencies installed.
 
 That's it! From here see more on:
 
-  - :doc:`Creating your first KubOS project <../tutorials/first-mission-app>`
+  - :doc:`Creating your first CubeOS project <../tutorials/first-mission-app>`
 
 After a little bit of usage you may want to look at :doc:`how to upgrade the
-Kubos SDK <../sdk-docs/sdk-upgrading>`
+CubeOS SDK <../sdk-docs/sdk-upgrading>`

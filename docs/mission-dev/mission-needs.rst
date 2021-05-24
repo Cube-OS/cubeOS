@@ -10,7 +10,7 @@ Since all :ref:`services are passive <service-docs>`, it falls to an application
 Generally, this should poll all hardware services on a regular basis and pull all available telemetry.
 A one-minute polling cycle is generally sufficient for most telemetry items.
 
-.. TODO: merge the example app and update to say this: "Kubos provides an `example of this application, <#####>`__ and augmenting it for your mission should be simple given that all hardware services follow the service outline."
+.. TODO: merge the example app and update to say this: "CubeOS provides an `example of this application, <#####>`__ and augmenting it for your mission should be simple given that all hardware services follow the service outline."
 
 Housekeeping
 ------------
@@ -36,7 +36,7 @@ Some suggested tasks for this application would be:
 - Check file system and memory usage
 - Issue a test query against services
 
-Kubos provides an `example of this application <https://github.com/kubos/kubos/blob/master/apps/obc-hs/README.rst>`__,
+CubeOS provides an `example of this application <https://github.com/cubeos/cubeos/blob/master/apps/obc-hs/README.rst>`__,
 which executes all of the above tasks on an hourly interval.
 
 ADCS/GPS
@@ -45,8 +45,8 @@ ADCS/GPS
 The ADCS/GPS housekeeping app will ensure the hardware itself is behaving normally, checking critical telemetry items to ensure nothing is outside the bounds of normal operation, taking action as appropriate.
 Example action would be regularly updating the ADCS system with the latest time, position, and velocity data from the GPS.
 
-Kubos offers housekeeping apps for its supported ADCS and GPS systems.
-You can reach out to us on `Slack <https://slack.kubos.co>`__ or through the `website <https://www.kubos.com/kubos/>`__ for more information about these.
+CubeOS offers housekeeping apps for its supported ADCS and GPS systems.
+You can reach out to us on `Slack <https://slack.cubeos-doc-website>`__ or through the `website <https://www.cubeos-doc-websitem/cubeos/>`__ for more information about these.
 
 Power
 ~~~~~
@@ -59,8 +59,8 @@ Some examples of triggers and actions:
 - Cancelling operations and going into power generation state
 - Battery temperature monitoring
 
-Kubos offers housekeeping apps for its supported power systems.
-You can reach out to us on `Slack <https://slack.kubos.co>`__ or through the `website <https://www.kubos.com/kubos/>`__ for more information about these.
+CubeOS offers housekeeping apps for its supported power systems.
+You can reach out to us on `Slack <https://slack.cubeos-doc-website>`__ or through the `website <https://www.cubeos-doc-websitem/cubeos/>`__ for more information about these.
 
 Deployment
 ----------
@@ -70,8 +70,8 @@ We've provided a guide to the recommended behavior of this application:
 
 - :doc:`deployment`
 
-Kubos offers configurable deployment applications for customer missions, as well as SLAs for helping develop and/or reviewing your mission's deployment application.
-You can reach out to us on `Slack <https://slack.kubos.co>`__ or through the `website <https://www.kubos.com/kubos/>`__ for more information about these.
+CubeOS offers configurable deployment applications for customer missions, as well as SLAs for helping develop and/or reviewing your mission's deployment application.
+You can reach out to us on `Slack <https://slack.cubeos-doc-website>`__ or through the `website <https://www.cubeos-doc-websitem/cubeos/>`__ for more information about these.
 
 Beacon
 ------
@@ -79,8 +79,8 @@ Beacon
 The beacon application should regularly downlink a subset of critical telemetry data via the communication service.
 This telemetry should be the absolute minimum required to assess overall system health.
 
-Kubos offers configurable beacon applications for customer missions.
-You can reach out to us on `Slack <https://slack.kubos.co>`__ or through the `website <https://www.kubos.com/kubos/>`__ for more information about these.
+CubeOS offers configurable beacon applications for customer missions.
+You can reach out to us on `Slack <https://slack.cubeos-doc-website>`__ or through the `website <https://www.cubeos-doc-websitem/cubeos/>`__ for more information about these.
 
 Operations
 ----------
@@ -98,4 +98,4 @@ For example:
 An app can really do anything you want it to, but we suggest you keep them as simple as possible to reduce complexity.
 If you find yourself building several modes into an operational application, maybe split it into several smaller ones that are each dedicated for the specific mode.
 
-If you want help architecting or developing your operations applications, Kubos offers `SLAs <https://www.kubos.com/kubos/>`__ to aid in mission development.
+If you want help architecting or developing your operations applications, CubeOS offers `SLAs <https://www.cubeos-doc-websitem/cubeos/>`__ to aid in mission development.

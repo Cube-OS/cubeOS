@@ -3,13 +3,13 @@ Telemetry Database Benchmark Tests
 
 This project performs the benchmark tests on different features of the telemetry database.
 
-It may be run either from the Kubos SDK or on an OBC running KubOS.
+It may be run either from the CubeOS SDK or on an OBC running CubeOS.
 
 Pre-Requisites
 --------------
 
 The system must have a ``config.toml`` file available for this program to read.
-If one is not present at the default location (``/etc/kubos-config.toml``), 
+If one is not present at the default location (``/etc/cubeos-config.toml``), 
 it may be provided with the ``-c {config.toml path}`` command-line argument.
 
 Note: An example ``config.toml`` file is included in this project.
@@ -33,7 +33,7 @@ iterations in microseconds.
 
 Example::
 
-   /home/kubos # ./db-test -c tlmdb-config.toml -i 1000
+   /home/cubeos # ./db-test -c tlmdb-config.toml -i 1000
    NAME                           | Avg (us)   | Total (us)
    --------------------------------------------------------
    local_db_api_insert            | 50460      | 50460353
@@ -51,7 +51,7 @@ Stand-Alone Database Inserts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``local_db_api_insert`` and ``local_db_api_insert_bulk`` tests measure the average amount of
-time it takes to do a single, or bulk database insert, in microseconds using the Kubos Telemetry
+time it takes to do a single, or bulk database insert, in microseconds using the CubeOS Telemetry
 Database API directly (on a local database)
 
 GraphQL Database Inserts

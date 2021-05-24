@@ -7,22 +7,22 @@ mission operations or a development environment to the OBC.
 Pre-Requisites
 --------------
 
-- :doc:`Install the Kubos SDK <../sdk-docs/sdk-installing>` or set up the dependencies
+- :doc:`Install the CubeOS SDK <../sdk-docs/sdk-installing>` or set up the dependencies
   required for a :doc:`local dev environment <../getting-started/local-setup>`
 - Have an OBC available with ethernet capabilities
-  (preferably with an :doc:`installation of Kubos Linux <../obc-docs/index>`)
+  (preferably with an :doc:`installation of CubeOS Linux <../obc-docs/index>`)
 
     - :ref:`Configuring Ethernet <ethernet>`
 
-- Have the shell service running on a target OBC (this happens by default when running KubOS)
+- Have the shell service running on a target OBC (this happens by default when running CubeOS)
 - Windows users: :ref:`Make sure Windows is setup to allow UDP packets from the OBC <windows-udp>`
 
-We'll be using the `shell client <https://github.com/kubos/kubos/tree/master/clients/kubos-shell-client>`__
+We'll be using the `shell client <https://github.com/cubeos/cubeos/tree/master/clients/cubeos-shell-client>`__
 in order to communicate with the shell service on our OBC, which is automatically included
-with the Kubos SDK (as of v1.8.0).
+with the CubeOS SDK (as of v1.8.0).
 
 If you are using a local development environment, instead of an instance of the SDK, you'll need to
-clone the repo and navigate to the `clients/kubos-shell-client` folder.
+clone the repo and navigate to the `clients/cubeos-shell-client` folder.
 You'll then run the program with ``cargo run -- {command args}``.
 
 Syntax
@@ -30,7 +30,7 @@ Syntax
 
 The shell client has the following command syntax::
 
-  kubos-shell-client [options] (start | run | list | join | kill)
+  cubeos-shell-client [options] (start | run | list | join | kill)
 
 Required arguments:
 
@@ -55,11 +55,11 @@ We'll start by creating a new shell session between our dev environment and the 
 
 Our command should look like this::
 
-   $ kubos-shell-client -i 10.0.2.20 -p 8050 start
+   $ cubeos-shell-client -i 10.0.2.20 -p 8050 start
 
 Or, from your local dev environment::
 
-    $ cargo run --bin kubos-shell-client -- -i 10.0.2.20 -p 8050 start
+    $ cargo run --bin cubeos-shell-client -- -i 10.0.2.20 -p 8050 start
 
 The output from the client should look like this:
 
@@ -83,11 +83,11 @@ A simple shell session would look like this:
    Starting shell session -> 672612
    Press enter to send input to the shell session
    Press Control-D to detach from the session
-   $ cd /home/kubos
+   $ cd /home/cubeos
    $ pwd
-   /home/kubos
+   /home/cubeos
    $ whoami
-   kubos
+   cubeos
 
 You can enter the ``exit`` command to quit this ``bash`` session,
 or you can hit Control-D to detach from the session.
@@ -99,7 +99,7 @@ Next we will look at listing the existing shell sessions on the OBC.
 
 Our command should look like this::
 
-   $ kubos-shell-client -i 10.0.2.20 -p 8050 list
+   $ cubeos-shell-client -i 10.0.2.20 -p 8050 list
 
 The output from the client will look like this because we just
 started a session in the previous step:
@@ -138,13 +138,13 @@ the ``join`` command.
 
 The ``join`` command has the following syntax::
 
-   kubos-shell-client join -c <channel_id>
+   cubeos-shell-client join -c <channel_id>
 
 The channel ID should belong to a shell session which was previously started.
 
 To join the session started earlier, our command will look like this::
 
-   $ kubos-shell-client -i 10.0.2.20 -p 8050 join -c 672612
+   $ cubeos-shell-client -i 10.0.2.20 -p 8050 join -c 672612
 
 The output from the client should look like this:
 
@@ -165,7 +165,7 @@ process exits or the ``kill`` command is used.
 
 The kill command has the following syntax::
 
-   kubos-shell-client kill -c <channel_id> [-s signal]
+   cubeos-shell-client kill -c <channel_id> [-s signal]
 
 The kill command requires a channel ID to know which session to kill.
 Optionally, a signal number may also be passed in. If no signal is
@@ -173,7 +173,7 @@ specified, then ``SIGKILL`` will be sent.
 
 Our command should look like this::
 
-   $ kubos-shell-client -i 10.0.2.20 -p 8050 kill -c 672612
+   $ cubeos-shell-client -i 10.0.2.20 -p 8050 kill -c 672612
 
 The output from the client should look like this:
 
@@ -192,7 +192,7 @@ retrieving the output, and terminating the shell session.
 
 The run command has the following syntax::
 
-   kubos-shell-client run -c "<command>"
+   cubeos-shell-client run -c "<command>"
 
 The run command requires a command string to know what to run.
 This command string must include the base command as well as
@@ -202,7 +202,7 @@ A good use case for this command is determining the contents of a directory.
 We will look at the contents of the `/home` directory. Our command should
 look like this::
 
-   $ kubos-shell-client -i 10.0.2.20 -p 8050 run -c "ls /home"
+   $ cubeos-shell-client -i 10.0.2.20 -p 8050 run -c "ls /home"
 
 The output from the client should look like this:
 
@@ -211,5 +211,5 @@ The output from the client should look like this:
    Starting shell client: -> 10.0.2.20:8050
    Running remote command 'ls -l /home'
 
-   kubos
+   cubeos
    system

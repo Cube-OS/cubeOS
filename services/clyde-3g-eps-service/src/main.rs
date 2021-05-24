@@ -18,7 +18,7 @@
 //!
 //! # Configuration
 //!
-//! The service can be configured in the `/etc/kubos-config.toml` with the following fields:
+//! The service can be configured in the `/etc/cubeos-config.toml` with the following fields:
 //!
 //! ```toml
 //! [clyde-3g-eps-service]
@@ -42,7 +42,7 @@
 //! Listening on: 127.0.0.1:8100
 //! ```
 //!
-//! If no config file is specified, then the service will look at `/etc/kubos-config.toml`.
+//! If no config file is specified, then the service will look at `/etc/cubeos-config.toml`.
 //! An alternative config file may be specified on the command line at run time:
 //!
 //! ```bash
@@ -403,7 +403,7 @@
 #[macro_use]
 extern crate juniper;
 #[macro_use]
-extern crate kubos_service;
+extern crate cubeos_service;
 
 pub mod models;
 pub mod schema;
@@ -413,7 +413,7 @@ mod tests;
 use crate::models::subsystem::Subsystem;
 use crate::schema::mutation::Root as MutationRoot;
 use crate::schema::query::Root as QueryRoot;
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 use log::error;
 
 fn main() {

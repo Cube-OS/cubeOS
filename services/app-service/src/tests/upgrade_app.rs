@@ -16,7 +16,7 @@
 
 use crate::registry::*;
 use crate::schema;
-use kubos_service::{Config, Service};
+use cubeos_service::{Config, Service};
 use serde_json::json;
 use std::fs;
 use tempfile::TempDir;

@@ -16,13 +16,13 @@
 
 #![deny(warnings)]
 
-use kubos_system::logger as ServiceLogger;
-use kubos_system::Config as ServiceConfig;
+use cubeos_system::logger as ServiceLogger;
+use cubeos_system::Config as ServiceConfig;
 use log::{error, info, warn};
 use shell_service::*;
 
 fn main() {
-    ServiceLogger::init("kubos-shell-service").unwrap();
+    ServiceLogger::init("cubeos-shell-service").unwrap();
 
     let config = ServiceConfig::new("shell-service")
         .map_err(|err| {

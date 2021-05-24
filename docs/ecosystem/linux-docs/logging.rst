@@ -1,7 +1,7 @@
 Logging
 =======
 
-Kubos Linux uses `rsyslog <https://www.rsyslog.com/>`__ to automatically route log messages to the
+CubeOS Linux uses `rsyslog <https://www.rsyslog.com/>`__ to automatically route log messages to the
 appropriate log file and then rotate those files when they become too large.
 
 Default Behavior
@@ -9,8 +9,8 @@ Default Behavior
 
 Two logging policy files are included in ``/etc/rsyslog.d/``:
 
-    - ``kubos-apps.conf`` - Specifies the logging and rotation policies for mission applications
-    - ``kubos-services.conf`` - Specifies the logging and rotation policies for services
+    - ``cubeos-apps.conf`` - Specifies the logging and rotation policies for mission applications
+    - ``cubeos-services.conf`` - Specifies the logging and rotation policies for services
 
 Within those files, and the main ``/etc/rsyslog.conf`` file which controls other system logs, each
 policy has the following format::
@@ -20,7 +20,7 @@ policy has the following format::
     
 An example policy looks like this::
 
-    $outchannel service_debug,/var/log/kubos-debug.log,100000,/home/system/kubos/log-rotate.sh kubos-debug.log
+    $outchannel service_debug,/var/log/cubeos-debug.log,100000,/home/system/cubeos/log-rotate.sh cubeos-debug.log
     daemon.debug :omfile:$service_debug
     
 Any of these components may be updated within their respective files in order to change the policy
@@ -35,8 +35,8 @@ Log files are traditionally stored in ``/var/log``.
 This way log files reside in permanent storage and will be preserved through OS upgrades.
 
 Messages written using the `daemon` facility will be routed to files with the naming scheme
-``kubos-*.log``.
-This facility is used by all :ref:`Kubos services <service-docs>`.
+``cubeos-*.log``.
+This facility is used by all :ref:`CubeOS services <service-docs>`.
 
 Messages written using the `user` facility will be routed to files with the naming scheme
 ``app-*.log``.
@@ -55,7 +55,7 @@ On the SDK, logs can be found in ``/var/log/syslog``.
 Log Rotation
 ~~~~~~~~~~~~
 
-The ``/home/system/kubos/log-rotate.sh`` script is used to execute the rotation behavior.
+The ``/home/system/cubeos/log-rotate.sh`` script is used to execute the rotation behavior.
 
 By default, all debug log files have a maximum size of 100KB and all other log files have a maximum
 size of 10KB.
@@ -63,7 +63,7 @@ This value can be updated by changing the max size parameter of the appropriate 
 
 Once this size is reached, the current file is renamed as an archive file and a new log file is
 started. Archive files use their original name, but are suffixed with the current timestamp.
-For example, ``kubos-debug.log.2018.12.01-00.12.07``.
+For example, ``cubeos-debug.log.2018.12.01-00.12.07``.
 
 By default, nine archive files of each log type will be retained.
 If a new archive file is created and there are already five files, the oldest will be deleted.
@@ -78,15 +78,15 @@ Rust
 ~~~~
 
 Rust programs will use the standard `log framework crate <https://docs.rs/log/0.4.6/log/>`__ in
-conjunction with a crate capable of writing syslog messages. The ``kubos-system`` crate provides
-a `common interface <https://github.com/kubos/kubos/blob/master/apis/system-api/src/logger.rs>`__
-for initializing the syslog interface. The ``kubos-service`` crate re-exports this
+conjunction with a crate capable of writing syslog messages. The ``cubeos-system`` crate provides
+a `common interface <https://github.com/cubeos/cubeos/blob/master/apis/system-api/src/logger.rs>`__
+for initializing the syslog interface. The ``cubeos-service`` crate re-exports this
 interface for usage when building services:
 
 .. code-block:: rust
 
     use failure::{Error, SyncFailure};
-    use kubos_service::Logger;
+    use cubeos_service::Logger;
     use log::{debug, error};
     
     fn main() -> Result<(), Error> {
@@ -98,7 +98,7 @@ interface for usage when building services:
         Ok(())
     }
 
-Utilizing the ``kubos_system::logger`` interface also exposes two optional command line arguments:
+Utilizing the ``cubeos_system::logger`` interface also exposes two optional command line arguments:
 
 - The ``--stdout`` flag will enable logging to stdout.
 - The ``-l log-level`` flag will control the verbosity of the logging. The following 

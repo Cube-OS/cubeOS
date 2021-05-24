@@ -1,12 +1,12 @@
 [package]
-name = "kubos-app-service"
+name = "cubeos-app-service"
 version = "0.1.0"
 authors = ["Marshall Culpepper <marshall@kubos.com>", "Catherine Garabedian <catherine@kubos.com>"]
 edition = "2018"
 
 [dependencies]
-kubos-app = { path = "../../apis/app-api/rust" }
-kubos-service = { path = "../kubos-service" }
+cubeos-app = { path = "../../apis/app-api/rust" }
+cubeos-service = { path = "../cubeos-service" }
 
 chrono = "0.4"
 failure = "0.1.2"
@@ -22,7 +22,7 @@ uuid = { version = "0.6", features = ["v4"] }
 tempfile = "3"
 
 [dev-dependencies]
-kubos-system = { path = "../../apis/system-api" }
+cubeos-system = { path = "../../apis/system-api" }
 reqwest = "0.9.9"
 serde_json = "1.0"
 warp = "0.1.12"

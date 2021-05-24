@@ -1,9 +1,9 @@
-Running a KubOS Project on an OBC
+Running a CubeOS Project on an OBC
 =================================
 
-Once you have a KubOS project set up, you'll eventually want to test it on actual hardware.
+Once you have a CubeOS project set up, you'll eventually want to test it on actual hardware.
 
-This tutorial guides the user through the process of adding logging to a KubOS project
+This tutorial guides the user through the process of adding logging to a CubeOS project
 (a crucial component when running in-flight) and then installing and running it on a target OBC.
 
 .. note:: 
@@ -15,10 +15,10 @@ This tutorial guides the user through the process of adding logging to a KubOS p
 Setup
 -----
 
-- :doc:`Install the Kubos SDK <../sdk-docs/sdk-installing>` or set up the dependencies
+- :doc:`Install the CubeOS SDK <../sdk-docs/sdk-installing>` or set up the dependencies
   required for a :doc:`local dev environment <../getting-started/local-setup>`
 - Have an OBC available with both Python and SSH capabilities
-  (preferably with an :doc:`installation of Kubos Linux <../obc-docs/index>`)
+  (preferably with an :doc:`installation of CubeOS Linux <../obc-docs/index>`)
 
     - :ref:`Configuring Ethernet <ethernet>`
 
@@ -34,7 +34,7 @@ When our mission application is running in-flight, we likely won't have constant
 As a result, it would be better if we were also routing our messages to a log file.
 That way we can check the status of our application at our discretion.
 
-Kubos Linux uses `rsyslog <https://www.rsyslog.com/>`__ to automatically route log messages to the
+CubeOS Linux uses `rsyslog <https://www.rsyslog.com/>`__ to automatically route log messages to the
 appropriate log file and then rotate those files when they become too large.
 
 All user applications should setup their logging to write to the user facility.
@@ -60,7 +60,7 @@ By default, nine archive files of each log type will be retained.
 If a new archive file is created and there are already nine files, the oldest will be deleted.
 
 More information about the logging infrastructure can be found in the
-:doc:`Kubos Linux logging doc <../ecosystem/linux-docs/logging>`.
+:doc:`CubeOS Linux logging doc <../ecosystem/linux-docs/logging>`.
 
 For ease-of-use, the Python applications API contains a helper function, ``logging_setup``,
 which will make all of the system calls required in order to set up the logger for the application.
@@ -148,17 +148,17 @@ Our resulting project code should look like this::
     if __name__ == "__main__":
         main()
 
-Logging in to KubOS
+Logging in to CubeOS
 -------------------
 
-By default, KubOS comes with a user account, ``kubos``, with the default password ``Kubos123``.
+By default, CubeOS comes with a user account, ``cubeos``, with the default password ``CubeOS123``.
 
 Log into your OBC using SSH and its configured IP address. Enter the password when prompted.
 
 For example::
 
-    $ ssh kubos@10.0.2.20
-    kubos@10.0.2.20's password: ********
+    $ ssh cubeos@10.0.2.20
+    cubeos@10.0.2.20's password: ********
 
 If this is your first time connecting to the board via SSH, you may be prompted to confirm
 the target IP's authenticity. Enter "yes" if this occurs::
@@ -168,7 +168,7 @@ the target IP's authenticity. Enter "yes" if this occurs::
     ECDSA key fingerprint is SHA256:ir2TC+iML+MJ5Cb3cxTReWI69aX6EtPysFQzWleKc+8.
     Are you sure you want to continue connecting (yes/no)? yes
     Warning: Permanently added '10.0.2.20' (ECDSA) to the list of known hosts.
-    kubos@10.0.2.20's password: ********
+    cubeos@10.0.2.20's password: ********
 
 Please confirm that you are able to connect to the board via SSH from you development environment
 before proceeding with the next step. If you are unable to do so, please verify that your OBC's
@@ -180,12 +180,12 @@ return to your host computer.
 Transferring the Project to a Target OBC
 ----------------------------------------
 
-We can now transfer the project to the ``kubos`` user home directory on the target OBC using SCP.
+We can now transfer the project to the ``cubeos`` user home directory on the target OBC using SCP.
 From your local command line, run the following (be sure to replace ``10.0.2.20`` with your OBC's
 IP address)::
 
-    $ scp my-mission-app.py kubos@10.0.2.20:/home/kubos
-    kubos@10.0.2.20's password: ********
+    $ scp my-mission-app.py cubeos@10.0.2.20:/home/cubeos
+    cubeos@10.0.2.20's password: ********
     my-mission-app.py                                     100% 1814     1.8KB/s   00:00
     
 Running the Project on the Target OBC
@@ -193,14 +193,14 @@ Running the Project on the Target OBC
 
 Once the project has been transferred, we can log in to the OBC and run it::
 
-    $ ssh kubos@10.0.2.20
-    kubos@10.0.2.20's password: ********
-    /home/kubos # ./my-mission-app.py
+    $ ssh cubeos@10.0.2.20
+    cubeos@10.0.2.20's password: ********
+    /home/cubeos # ./my-mission-app.py
     my-mission-app: Current available memory: 497060 kB
     my-mission-app: Telemetry insert completed successfully
-    /home/kubos # cat /var/log/app-debug.log
-    1970-01-01T03:23:13.246358+00:00 Kubos my-mission-app:<info> Current available memory: 497060 kB
-    1970-01-01T03:23:13.867534+00:00 Kubos my-mission-app:<info> Telemetry insert completed successfully
+    /home/cubeos # cat /var/log/app-debug.log
+    1970-01-01T03:23:13.246358+00:00 CubeOS my-mission-app:<info> Current available memory: 497060 kB
+    1970-01-01T03:23:13.867534+00:00 CubeOS my-mission-app:<info> Telemetry insert completed successfully
     
 Next Steps
 ----------

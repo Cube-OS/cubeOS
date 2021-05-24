@@ -16,9 +16,9 @@
 
 #![deny(warnings)]
 
+use cubeos_system::logger as ServiceLogger;
+use cubeos_system::Config as ServiceConfig;
 use file_service::*;
-use kubos_system::logger as ServiceLogger;
-use kubos_system::Config as ServiceConfig;
 use log::{error, warn};
 
 fn main() {

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-//! Kubos CBOR over UDP communication crate
+//! CubeOS CBOR over UDP communication crate
 //!
 //! # Examples
 //!

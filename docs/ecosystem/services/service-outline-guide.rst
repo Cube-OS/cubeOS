@@ -1,4 +1,4 @@
-KubOS Service Outline
+CubeOS Service Outline
 =====================
 
 This guide covers an outline for the base schema that should be implemented in all hardware services.
@@ -15,8 +15,8 @@ Queries
 -------
 
 The queries in the schema below are intended to give a standard interface for mission applications.
-Each query listed is used in the automated systems within KubOS to ease the mission development process.
-Omitting any of the following queries will cause compatibility issues with the rest of the KubOS ecosystem.
+Each query listed is used in the automated systems within CubeOS to ease the mission development process.
+Omitting any of the following queries will cause compatibility issues with the rest of the CubeOS ecosystem.
 Adding additional queries is highly encouraged, especially if it will further ease integration with the underlying hardware.
 For example, a ``currentPosition`` query on a GPS service could provide faster access to apps that need it.
 

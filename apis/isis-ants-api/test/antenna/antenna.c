@@ -1,5 +1,5 @@
 /*
- * Kubos API for ISIS Antenna Systems
+ * CubeOS API for ISIS Antenna Systems
  * Copyright (C) 2018 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,10 +24,10 @@
 #define ANT_COUNT 4
 
 ants_telemetry system_telem
-    = {.raw_temp = 574,
-       .deploy_status
-       = SYS_BURN_ACTIVE | ANT_2_STOPPED_TIME | ANT_2_NOT_DEPLOYED,
-       .uptime = 9876 };
+    = { .raw_temp = 574,
+        .deploy_status
+        = SYS_BURN_ACTIVE | ANT_2_STOPPED_TIME | ANT_2_NOT_DEPLOYED,
+        .uptime = 9876 };
 
 uint32_t uptime           = 432;
 uint16_t deploy_status    = SYS_ARMED | ANT_1_ACTIVE | ANT_4_NOT_DEPLOYED;
@@ -38,7 +38,9 @@ uint8_t  activation_count = 3;
 static void test_init(void ** state)
 {
     will_return(__wrap_open, 1);
-    assert_int_equal(k_ants_init("/dev/i2c-1", ANTS_PRIMARY, ANTS_SECONDARY, ANT_COUNT, 10), ANTS_OK);
+    assert_int_equal(k_ants_init("/dev/i2c-1", ANTS_PRIMARY, ANTS_SECONDARY,
+                                 ANT_COUNT, 10),
+                     ANTS_OK);
 }
 
 static void test_no_init_arm(void ** arg)
@@ -85,7 +87,7 @@ static void test_watchdog_thread(void ** arg)
 
     start_ret = k_ants_watchdog_start();
 
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 2000001 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 2000001 };
 
     nanosleep(&delay, NULL);
 
@@ -107,7 +109,7 @@ static void test_watchdog_thread_twice(void ** arg)
 
     start_ret = k_ants_watchdog_start();
 
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 2000001 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 2000001 };
 
     nanosleep(&delay, NULL);
 

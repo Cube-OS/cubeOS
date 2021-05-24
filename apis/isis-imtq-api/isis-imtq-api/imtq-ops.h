@@ -24,43 +24,46 @@
 
 /** \cond WE DO NOT WANT TO HAVE THESE IN OUR GENERATED DOCS */
 /* Operational Commands */
-#define RESET_MTQ       0xAAA5 /* Reset has a two-byte command code */
-#define NOOP            0x02
-#define CANCEL_OP       0x03
-#define START_MEASURE   0x04
-#define START_CURRENT   0x05
-#define START_DIPOLE    0x06
-#define START_PWM       0x07
-#define START_TEST      0x08
-#define START_BDOT      0x09
+#define RESET_MTQ 0xAAA5 /* Reset has a two-byte command code */
+#define NOOP 0x02
+#define CANCEL_OP 0x03
+#define START_MEASURE 0x04
+#define START_CURRENT 0x05
+#define START_DIPOLE 0x06
+#define START_PWM 0x07
+#define START_TEST 0x08
+#define START_BDOT 0x09
 /** \endcond */
 
 /**
  * Available iMTQ system reset types
  */
-typedef enum {
-    SOFT_RESET      /**< Software reset */
+typedef enum
+{
+    SOFT_RESET /**< Software reset */
 } KADCSReset;
 
 /**
  * Self-Test Axis Options
  */
-typedef enum {
-    TEST_ALL,        /**< Test all axes */
-    TEST_X_POS,      /**< Test positive x-axis */
-    TEST_X_NEG,      /**< Test negative x-axis */
-    TEST_Y_POS,      /**< Test positive y-axis */
-    TEST_Y_NEG,      /**< Test negative y-axis */
-    TEST_Z_POS,      /**< Test positive z-axis */
-    TEST_Z_NEG       /**< Test negative z-axis */
+typedef enum
+{
+    TEST_ALL, /**< Test all axes */
+    TEST_X_POS, /**< Test positive x-axis */
+    TEST_X_NEG, /**< Test negative x-axis */
+    TEST_Y_POS, /**< Test positive y-axis */
+    TEST_Y_NEG, /**< Test negative y-axis */
+    TEST_Z_POS, /**< Test positive z-axis */
+    TEST_Z_NEG /**< Test negative z-axis */
 } ADCSTestType;
 
 /**
  * Parameter for `k_adcs_set_mode`
  *
- * For the iMTQ, exclusively used to specify the duration when entering ::DETUMBLE mode
+ * For the iMTQ, exclusively used to specify the duration when entering
+ * ::DETUMBLE mode
  */
-typedef uint16_t   adcs_mode_param;
+typedef uint16_t adcs_mode_param;
 /**
  * Pointer to self-test results JSON structure created by `k_adcs_run_test`
  */
@@ -84,7 +87,8 @@ KADCSStatus k_adcs_reset(KADCSReset type);
  * Set the ADCS's operating mode
  * @note See specific ADCS API documentation for available modes
  * @param [in] mode Operating mode to change to
- * @param [in] params Pointer to optional parameters which may be needed to configure the new operational mode
+ * @param [in] params Pointer to optional parameters which may be needed to
+ * configure the new operational mode
  * @return KADCSStatus ADCS_OK if OK, error otherwise
  */
 KADCSStatus k_adcs_set_mode(ADCSMode mode, const adcs_mode_param * params);
@@ -93,7 +97,8 @@ KADCSStatus k_adcs_set_mode(ADCSMode mode, const adcs_mode_param * params);
  * @note This function might not be implemented for all ADCSs.
  * See specific ADCS API documentation for available self-tests.
  * @param [in] test Type of self-test to run
- * @param [out] buffer (Pointer to) structure which the test-results should be copied to
+ * @param [out] buffer (Pointer to) structure which the test-results should be
+ * copied to
  * @return KADCSStatus ADCS_OK if OK, error otherwise
  */
 KADCSStatus k_adcs_run_test(ADCSTestType test, adcs_test_results buffer);

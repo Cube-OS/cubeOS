@@ -9,6 +9,6 @@ from setuptools import setup
 
 setup(name='i2c',
       version='0.1.0',
-      description='I2C library for KubOS',
+      description='I2C library for CubeOS',
       py_modules=["i2c"]
       )

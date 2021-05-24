@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include <imtq.h>
 #include <cmocka.h>
 #include <errno.h>
+#include <imtq.h>
 #include <unistd.h>
 
 uint8_t  last_cmd;

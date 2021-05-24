@@ -18,8 +18,8 @@ use crate::models::subsystem::Subsystem;
 use crate::schema::mutation::Root as MutationRoot;
 use crate::schema::query::Root as QueryRoot;
 use clyde_3g_eps_api::*;
+use cubeos_service::{Config, Service};
 use eps_api::*;
-use kubos_service::{Config, Service};
 use serde_json::json;
 use std::sync::{Arc, Mutex};
 

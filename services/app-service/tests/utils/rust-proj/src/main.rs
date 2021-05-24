@@ -16,20 +16,17 @@
 
 // Test Rust project to help exercise all of the possible app framework behavior
 
+use cubeos_app::*;
 use failure::{bail, Error};
 use getopts::Options;
-use kubos_app::*;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
 use std::thread;
 use std::time::Duration;
-use std::sync::Arc;
-use std::sync::atomic::{AtomicBool, Ordering};
 
 fn main() -> Result<(), Error> {
-    
     logging_setup!("rust-proj")?;
-    
     let mut success = false;
-    
     let args: Vec<String> = ::std::env::args().collect();
 
     if args.is_empty() {
@@ -40,15 +37,12 @@ fn main() -> Result<(), Error> {
         } else {
             bail!("Service URL mismatch: {:?}", service.hosturl());
         }
-        
         // Test that we can access a file which was packaged with this binary
         let contents = ::std::fs::read_to_string("testfile")?;
 
         assert_eq!(contents, "test string");
     }
-    
     let program = args[0].clone();
-    
     let mut opts = Options::new();
     // Standard app args:
     // This option will be processed by the system-api crate when a service query is run
@@ -88,7 +82,6 @@ fn main() -> Result<(), Error> {
     if !matches.free.is_empty() && matches.free[0] == "pos" {
         success = true;
     }
-    
     if matches.opt_present("l") {
         // We want to test the app service's ability to track an application which doesn't
         // immediately return.
@@ -96,7 +89,6 @@ fn main() -> Result<(), Error> {
         thread::sleep(Duration::from_secs(2));
         success = true;
     }
-    
     if matches.opt_present("s") {
         let term = Arc::new(AtomicBool::new(false));
         signal_hook::flag::register(signal_hook::SIGTERM, Arc::clone(&term))?;
@@ -104,7 +96,6 @@ fn main() -> Result<(), Error> {
             // Loop waiting for SIGTERM signal
             thread::sleep(Duration::from_millis(500));
         }
-        
         loop {
             // Loop forever (until killed by SIGKILL signal, which is handled outside of the
             // application)

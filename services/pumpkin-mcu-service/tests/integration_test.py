@@ -11,7 +11,7 @@ Runs the moduleList query
 """
 
 import socket
-from kubos_service.config import Config
+from cubeos_service.config import Config
 import json
 
 

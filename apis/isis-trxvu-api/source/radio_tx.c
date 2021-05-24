@@ -15,9 +15,9 @@
  */
 
 #include <i2c.h>
-#include <trxvu.h>
 #include <stdio.h>
 #include <string.h>
+#include <trxvu.h>
 
 /* Public functions */
 
@@ -29,8 +29,8 @@ KRadioStatus k_radio_send(char * buffer, int len, uint8_t * response)
         return RADIO_ERROR_CONFIG;
     }
 
-    char * packet   = malloc(len + 1);
-    packet[0]       = SEND_FRAME;
+    char * packet = malloc(len + 1);
+    packet[0]     = SEND_FRAME;
 
     memcpy(packet + 1, buffer, len);
 
@@ -66,8 +66,8 @@ KRadioStatus k_radio_send_override(ax25_callsign to, ax25_callsign from,
         return RADIO_ERROR_CONFIG;
     }
 
-    char * packet   = malloc(len + 15);
-    packet[0]       = SEND_AX25_OVERRIDE;
+    char * packet = malloc(len + 15);
+    packet[0]     = SEND_AX25_OVERRIDE;
 
     memcpy(packet + 1, &to, sizeof(ax25_callsign));
     memcpy(packet + 8, &from, sizeof(ax25_callsign));
@@ -107,8 +107,8 @@ KRadioStatus k_radio_set_beacon_override(ax25_callsign to, ax25_callsign from,
     }
 
     KI2CStatus status;
-    char * packet   = malloc(beacon.len + sizeof(ax25_callsign) * 2 + 3);
-    packet[0] = SET_AX25_BEACON_OVERRIDE;
+    char *     packet = malloc(beacon.len + sizeof(ax25_callsign) * 2 + 3);
+    packet[0]         = SET_AX25_BEACON_OVERRIDE;
 
     memcpy(packet + 1, (void *) &beacon.interval, sizeof(beacon.interval));
     memcpy(packet + 3, &to, sizeof(ax25_callsign));
@@ -253,8 +253,8 @@ KRadioStatus kprv_radio_tx_set_beacon(uint16_t rate, char * buffer, int len)
         return RADIO_ERROR_CONFIG;
     }
 
-    char * packet   = malloc(len + 3);
-    packet[0]       = SET_BEACON;
+    char * packet = malloc(len + 3);
+    packet[0]     = SET_BEACON;
 
     memcpy(packet + 1, (void *) &rate, 2);
     memcpy(packet + 3, buffer, len);

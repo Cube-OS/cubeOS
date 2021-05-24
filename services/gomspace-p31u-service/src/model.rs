@@ -17,9 +17,9 @@
 // ARC Training Centre for CubeSats, UAVs & Their Applications (CUAVA) team (www.cuava.com.au)
 // at the University of Sydney
 
+use cubeos_service::{process_errors, push_err, run};
 use failure::Error;
 use gomspace_p31u_api::*;
-use kubos_service::{process_errors, push_err, run};
 use log::info;
 use std::str;
 use std::sync::{Arc, Mutex, RwLock};
@@ -41,7 +41,7 @@ impl Subsystem {
     pub fn new(bus: &str, addr: u8) -> EpsResult<Subsystem> {
         let eps: Arc<Mutex<Box<dyn GsEps>>> = Arc::new(Mutex::new(Box::new(Eps::new(bus, addr)?)));
 
-        info!("Kubos GomSpace EPS systems service started");
+        info!("CubeOS GomSpace EPS systems service started");
 
         Ok(Subsystem {
             eps,

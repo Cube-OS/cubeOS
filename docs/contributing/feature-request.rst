@@ -1,18 +1,18 @@
 Requesting New Features
 =======================
 
-If KubOS is missing a feature which you think it should have, feel free to open a
-`GitHub issue <https://github.com/kubos/kubos/issues/new/choose>`__ and tell us about it.
+If CubeOS is missing a feature which you think it should have, feel free to open a
+`GitHub issue <https://github.com/cubeos/cubeos/issues/new/choose>`__ and tell us about it.
 
 Note: This process does require that you have a GitHub account.
 
 Creating an Issue
 -----------------
 
-In order to create a new feature request, navigate to the `main Kubos repo <https://github.com/kubos/kubos>`__
+In order to create a new feature request, navigate to the `main CubeOS repo <https://github.com/cubeos/cubeos>`__
 and click 'Issues', then click the 'New issue' button.
 
-Alternatively, use this shortcut link: https://github.com/kubos/kubos/issues/new/choose
+Alternatively, use this shortcut link: https://github.com/cubeos/cubeos/issues/new/choose
 
 Once here, you should see a list of available issue templates.
 Click the 'Get started' button that belongs to the "Feature request" template.
@@ -25,7 +25,7 @@ Examples:
 
 - Telemetry database service bulk insert
 - Expose additional commands for OEM6
-- KubOS porting guide
+- CubeOS porting guide
 
 Filling Out the Template
 ------------------------
@@ -45,16 +45,16 @@ schema for the new GraphQL request which will need to be added.
 Exploring the Request
 ---------------------
 
-A Kubos team member should respond to the issue within one business day in order to request any
+A CubeOS team member should respond to the issue within one business day in order to request any
 additional information and lay out the next steps.
 
 If the feature request is not accepted, the reason for the rejection will be recorded and the issue
 will be closed.
-A request could be declined because a duplicate request already exists, or because the Kubos team
+A request could be declined because a duplicate request already exists, or because the CubeOS team
 feels that it does not match the product's goals.
 
 If the feature request is accepted, there will likely be some back and forth between you and/or
-Kubos team members in order to determine the specifics of how the feature request should be
+CubeOS team members in order to determine the specifics of how the feature request should be
 implemented and the low-level desired behavior.
 
 The team (or potentially you or another community member!) will then implement the changes needed to
@@ -68,4 +68,4 @@ Closing the Request
 -------------------
 
 Once the request has been implemented and the changes have been merged into the master branch, a
-Kubos team member will close the issue.
+CubeOS team member will close the issue.

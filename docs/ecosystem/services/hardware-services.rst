@@ -51,7 +51,7 @@ needed to create and install a new hardware service.
 Pre-Built Services
 ------------------
 
-Some hardware services have been created by Kubos and are available for use.
+Some hardware services have been created by CubeOS and are available for use.
 
 The following list gives links to each service's documentation:
 
@@ -63,7 +63,7 @@ The following list gives links to each service's documentation:
     - |iOBC-Supervisor|
     - |NovAtel-OEM6|
     - |NSL Duplex|
-    - `Pumpkin Supervisor MCUs <https://github.com/kubos/kubos/blob/master/services/pumpkin-mcu-service/README.rst>`__
+    - `Pumpkin Supervisor MCUs <https://github.com/cubeos/cubeos/blob/master/services/pumpkin-mcu-service/README.rst>`__
 
 .. |MAI-400| raw:: html
 
@@ -92,4 +92,4 @@ The following list gives links to each service's documentation:
 .. note::
 
     In order to be included in the OBC and automatically started at boot time, the package for each hardware service
-    must be enabled when building Kubos Linux
+    must be enabled when building CubeOS Linux

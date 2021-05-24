@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Kubos documentation build configuration file, created by
+# CubeOS documentation build configuration file, created by
 # sphinx-quickstart on Fri Apr 21 15:23:32 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -16,11 +16,12 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import sphinx_rtd_theme
 import os
 import sys
 import datetime
 
-# List of paths to Kubos python module
+# List of paths to CubeOS python module
 # These are injected into the system path so Sphinx can find them
 python_modules = [
     'apis/pumpkin-mcu-api',
@@ -31,7 +32,6 @@ python_modules = [
 for path in python_modules:
     sys.path.insert(0, os.path.abspath("../%s" % path))
 
-import sphinx_rtd_theme
 
 # -- General configuration ------------------------------------------------
 
@@ -57,9 +57,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Kubos'
+project = u'CubeOS'
 copyright = u'%s, Kubos Corporation' % (datetime.datetime.now().year)
-author = u'Kubos'
+author = u'CubeOS'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -108,22 +108,22 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = []
 
-html_favicon = "images/kubos_favicon.ico"
+html_favicon = "images/cubeos_favicon.ico"
 html_show_sphinx = False
 
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Kubosdoc'
+htmlhelp_basename = 'CubeOSdoc'
 
 breathe_projects = {
-    "gomspace-p31u-api" : "../xml/apis/gomspace-p31u-api",
-    "isis-ants-api" : "../xml/apis/isis-ants-api",
+    "gomspace-p31u-api": "../xml/apis/gomspace-p31u-api",
+    "isis-ants-api": "../xml/apis/isis-ants-api",
     "isis-imtq-api": "../xml/apis/isis-imtq-api",
-    "isis-iobc-supervisor" : "../xml/apis/isis-iobc-supervisor",
+    "isis-iobc-supervisor": "../xml/apis/isis-iobc-supervisor",
     "isis-trxvu-api": "../xml/apis/isis-trxvu-api",
-    "kubos-hal" : "../xml/hal/kubos-hal",
-    "kubos-hal-linux" : "../xml/hal/kubos-hal-linux",
+    "cubeos-hal": "../xml/hal/cubeos-hal",
+    "cubeos-hal-linux": "../xml/hal/cubeos-hal-linux",
 }
 
 extensions += [

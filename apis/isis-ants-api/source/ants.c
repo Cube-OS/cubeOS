@@ -20,11 +20,12 @@
 #include <time.h>
 #include <unistd.h>
 
-static int ants_bus = 0;
-static uint8_t ants_primary = 0;
+static int     ants_bus       = 0;
+static uint8_t ants_primary   = 0;
 static uint8_t ants_secondary = 0;
-static uint8_t ants_addr = 0; /* Address of the antenna microcontroller commands should be issued against */
-static uint8_t ant_count = 0;
+static uint8_t ants_addr      = 0; /* Address of the antenna microcontroller
+                                      commands should be issued against */
+static uint8_t ant_count       = 0;
 static uint8_t ants_wd_timeout = 0;
 
 /* Handle for watchdog thread */
@@ -34,14 +35,15 @@ static pthread_t handle_watchdog = { 0 };
  * The system can lock up if you make too many calls too quickly,
  * so we're adding a small delay for safety.
  */
-const struct timespec TRANSFER_DELAY = {.tv_sec = 0, .tv_nsec = 1000001 };
+const struct timespec TRANSFER_DELAY = { .tv_sec = 0, .tv_nsec = 1000001 };
 
-KANTSStatus k_ants_init(char * bus, uint8_t primary, uint8_t secondary, uint8_t count, uint32_t timeout)
+KANTSStatus k_ants_init(char * bus, uint8_t primary, uint8_t secondary,
+                        uint8_t count, uint32_t timeout)
 {
     /* Save internal configuration values */
-    ants_primary = primary;
-    ants_secondary = secondary;
-    ant_count = count;
+    ants_primary    = primary;
+    ants_secondary  = secondary;
+    ant_count       = count;
     ants_wd_timeout = timeout;
 
     KI2CStatus status;
@@ -443,7 +445,8 @@ KANTSStatus k_ants_watchdog_kick()
         status = k_i2c_write(ants_bus, ants_secondary, (uint8_t *) &cmd, 1);
         if (status != I2C_OK)
         {
-            fprintf(stderr, "Failed to kick AntS redundant watchdog: %d\n", status);
+            fprintf(stderr, "Failed to kick AntS redundant watchdog: %d\n",
+                    status);
             ret = ANTS_ERROR;
         }
     }
@@ -496,8 +499,8 @@ KANTSStatus k_ants_watchdog_stop()
 {
     if (handle_watchdog == 0)
     {
-      perror("AntS watchdog thread has not been started");
-      return ANTS_ERROR;
+        perror("AntS watchdog thread has not been started");
+        return ANTS_ERROR;
     }
 
     /* Send the cancel request */
@@ -522,7 +525,8 @@ KANTSStatus k_ants_watchdog_stop()
 KANTSStatus k_ants_passthrough(const uint8_t * tx, int tx_len, uint8_t * rx,
                                int rx_len)
 {
-    if (tx == NULL || tx_len < 1 || (rx == NULL && rx_len != 0) || (rx != NULL && rx_len == 0))
+    if (tx == NULL || tx_len < 1 || (rx == NULL && rx_len != 0)
+        || (rx != NULL && rx_len == 0))
     {
         return ANTS_ERROR_CONFIG;
     }

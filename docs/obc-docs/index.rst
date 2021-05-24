@@ -1,8 +1,8 @@
-Working with KubOS and an OBC
+Working with CubeOS and an OBC
 =============================
 
 After getting your :doc:`development environment <../getting-started/local-setup>` set up and playing
-around with the :doc:`basics of KubOS <../tutorials/index>`, you can move on to interacting with
+around with the :doc:`basics of CubeOS <../tutorials/index>`, you can move on to interacting with
 hardware.
 
 In this section, you'll find the following docs:
@@ -17,7 +17,7 @@ In this section, you'll find the following docs:
   instructions and a system overview doc
 - :doc:`mbm2/index` - Documentation specifically geared for the ISIS OBC. Includes installation
   instructions and a system overview doc
-- :doc:`porting-kubos` - A high-level guide of how to set up KubOS for a currently unsupported OBC
+- :doc:`porting-cubeos` - A high-level guide of how to set up CubeOS for a currently unsupported OBC
 
 .. toctree::
     :hidden:
@@ -27,4 +27,4 @@ In this section, you'll find the following docs:
     bbb/index
     iobc/index
     mbm2/index
-    porting-kubos
+    porting-cubeos

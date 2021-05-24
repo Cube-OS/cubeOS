@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 failure = "0.1.2"
 getopts = "0.2"
-kubos-app = { path = "../../../../../apis/app-api/rust" }
+cubeos-app = { path = "../../../../../apis/app-api/rust" }
 log = "^0.4.0"
 signal-hook = "0.1.10"
 

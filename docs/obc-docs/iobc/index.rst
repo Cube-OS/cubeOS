@@ -1,4 +1,4 @@
-KubOS for the ISIS-OBC
+CubeOS for the ISIS-OBC
 ======================
 
 .. toctree::
@@ -29,7 +29,7 @@ may also need to be connected in order to successfully connect with an iOBC.
 Peripherals
 -----------
 
-By default, KubOS exposes the following peripheral components:
+By default, CubeOS exposes the following peripheral components:
 
 - 1 I2C bus
 - 1 SPI bus

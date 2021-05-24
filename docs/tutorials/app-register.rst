@@ -1,7 +1,7 @@
 Registering a Mission Application
 =================================
 
-The Kubos :doc:`applications service <../ecosystem/services/app-service>` is responsible for monitoring and
+The CubeOS :doc:`applications service <../ecosystem/services/app-service>` is responsible for monitoring and
 managing all mission applications for a system.
 
 This tutorial walks the user through:
@@ -23,18 +23,18 @@ Make sure that the `manifest.toml` file is present in the same project directory
 This tutorial will use the following example directories:
 
     - ``/home/user/my-app`` - Project directory
-    - ``/home/user/kubos`` - Cloned copy of the kubos repo
-    - ``/home/user/kubos/app-registry`` - Directory used by the applications service to store registered
+    - ``/home/user/cubeos`` - Cloned copy of the cubeos repo
+    - ``/home/user/cubeos/app-registry`` - Directory used by the applications service to store registered
       applications
 
-- Navigate to the `kubos` source directory
+- Navigate to the `cubeos` source directory
 - **If you are using the SDK**, update all IP addresses in the ``tools/local_config.toml`` file,
   changing them from ``127.0.0.1`` to ``0.0.0.0``, so that they are available :ref:`to your host machine <sdk-port-forward>`.
 
 - Run the following command to start the applications service in the background (the service may
   need to be built first, which will take several minutes to complete)::
   
-    $ cargo run --bin kubos-app-service -- -c tools/local_config.toml &
+    $ cargo run --bin cubeos-app-service -- -c tools/local_config.toml &
     
 - If you have stopped the monitor and telemetry services since going through the previous tutorial,
   you will need to start those as well::
@@ -49,7 +49,7 @@ This tutorial will use the following example directories:
 GraphiQL
 --------
 
-All Kubos services which provide an HTTP interface have a special endpoint which can be used to
+All CubeOS services which provide an HTTP interface have a special endpoint which can be used to
 send and receive GraphQL data via an in-browser graphical interface, GraphiQL.
 
 This graphical interface makes it easier to create and consume more lengthy GraphQL requests.
@@ -168,7 +168,7 @@ The response should like this::
           "entry": {
             "app": {
               "name": "my-mission-app",
-              "executable": "/home/user/kubos/app-registry/my-mission-app/1.0/my-mission-app.py"
+              "executable": "/home/user/cubeos/app-registry/my-mission-app/1.0/my-mission-app.py"
             }
           }
         }
@@ -177,7 +177,7 @@ The response should like this::
 
 We can break down the resulting executable path like so:
 
-    - ``/home/user/kubos/app-registry`` - This is the directory that the applications service uses to
+    - ``/home/user/cubeos/app-registry`` - This is the directory that the applications service uses to
       save all registered applications. We previously specified it in our ``config.toml`` file
     - ``my-mission-app`` - The name of our application
     - ``1.0`` - Our manifest file specified that this was version 1.0 of our application
@@ -213,7 +213,7 @@ The mutation returns three fields:
 Our request should look like this::
 
     mutation {
-      startApp(name: "my-mission-app", config:"/home/user/kubos/tools/local_config.toml") {
+      startApp(name: "my-mission-app", config:"/home/user/cubeos/tools/local_config.toml") {
         success,
         pid
       }
@@ -277,7 +277,7 @@ The response should look almost identical::
                 "entry": {
                     "app": {
                         "name":"my-mission-app",
-                        "executable":"/home/user/kubos/app-registry/my-mission-app/2.0/my-mission-app.py"
+                        "executable":"/home/user/cubeos/app-registry/my-mission-app/2.0/my-mission-app.py"
                     }
                 }
             }

@@ -1,5 +1,5 @@
 /*
- * Kubos iMTQ API
+ * CubeOS iMTQ API
  * Copyright (C) 2018 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,36 +15,22 @@
  * limitations under the License.
  */
 
-#include <imtq.h>
 #include <cmocka.h>
+#include <imtq.h>
 
-static char * bus = "/dev/i2c-1";
-static uint16_t addr = 0x40;
-static int timeout = 60;
+static char *   bus     = "/dev/i2c-1";
+static uint16_t addr    = 0x40;
+static int      timeout = 60;
 
 imtq_resp_header response = { 0 };
 
-imtq_resp_header error_resp = {
-        .cmd = 0,
-        .status = IMTQ_ERROR_BAD_PARAM
-};
+imtq_resp_header error_resp = { .cmd = 0, .status = IMTQ_ERROR_BAD_PARAM };
 
-imtq_config_resp config_resp = {
-        .hdr = {0},
-        .param = 0x2003,
-        .value = {
-                0,
-                .uint8_val = 3
-        }
-};
+imtq_config_resp config_resp
+    = { .hdr = { 0 }, .param = 0x2003, .value = { 0, .uint8_val = 3 } };
 
-imtq_state state = {
-        .hdr = {0},
-        .mode = SELFTEST,
-        .error = 0,
-        .config = 1,
-        .uptime = 35
-    };
+imtq_state state
+    = { .hdr = { 0 }, .mode = SELFTEST, .error = 0, .config = 1, .uptime = 35 };
 
 imtq_test_result_all    test_results_all    = { 0 };
 imtq_test_result_single test_results_single = { 0 };
@@ -268,12 +254,8 @@ static void test_PWM(void ** arg)
 static void test_PWM_exceed_x(void ** arg)
 {
     KADCSStatus    ret;
-    imtq_axis_data data = {
-            .x = 2000,
-            .y = 0,
-            .z = 0
-    };
-    uint16_t time = 10;
+    imtq_axis_data data = { .x = 2000, .y = 0, .z = 0 };
+    uint16_t       time = 10;
 
     ret = k_imtq_start_actuation_PWM(data, time);
 
@@ -283,12 +265,8 @@ static void test_PWM_exceed_x(void ** arg)
 static void test_PWM_exceed_y(void ** arg)
 {
     KADCSStatus    ret;
-    imtq_axis_data data = {
-            .x = 0,
-            .y = 2000,
-            .z = 0
-    };
-    uint16_t time = 10;
+    imtq_axis_data data = { .x = 0, .y = 2000, .z = 0 };
+    uint16_t       time = 10;
 
     ret = k_imtq_start_actuation_PWM(data, time);
 
@@ -298,12 +276,8 @@ static void test_PWM_exceed_y(void ** arg)
 static void test_PWM_exceed_z(void ** arg)
 {
     KADCSStatus    ret;
-    imtq_axis_data data = {
-            .x = 0,
-            .y = 0,
-            .z = 2000
-    };
-    uint16_t time = 10;
+    imtq_axis_data data = { .x = 0, .y = 0, .z = 2000 };
+    uint16_t       time = 10;
 
     ret = k_imtq_start_actuation_PWM(data, time);
 
@@ -627,7 +601,7 @@ static void test_watchdog(void ** arg)
 
     start_ret = k_imtq_watchdog_start();
 
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 20000001 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 20000001 };
 
     nanosleep(&delay, NULL);
 
@@ -649,7 +623,7 @@ static void test_watchdog_twice(void ** arg)
 
     start_ret = k_imtq_watchdog_start();
 
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 20000001 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 20000001 };
 
     nanosleep(&delay, NULL);
 
@@ -686,7 +660,7 @@ static void test_transfer_null_tx(void ** arg)
     KADCSStatus           ret;
     uint8_t               tx[1] = { 0 };
     uint8_t               rx[1] = { 0 };
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 1 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 1 };
 
     ret = kprv_imtq_transfer(NULL, sizeof(tx), rx, sizeof(rx), &delay);
 
@@ -698,7 +672,7 @@ static void test_transfer_zero_tx_len(void ** arg)
     KADCSStatus           ret;
     uint8_t               tx[1] = { 0 };
     uint8_t               rx[1] = { 0 };
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 1 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 1 };
 
     ret = kprv_imtq_transfer(tx, 0, rx, sizeof(rx), &delay);
 
@@ -710,7 +684,7 @@ static void test_transfer_null_rx(void ** arg)
     KADCSStatus           ret;
     uint8_t               tx[1] = { 0 };
     uint8_t               rx[1] = { 0 };
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 1 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 1 };
 
     ret = kprv_imtq_transfer(tx, sizeof(tx), NULL, sizeof(rx), &delay);
 
@@ -722,7 +696,7 @@ static void test_transfer_zero_rx_len(void ** arg)
     KADCSStatus           ret;
     uint8_t               tx[1] = { 0 };
     uint8_t               rx[1] = { 0 };
-    const struct timespec delay = {.tv_sec = 0, .tv_nsec = 1 };
+    const struct timespec delay = { .tv_sec = 0, .tv_nsec = 1 };
 
     ret = kprv_imtq_transfer(tx, sizeof(tx), rx, 0, &delay);
 
@@ -822,75 +796,83 @@ static int term(void ** state)
 int main(void)
 {
     const struct CMUnitTest tests[] = {
-            /* Sanity check */
-            cmocka_unit_test(test_init),
-            cmocka_unit_test(test_no_init_noop),
+        /* Sanity check */
+        cmocka_unit_test(test_init),
+        cmocka_unit_test(test_no_init_noop),
 
-            /* Config tests */
-            cmocka_unit_test_setup_teardown(test_get_param_zero, init, term),
-            cmocka_unit_test_setup_teardown(test_get_param_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_param_resp, init, term),
+        /* Config tests */
+        cmocka_unit_test_setup_teardown(test_get_param_zero, init, term),
+        cmocka_unit_test_setup_teardown(test_get_param_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_param_resp, init, term),
 
-            cmocka_unit_test_setup_teardown(test_set_param_zero, init, term),
-            cmocka_unit_test_setup_teardown(test_set_param_null_value, init, term),
-            cmocka_unit_test_setup_teardown(test_set_param_null_resp, init, term),
-            cmocka_unit_test_setup_teardown(test_set_param_resp, init, term),
+        cmocka_unit_test_setup_teardown(test_set_param_zero, init, term),
+        cmocka_unit_test_setup_teardown(test_set_param_null_value, init, term),
+        cmocka_unit_test_setup_teardown(test_set_param_null_resp, init, term),
+        cmocka_unit_test_setup_teardown(test_set_param_resp, init, term),
 
-            cmocka_unit_test_setup_teardown(test_reset_param_zero, init, term),
-            cmocka_unit_test_setup_teardown(test_reset_param_null, init, term),
-            cmocka_unit_test_setup_teardown(test_reset_param_resp, init, term),
+        cmocka_unit_test_setup_teardown(test_reset_param_zero, init, term),
+        cmocka_unit_test_setup_teardown(test_reset_param_null, init, term),
+        cmocka_unit_test_setup_teardown(test_reset_param_resp, init, term),
 
-            /* Ops tests */
-            cmocka_unit_test_setup_teardown(test_cancel, init, term),
-            cmocka_unit_test_setup_teardown(test_measure, init, term),
-            cmocka_unit_test_setup_teardown(test_current, init, term),
-            cmocka_unit_test_setup_teardown(test_dipole, init, term),
-            cmocka_unit_test_setup_teardown(test_PWM, init, term),
-            cmocka_unit_test_setup_teardown(test_PWM_exceed_x, init, term),
-            cmocka_unit_test_setup_teardown(test_PWM_exceed_y, init, term),
-            cmocka_unit_test_setup_teardown(test_PWM_exceed_z, init, term),
-            cmocka_unit_test_setup_teardown(test_selftest, init, term),
-            cmocka_unit_test_setup_teardown(test_detumble, init, term),
+        /* Ops tests */
+        cmocka_unit_test_setup_teardown(test_cancel, init, term),
+        cmocka_unit_test_setup_teardown(test_measure, init, term),
+        cmocka_unit_test_setup_teardown(test_current, init, term),
+        cmocka_unit_test_setup_teardown(test_dipole, init, term),
+        cmocka_unit_test_setup_teardown(test_PWM, init, term),
+        cmocka_unit_test_setup_teardown(test_PWM_exceed_x, init, term),
+        cmocka_unit_test_setup_teardown(test_PWM_exceed_y, init, term),
+        cmocka_unit_test_setup_teardown(test_PWM_exceed_z, init, term),
+        cmocka_unit_test_setup_teardown(test_selftest, init, term),
+        cmocka_unit_test_setup_teardown(test_detumble, init, term),
 
-            /* Data Tests */
-            cmocka_unit_test_setup_teardown(test_get_system_state, init, term),
-            cmocka_unit_test_setup_teardown(test_get_system_state_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_raw_mtm, init, term),
-            cmocka_unit_test_setup_teardown(test_get_raw_mtm_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_calib_mtm, init, term),
-            cmocka_unit_test_setup_teardown(test_get_calib_mtm_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_coil_current, init, term),
-            cmocka_unit_test_setup_teardown(test_get_coil_current_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_coil_temps, init, term),
-            cmocka_unit_test_setup_teardown(test_get_coil_temps_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_dipole, init, term),
-            cmocka_unit_test_setup_teardown(test_get_dipole_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_test_results_single, init, term),
-            cmocka_unit_test_setup_teardown(test_get_test_results_single_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_test_results_all, init, term),
-            cmocka_unit_test_setup_teardown(test_get_test_results_all_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_detumble, init, term),
-            cmocka_unit_test_setup_teardown(test_get_detumble_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_raw_housekeeping, init, term),
-            cmocka_unit_test_setup_teardown(test_get_raw_housekeeping_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_eng_housekeeping, init, term),
-            cmocka_unit_test_setup_teardown(test_get_eng_housekeeping_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_status_telemetry_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_nominal_telemetry_null, init, term),
-            cmocka_unit_test_setup_teardown(test_get_debug_telemetry_null, init, term),
+        /* Data Tests */
+        cmocka_unit_test_setup_teardown(test_get_system_state, init, term),
+        cmocka_unit_test_setup_teardown(test_get_system_state_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_raw_mtm, init, term),
+        cmocka_unit_test_setup_teardown(test_get_raw_mtm_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_calib_mtm, init, term),
+        cmocka_unit_test_setup_teardown(test_get_calib_mtm_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_coil_current, init, term),
+        cmocka_unit_test_setup_teardown(test_get_coil_current_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_coil_temps, init, term),
+        cmocka_unit_test_setup_teardown(test_get_coil_temps_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_dipole, init, term),
+        cmocka_unit_test_setup_teardown(test_get_dipole_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_test_results_single, init,
+                                        term),
+        cmocka_unit_test_setup_teardown(test_get_test_results_single_null,
+                                        init, term),
+        cmocka_unit_test_setup_teardown(test_get_test_results_all, init, term),
+        cmocka_unit_test_setup_teardown(test_get_test_results_all_null, init,
+                                        term),
+        cmocka_unit_test_setup_teardown(test_get_detumble, init, term),
+        cmocka_unit_test_setup_teardown(test_get_detumble_null, init, term),
+        cmocka_unit_test_setup_teardown(test_get_raw_housekeeping, init, term),
+        cmocka_unit_test_setup_teardown(test_get_raw_housekeeping_null, init,
+                                        term),
+        cmocka_unit_test_setup_teardown(test_get_eng_housekeeping, init, term),
+        cmocka_unit_test_setup_teardown(test_get_eng_housekeeping_null, init,
+                                        term),
+        cmocka_unit_test_setup_teardown(test_get_status_telemetry_null, init,
+                                        term),
+        cmocka_unit_test_setup_teardown(test_get_nominal_telemetry_null, init,
+                                        term),
+        cmocka_unit_test_setup_teardown(test_get_debug_telemetry_null, init,
+                                        term),
 
-            /* Core Tests */
-            cmocka_unit_test_setup_teardown(test_watchdog, init, term),
-            cmocka_unit_test_setup_teardown(test_watchdog_twice, init, term),
-            cmocka_unit_test_setup_teardown(test_watchdog_stop_no_start, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_null_tx, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_zero_tx_len, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_null_rx, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_zero_rx_len, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_null_delay, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_cmd_mismatch, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_no_resp, init, term),
-            cmocka_unit_test_setup_teardown(test_transfer_error, init, term),
+        /* Core Tests */
+        cmocka_unit_test_setup_teardown(test_watchdog, init, term),
+        cmocka_unit_test_setup_teardown(test_watchdog_twice, init, term),
+        cmocka_unit_test_setup_teardown(test_watchdog_stop_no_start, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_null_tx, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_zero_tx_len, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_null_rx, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_zero_rx_len, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_null_delay, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_cmd_mismatch, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_no_resp, init, term),
+        cmocka_unit_test_setup_teardown(test_transfer_error, init, term),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);

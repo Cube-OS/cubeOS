@@ -1,0 +1,4 @@
+Contributing to CubeOS
+---
+
+Before a pull request is merged, you must [sign our Contributor's License Agreement](https://www.clahub.com/agreements/cubeostech/CubeOS)

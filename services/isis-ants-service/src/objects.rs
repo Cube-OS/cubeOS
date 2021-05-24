@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
+use cubeos_service::{process_errors, push_err, run};
 use failure::Error;
 use isis_ants_api::{AntsTelemetry, DeployStatus, IAntS, KANTSAnt};
 use juniper::FieldResult;
-use kubos_service::{process_errors, push_err, run};
 use std::sync::{Arc, Mutex, RwLock};
 
 /// Common response fields structure for requests

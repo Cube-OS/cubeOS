@@ -27,7 +27,7 @@ target_include_directories(gomspace-p31u-api-nanopower-test
 target_link_libraries(gomspace-p31u-api-nanopower-test
   cmocka
   gomspace-p31u-api
-  kubos-hal
+  cubeos-hal
   pthread
 )
 

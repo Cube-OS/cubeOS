@@ -1,7 +1,7 @@
 Advanced Rust Cross Compiling
 =============================
 
-In the future there may be the need to cross compile KubOS for targets
+In the future there may be the need to cross compile CubeOS for targets
 not currently supported. This document gives instructions for setting
 up cross compiling support for those targets.
 

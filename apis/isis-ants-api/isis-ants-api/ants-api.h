@@ -21,38 +21,38 @@
 
 #pragma once
 
+#include <i2c.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <i2c.h>
 
 /** \cond WE DO NOT WANT TO HAVE THESE IN OUR GENERATED DOCS */
 /* AntS command values */
-#define SYSTEM_RESET                0xAA
-#define WATCHDOG_RESET              0xCC
-#define ARM_ANTS                    0xAD
-#define DISARM_ANTS                 0xAC
-#define DEPLOY_1                    0xA1
-#define DEPLOY_2                    0xA2
-#define DEPLOY_3                    0xA3
-#define DEPLOY_4                    0xA4
-#define AUTO_DEPLOY                 0xA5
-#define DEPLOY_1_OVERRIDE           0xBA
-#define DEPLOY_2_OVERRIDE           0xBB
-#define DEPLOY_3_OVERRIDE           0xBC
-#define DEPLOY_4_OVERRIDE           0xBD
-#define CANCEL_DEPLOY               0xA9
-#define GET_TEMP                    0xC0
-#define GET_STATUS                  0xC3
-#define GET_UPTIME_SYS              0xC6
-#define GET_TELEMETRY               0xC7
-#define GET_COUNT_1                 0xB0
-#define GET_COUNT_2                 0xB1
-#define GET_COUNT_3                 0xB2
-#define GET_COUNT_4                 0xB3
-#define GET_UPTIME_1                0xB4
-#define GET_UPTIME_2                0xB5
-#define GET_UPTIME_3                0xB6
-#define GET_UPTIME_4                0xB7
+#define SYSTEM_RESET 0xAA
+#define WATCHDOG_RESET 0xCC
+#define ARM_ANTS 0xAD
+#define DISARM_ANTS 0xAC
+#define DEPLOY_1 0xA1
+#define DEPLOY_2 0xA2
+#define DEPLOY_3 0xA3
+#define DEPLOY_4 0xA4
+#define AUTO_DEPLOY 0xA5
+#define DEPLOY_1_OVERRIDE 0xBA
+#define DEPLOY_2_OVERRIDE 0xBB
+#define DEPLOY_3_OVERRIDE 0xBC
+#define DEPLOY_4_OVERRIDE 0xBD
+#define CANCEL_DEPLOY 0xA9
+#define GET_TEMP 0xC0
+#define GET_STATUS 0xC3
+#define GET_UPTIME_SYS 0xC6
+#define GET_TELEMETRY 0xC7
+#define GET_COUNT_1 0xB0
+#define GET_COUNT_2 0xB1
+#define GET_COUNT_3 0xB2
+#define GET_COUNT_4 0xB3
+#define GET_UPTIME_1 0xB4
+#define GET_UPTIME_2 0xB5
+#define GET_UPTIME_3 0xB6
+#define GET_UPTIME_4 0xB7
 
 /** \endcond */
 
@@ -60,53 +60,64 @@
  *  @name Deployment Status Flags
  */
 /**@{*/
-#define SYS_BURN_ACTIVE             (1 << 4)    /**< Antenna system independent burn is active */
-#define SYS_IGNORE_DEPLOY           (1 << 8)    /**< Antenna system is ignoring the deployment switches */
-#define SYS_ARMED                   (1 << 0)    /**< Antenna system is armed */
+#define SYS_BURN_ACTIVE \
+    (1 << 4) /**< Antenna system independent burn is active */
+#define SYS_IGNORE_DEPLOY \
+    (1 << 8) /**< Antenna system is ignoring the deployment switches */
+#define SYS_ARMED (1 << 0) /**< Antenna system is armed */
 
-#define ANT_1_NOT_DEPLOYED          (8 << 12)   /**< Antenna 1 is not deployed */
-#define ANT_1_STOPPED_TIME          (4 << 12)   /**< Antenna 1 deployment time limit was reached */
-#define ANT_1_ACTIVE                (2 << 12)   /**< Antenna 1 deployment system is active */
+#define ANT_1_NOT_DEPLOYED (8 << 12) /**< Antenna 1 is not deployed */
+#define ANT_1_STOPPED_TIME \
+    (4 << 12) /**< Antenna 1 deployment time limit was reached */
+#define ANT_1_ACTIVE (2 << 12) /**< Antenna 1 deployment system is active */
 
-#define ANT_2_NOT_DEPLOYED          (8 << 8)    /**< Antenna 2 is not deployed */
-#define ANT_2_STOPPED_TIME          (4 << 8)    /**< Antenna 2 deployment time limit was reached */
-#define ANT_2_ACTIVE                (2 << 8)    /**< Antenna 2 deployment system is active */
+#define ANT_2_NOT_DEPLOYED (8 << 8) /**< Antenna 2 is not deployed */
+#define ANT_2_STOPPED_TIME \
+    (4 << 8) /**< Antenna 2 deployment time limit was reached */
+#define ANT_2_ACTIVE (2 << 8) /**< Antenna 2 deployment system is active */
 
-#define ANT_3_NOT_DEPLOYED          (8 << 4)    /**< Antenna 3 is not deployed */
-#define ANT_3_STOPPED_TIME          (4 << 4)    /**< Antenna 3 deployment time limit was reached */
-#define ANT_3_ACTIVE                (2 << 4)    /**< Antenna 3 deployment system is active */
+#define ANT_3_NOT_DEPLOYED (8 << 4) /**< Antenna 3 is not deployed */
+#define ANT_3_STOPPED_TIME \
+    (4 << 4) /**< Antenna 3 deployment time limit was reached */
+#define ANT_3_ACTIVE (2 << 4) /**< Antenna 3 deployment system is active */
 
-#define ANT_4_NOT_DEPLOYED          (8 << 0)    /**< Antenna 4 is not deployed */
-#define ANT_4_STOPPED_TIME          (4 << 0)    /**< Antenna 4 deployment time limit was reached */
-#define ANT_4_ACTIVE                (2 << 0)    /**< Antenna 4 deployment system is active */
+#define ANT_4_NOT_DEPLOYED (8 << 0) /**< Antenna 4 is not deployed */
+#define ANT_4_STOPPED_TIME \
+    (4 << 0) /**< Antenna 4 deployment time limit was reached */
+#define ANT_4_ACTIVE (2 << 0) /**< Antenna 4 deployment system is active */
 /**@}*/
 
 /**
  * Antenna function return values
  */
-typedef enum {
-    ANTS_OK,                     /**< Requested function completed successfully */
-    ANTS_ERROR,                  /**< Generic error */
-    ANTS_ERROR_CONFIG,           /**< Configuration error */
-    ANTS_ERROR_NOT_IMPLEMENTED   /**< Requested function has not been implemented for the subsystem */
+typedef enum
+{
+    ANTS_OK, /**< Requested function completed successfully */
+    ANTS_ERROR, /**< Generic error */
+    ANTS_ERROR_CONFIG, /**< Configuration error */
+    ANTS_ERROR_NOT_IMPLEMENTED /**< Requested function has not been
+                                  implemented for the subsystem */
 } KANTSStatus;
 
 /**
  * Antenna microcontrollers
  */
-typedef enum {
-    PRIMARY,            /**< Issue commands using the primary microcontroller */
-    SECONDARY,          /**< Issue commands using the secondary microcontroller (if available) */
+typedef enum
+{
+    PRIMARY, /**< Issue commands using the primary microcontroller */
+    SECONDARY, /**< Issue commands using the secondary microcontroller (if
+                  available) */
 } KANTSController;
 
 /**
  * System Antennas
  */
-typedef enum {
-    ANT_1,              /**< Antenna 1 */
-    ANT_2,              /**< Antenna 2 */
-    ANT_3,              /**< Antenna 3 */
-    ANT_4               /**< Antenna 4 */
+typedef enum
+{
+    ANT_1, /**< Antenna 1 */
+    ANT_2, /**< Antenna 2 */
+    ANT_3, /**< Antenna 3 */
+    ANT_4 /**< Antenna 4 */
 } KANTSAnt;
 
 /**
@@ -114,9 +125,9 @@ typedef enum {
  */
 typedef struct
 {
-    uint16_t raw_temp;      /**< Current temperature (raw value) */
+    uint16_t raw_temp; /**< Current temperature (raw value) */
     uint16_t deploy_status; /**< Current deployment status flags */
-    uint32_t uptime;        /**< System uptime (in seconds) */
+    uint32_t uptime; /**< System uptime (in seconds) */
 } __attribute__((packed)) ants_telemetry;
 
 /*
@@ -126,12 +137,14 @@ typedef struct
  * Initialize the antenna interface
  * @param [in] bus I2C bus device the antenna systems device is connected to
  * @param [in] primary The I2C address of the device's primary microcontroller
- * @param [in] secondary The I2C address of the device's secondary/redundant microcontroller
+ * @param [in] secondary The I2C address of the device's secondary/redundant
+ * microcontroller
  * @param [in] ant_count The number of antennas that the device can deploy
  * @param [in] timeout The watchdog timeout interval (in seconds)
  * @return KANTSStatus ANTS_OK if OK, error otherwise
  */
-KANTSStatus k_ants_init(char * bus, uint8_t primary, uint8_t secondary, uint8_t ant_count, uint32_t timeout);
+KANTSStatus k_ants_init(char * bus, uint8_t primary, uint8_t secondary,
+                        uint8_t ant_count, uint32_t timeout);
 /**
  * Terminate the antenna interface
  */
@@ -162,15 +175,15 @@ KANTSStatus k_ants_disarm(void);
  * @param [in] antenna 	Antenna to deploy
  * @param [in] override Indicates whether system should ignore previous
  * 			   			successful deployment
- * @param [in] timeout 	Maximum time, in seconds, system should spend deploying
- * 						the antenna
+ * @param [in] timeout 	Maximum time, in seconds, system should spend
+ * deploying the antenna
  * @return KANTSStatus ANTS_OK if OK, error otherwise
  */
 KANTSStatus k_ants_deploy(KANTSAnt antenna, bool override, uint8_t timeout);
 /**
  * Automatically deploy each antenna in sequence
- * @param [in] timeout  Maximum time, in seconds, system should spend deploying
- * 						a single antenna
+ * @param [in] timeout  Maximum time, in seconds, system should spend
+ * deploying a single antenna
  * @return KANTSStatus ANTS_OK if OK, error otherwise
  */
 KANTSStatus k_ants_auto_deploy(uint8_t timeout);

@@ -1,5 +1,5 @@
 /*
- * Kubos TRXVU API
+ * CubeOS TRXVU API
  * Copyright (C) 2018 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,29 +22,29 @@
 #define RX_SIZE 100
 
 /* Test Data */
-radio_rx_header test_header
-    = {.msg_size        = 8,
-       .doppler_offset  = 5,    // todo: get real value
-       .signal_strength = 2,    // todo
+radio_rx_header test_header = {
+    .msg_size        = 8,
+    .doppler_offset  = 5,    // todo: get real value
+    .signal_strength = 2,    // todo
 };
 char * test_message = "hi there";
 
 uint16_t frame_count = 5;
 uint8_t  remaining   = 39;
 
-trxvu_tx_telem_raw tx_telem = {.inst_RF_reflected = 63,
-                               .inst_RF_forward   = 72,
-                               .supply_voltage    = 1634,
-                               .supply_current    = 290,
-                               .temp_power_amp    = 2228,
-                               .temp_oscillator   = 2224 };
+trxvu_tx_telem_raw tx_telem = { .inst_RF_reflected = 63,
+                                .inst_RF_forward   = 72,
+                                .supply_voltage    = 1634,
+                                .supply_current    = 290,
+                                .temp_power_amp    = 2228,
+                                .temp_oscillator   = 2224 };
 
-trxvu_rx_telem_raw rx_telem = {.inst_doppler_offset  = 2069,
-                               .supply_current       = 288,
-                               .supply_voltage       = 1634,
-                               .temp_oscillator      = 2240,
-                               .temp_power_amp       = 2245,
-                               .inst_signal_strength = 1153 };
+trxvu_rx_telem_raw rx_telem = { .inst_doppler_offset  = 2069,
+                                .supply_current       = 288,
+                                .supply_voltage       = 1634,
+                                .temp_oscillator      = 2240,
+                                .temp_power_amp       = 2245,
+                                .inst_signal_strength = 1153 };
 
 trxvu_uptime uptime = 3456;
 
@@ -54,8 +54,8 @@ uint8_t tx_state = RADIO_STATE_IDLE_ON | RADIO_STATE_BEACON_ACTIVE
 
 static void test_no_init_recv(void ** arg)
 {
-    radio_rx_header header = { 0 };
-    uint8_t buffer[RX_SIZE] = { 0 };
+    radio_rx_header header          = { 0 };
+    uint8_t         buffer[RX_SIZE] = { 0 };
 
     assert_int_equal(k_radio_recv(&header, buffer, NULL), RADIO_ERROR);
 }
@@ -112,10 +112,10 @@ static void test_send_override(void ** arg)
 
 static void test_recv(void ** arg)
 {
-    radio_rx_header header = { 0 };
-    uint8_t buffer[RX_SIZE] = { 0 };
+    radio_rx_header header          = { 0 };
+    uint8_t         buffer[RX_SIZE] = { 0 };
 
-    KRadioStatus     ret;
+    KRadioStatus ret;
 
     /* get_frame_count */
     expect_value(__wrap_write, cmd, GET_RX_FRAME_COUNT);
@@ -146,11 +146,11 @@ static void test_recv_null(void ** arg)
 
 static void test_recv_len(void ** arg)
 {
-    radio_rx_header header = { 0 };
-    uint8_t buffer[RX_SIZE] = { 0 };
+    radio_rx_header header          = { 0 };
+    uint8_t         buffer[RX_SIZE] = { 0 };
 
-    uint16_t         len    = 0;
-    KRadioStatus     ret;
+    uint16_t     len = 0;
+    KRadioStatus ret;
 
     expect_value(__wrap_write, cmd, GET_RX_FRAME_COUNT);
     will_return(__wrap_read, 2);
@@ -429,14 +429,14 @@ static void test_telem_rx_uptime(void ** arg)
 static int init(void ** state)
 {
     trx_prop tx = {
-            .addr = 0x60,
-            .max_size = TX_SIZE,
-            .max_frames = 40,
+        .addr       = 0x60,
+        .max_size   = TX_SIZE,
+        .max_frames = 40,
     };
     trx_prop rx = {
-                .addr = 0x61,
-                .max_size = RX_SIZE,
-                .max_frames = 40,
+        .addr       = 0x61,
+        .max_size   = RX_SIZE,
+        .max_frames = 40,
     };
 
     will_return(__wrap_open, 1);

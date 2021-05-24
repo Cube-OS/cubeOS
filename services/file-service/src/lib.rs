@@ -16,8 +16,8 @@
 
 #![allow(clippy::block_in_if_condition_stmt)]
 
+use cubeos_system::Config as ServiceConfig;
 use file_protocol::{FileProtocol, FileProtocolConfig, ProtocolError, State};
-use kubos_system::Config as ServiceConfig;
 use log::{error, info, warn};
 use std::collections::HashMap;
 use std::sync::mpsc::{self, Receiver, RecvTimeoutError, Sender};

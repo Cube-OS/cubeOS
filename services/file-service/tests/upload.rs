@@ -17,9 +17,9 @@
 mod common;
 
 use crate::common::*;
+use cubeos_system::Config as ServiceConfig;
 use file_protocol::ProtocolError;
 use file_service::recv_loop;
-use kubos_system::Config as ServiceConfig;
 use std::fs;
 use std::thread;
 use std::time::Duration;

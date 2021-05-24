@@ -1,25 +1,25 @@
 
-.. figure:: images/kubos_logo.png
+.. figure:: images/cubeos_logo.png
     :align: center
 
 Overview
 --------
 
 +----------------------------------------+------------------------------------------------+------------------+-------------------------------------------------+
-| `Stable Docs <http://docs.kubos.co>`__ | `Nightly Docs <http://docs.kubos.co/master>`__ | :doc:`changelog` | `Kubos Repo <https://github.com/kubos/kubos>`__ |
+| `Stable Docs <http://docs.cubeos-doc-website>`__ | `Nightly Docs <http://docs.cubeos-doc-website/master>`__ | :doc:`changelog` | `CubeOS Repo <https://github.com/cubeos/cubeos>`__ |
 +----------------------------------------+------------------------------------------------+------------------+-------------------------------------------------+
 
 
 
-The KubOS platform provides satellite developers the tools and libraries necessary to quickly bring up space-ready software.
+The CubeOS platform provides satellite developers the tools and libraries necessary to quickly bring up space-ready software.
 We leverage multiple existing open source projects, along with our own custom framework and SDK.
 
-Just looking for an explanation of what KubOS is? 
-Check out our design guide for an overview of how KubOS works and what it provides,
+Just looking for an explanation of what CubeOS is? 
+Check out our design guide for an overview of how CubeOS works and what it provides,
 and check out our ecosystem docs for a deeper explanation of each component:
 
- - :doc:`KubOS Design <kubos-design>`
- - :doc:`KubOS Ecosystem <ecosystem/index>`
+ - :doc:`CubeOS Design <cubeos-design>`
+ - :doc:`CubeOS Ecosystem <ecosystem/index>`
 
 Want to get started with development?
 Follow our Getting Started guide to get your development environment set up and then check out our
@@ -28,16 +28,16 @@ tutorials or try your own project:
  - :doc:`Getting Started <getting-started/index>`
  - :doc:`New User Tutorials <tutorials/index>`
 
-Trying to start developing your mission with KubOS?
+Trying to start developing your mission with CubeOS?
 Check out our mission development overview:
 
  - :doc:`Mission Development <mission-dev/index>`
 
-Having issues? :doc:`Check out our FAQs <faq-troubleshooting>` for your issue, or `create a new issue <https://github.com/kubos/kubos/issues/new/choose>`__ on the repo to let us know.
+Having issues? :doc:`Check out our FAQs <faq-troubleshooting>` for your issue, or `create a new issue <https://github.com/cubeos/cubeos/issues/new/choose>`__ on the repo to let us know.
 
-Want a new feature? Create a `feature request <https://github.com/kubos/kubos/issues/new/choose>`__!
+Want a new feature? Create a `feature request <https://github.com/cubeos/cubeos/issues/new/choose>`__!
 
-Just want to say hello? `Come talk to us! <https://slack.kubos.co/>`__ If for some reason Slack won't work for you, feel free to email us at info@kubos.com.
+Just want to say hello? `Come talk to us! <https://slack.cubeos-doc-website/>`__ If for some reason Slack won't work for you, feel free to email us at info@kubos.com.
 
 .. _supported-boards:
 
@@ -59,10 +59,10 @@ Supported OBCs
 Supported Hardware Devices
 --------------------------
 
-KubOS supports a selection of hardware devices in varying capacities.
+CubeOS supports a selection of hardware devices in varying capacities.
 
 Some devices have an additional :doc:`hardware service <ecosystem/services/hardware-services>` which can be built into
-KubOS and provides a long-running process which allows easy, streamlined communication with the device.
+CubeOS and provides a long-running process which allows easy, streamlined communication with the device.
 
 All supported devices have a :doc:`device API <deep-dive/apis/device-api/index>` which may be used.
 
@@ -87,22 +87,22 @@ All supported devices have a :doc:`device API <deep-dive/apis/device-api/index>`
 +-----------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 | `NearSpace Launch <https://www.nearspacelaunch.com>`__    | `EyeStar-D2 Duplex Radio <https://www.nearspacelaunch.com/collections/eyestar-radiosolutions>`__              | |NSL-Duplex-D2|                                                                              |
 +-----------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-| `Pumpkin <https://www.pumpkinspace.com>`__                | `All Pumpkin MCUs <https://www.pumpkinspace.com/store/c1/Featured_Products.html>`__                           | `Yes <https://github.com/kubos/kubos/blob/master/services/pumpkin-mcu-service/README.rst>`__ |
+| `Pumpkin <https://www.pumpkinspace.com>`__                | `All Pumpkin MCUs <https://www.pumpkinspace.com/store/c1/Featured_Products.html>`__                           | `Yes <https://github.com/cubeos/cubeos/blob/master/services/pumpkin-mcu-service/README.rst>`__ |
 +-----------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-Contributing to KubOS
+Contributing to CubeOS
 ---------------------
 
-Want to get your code into space? Become a :doc:`KubOS contributor <contributing/index>` and you will!
+Want to get your code into space? Become a :doc:`CubeOS contributor <contributing/index>` and you will!
 We welcome community developers, and are always looking for new people to collaborate with us.
-`Join us on Slack <https://slack.kubos.co/>`__ or visit our
-`GitHub Issues <https://github.com/kubos/kubos/issues>`__ page to participate in discussion of features
+`Join us on Slack <https://slack.cubeos-doc-website/>`__ or visit our
+`GitHub Issues <https://github.com/cubeos/cubeos/issues>`__ page to participate in discussion of features
 or bugs, see what you can work on, and to give feedback.
 
 .. toctree::
     :hidden:
 
-    KubOS Design <kubos-design>
+    CubeOS Design <cubeos-design>
     
 .. toctree::
    :hidden:
@@ -116,10 +116,10 @@ or bugs, see what you can work on, and to give feedback.
     Tutorials <tutorials/index>
     Working with an OBC <obc-docs/index>
     Mission Development <mission-dev/index>
-    KubOS Ecosystem <ecosystem/index>
+    CubeOS Ecosystem <ecosystem/index>
     Under the Hood <deep-dive/index>
-    Kubos SDK <sdk-docs/index>
-    Contributing to KubOS <contributing/index>
+    CubeOS SDK <sdk-docs/index>
+    Contributing to CubeOS <contributing/index>
     Changelog <changelog>
     FAQs <faq-troubleshooting>
 

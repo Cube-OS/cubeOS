@@ -2,12 +2,12 @@
     "device": {
         "baudrate": 115200,
         "prompt": "~ # ",
-        "target": "kubos-linux-isis-gcc",
+        "target": "cubeos-linux-isis-gcc",
         "timeout": 15
     },
     "login": {
         "username": "root",
-        "password": "Kubos123"
+        "password": "CubeOS123"
     },
     "tests": [
         {

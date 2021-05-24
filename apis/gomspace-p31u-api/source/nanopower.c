@@ -20,7 +20,7 @@
 #include <time.h>
 #include <unistd.h>
 
-static int eps_bus = 0;
+static int     eps_bus  = 0;
 static uint8_t eps_addr = 0;
 
 KEPSStatus k_eps_init(KEPSConf config)
@@ -53,7 +53,7 @@ void k_eps_terminate()
 {
     k_i2c_terminate(&eps_bus);
 
-    eps_bus = 0;
+    eps_bus  = 0;
     eps_addr = 0;
 
     return;
@@ -121,13 +121,13 @@ KEPSStatus k_eps_reboot()
 
 KEPSStatus k_eps_configure_system(const eps_system_config_t * config)
 {
-    KEPSStatus status = EPS_OK;
+    KEPSStatus      status = EPS_OK;
     eps_resp_header response;
     typedef struct __attribute__((packed))
     {
-        uint8_t cmd;
+        uint8_t             cmd;
         eps_system_config_t sys_config;
-    }  config_packet;
+    } config_packet;
 
     config_packet packet = { 0 };
 
@@ -138,13 +138,14 @@ KEPSStatus k_eps_configure_system(const eps_system_config_t * config)
 
     packet.cmd = SET_CONFIG1;
 
-    packet.sys_config.ppt_mode = config->ppt_mode;
+    packet.sys_config.ppt_mode        = config->ppt_mode;
     packet.sys_config.battheater_mode = config->battheater_mode;
-    packet.sys_config.battheater_low = config->battheater_low;
+    packet.sys_config.battheater_low  = config->battheater_low;
     packet.sys_config.battheater_high = config->battheater_high;
     for (int i = 0; i < 8; i++)
     {
-        packet.sys_config.output_normal_value[i] = config->output_normal_value[i];
+        packet.sys_config.output_normal_value[i]
+            = config->output_normal_value[i];
     }
     for (int i = 0; i < 8; i++)
     {
@@ -152,18 +153,20 @@ KEPSStatus k_eps_configure_system(const eps_system_config_t * config)
     }
     for (int i = 0; i < 8; i++)
     {
-        packet.sys_config.output_initial_on_delay[i] = htobe16(config->output_initial_on_delay[i]);
+        packet.sys_config.output_initial_on_delay[i]
+            = htobe16(config->output_initial_on_delay[i]);
     }
     for (int i = 0; i < 8; i++)
     {
-        packet.sys_config.output_initial_off_delay[i] = htobe16(config->output_initial_off_delay[i]);
+        packet.sys_config.output_initial_off_delay[i]
+            = htobe16(config->output_initial_off_delay[i]);
     }
     packet.sys_config.vboost[0] = htobe16(config->vboost[0]);
     packet.sys_config.vboost[1] = htobe16(config->vboost[1]);
     packet.sys_config.vboost[2] = htobe16(config->vboost[2]);
 
-    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet), (uint8_t *) &response,
-                               sizeof(response));
+    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet),
+                               (uint8_t *) &response, sizeof(response));
     if (status != EPS_OK)
     {
         fprintf(stderr, "Failed to set EPS system configuration: %d\n", status);
@@ -175,13 +178,13 @@ KEPSStatus k_eps_configure_system(const eps_system_config_t * config)
 
 KEPSStatus k_eps_configure_battery(const eps_battery_config_t * config)
 {
-    KEPSStatus status = EPS_OK;
+    KEPSStatus      status = EPS_OK;
     eps_resp_header response;
     typedef struct __attribute__((packed))
     {
-        uint8_t cmd;
+        uint8_t              cmd;
         eps_battery_config_t batt_config;
-    }  config_packet;
+    } config_packet;
 
     config_packet packet = { 0 };
 
@@ -190,17 +193,19 @@ KEPSStatus k_eps_configure_battery(const eps_battery_config_t * config)
         return EPS_ERROR_CONFIG;
     }
 
-    packet.cmd = SET_CONFIG2;
-    packet.batt_config.batt_maxvoltage = htobe16(config->batt_maxvoltage);
+    packet.cmd                          = SET_CONFIG2;
+    packet.batt_config.batt_maxvoltage  = htobe16(config->batt_maxvoltage);
     packet.batt_config.batt_safevoltage = htobe16(config->batt_safevoltage);
-    packet.batt_config.batt_criticalvoltage = htobe16(config->batt_criticalvoltage);
+    packet.batt_config.batt_criticalvoltage
+        = htobe16(config->batt_criticalvoltage);
     packet.batt_config.batt_normalvoltage = htobe16(config->batt_normalvoltage);
 
-    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet), (uint8_t *) &response,
-                               sizeof(response));
+    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet),
+                               (uint8_t *) &response, sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to set EPS battery configuration: %d\n", status);
+        fprintf(stderr, "Failed to set EPS battery configuration: %d\n",
+                status);
         return status;
     }
 
@@ -209,21 +214,21 @@ KEPSStatus k_eps_configure_battery(const eps_battery_config_t * config)
 
 KEPSStatus k_eps_save_battery_config()
 {
-    KEPSStatus status;
-    uint8_t packet[] = { CMD_CONFIG2, 2 };
+    KEPSStatus      status;
+    uint8_t         packet[] = { CMD_CONFIG2, 2 };
     eps_resp_header response;
 
     status = kprv_eps_transfer(packet, sizeof(packet), (uint8_t *) &response,
                                sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to reset EPS battery configuration: %d\n", status);
+        fprintf(stderr, "Failed to reset EPS battery configuration: %d\n",
+                status);
         return status;
     }
 
     return EPS_OK;
 }
-
 
 KEPSStatus k_eps_set_output(uint8_t channel_mask)
 {
@@ -244,7 +249,7 @@ KEPSStatus k_eps_set_output(uint8_t channel_mask)
 
 KEPSStatus k_eps_set_single_output(uint8_t channel, uint8_t value, int16_t delay)
 {
-    KEPSStatus status;
+    KEPSStatus      status;
     eps_resp_header response;
     struct __attribute__((packed))
     {
@@ -252,23 +257,24 @@ KEPSStatus k_eps_set_single_output(uint8_t channel, uint8_t value, int16_t delay
         uint8_t channel;
         uint8_t value;
         int16_t delay;
-    }  packet;
+    } packet;
 
     if (channel > 7 || value > 1)
     {
         return EPS_ERROR_CONFIG;
     }
 
-    packet.cmd = SET_SINGLE_OUTPUT;
+    packet.cmd     = SET_SINGLE_OUTPUT;
     packet.channel = channel;
-    packet.value = value;
-    packet.delay = htobe16(delay);
+    packet.value   = value;
+    packet.delay   = htobe16(delay);
 
-    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet), (uint8_t *) &response,
-                               sizeof(response));
+    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet),
+                               (uint8_t *) &response, sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to set EPS output %d value: %d\n", channel, status);
+        fprintf(stderr, "Failed to set EPS output %d value: %d\n", channel,
+                status);
         return status;
     }
 
@@ -278,23 +284,23 @@ KEPSStatus k_eps_set_single_output(uint8_t channel, uint8_t value, int16_t delay
 KEPSStatus k_eps_set_input_value(uint16_t in1_voltage, uint16_t in2_voltage,
                                  uint16_t in3_voltage)
 {
-    KEPSStatus status   = EPS_OK;
+    KEPSStatus      status = EPS_OK;
     eps_resp_header response;
     struct __attribute__((packed))
     {
-        uint8_t cmd;
+        uint8_t  cmd;
         uint16_t in1_voltage;
         uint16_t in2_voltage;
         uint16_t in3_voltage;
-    }  packet;
+    } packet;
 
-    packet.cmd = SET_PV_VOLT;
+    packet.cmd         = SET_PV_VOLT;
     packet.in1_voltage = htobe16(in1_voltage);
     packet.in2_voltage = htobe16(in2_voltage);
     packet.in3_voltage = htobe16(in3_voltage);
 
-    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet), (uint8_t *) &response,
-                               sizeof(response));
+    status = kprv_eps_transfer((uint8_t *) &packet, sizeof(packet),
+                               (uint8_t *) &response, sizeof(response));
     if (status != EPS_OK)
     {
         fprintf(stderr, "Failed to set EPS input voltages: %d\n", status);
@@ -316,7 +322,6 @@ KEPSStatus k_eps_set_input_mode(uint8_t mode)
         return EPS_ERROR_CONFIG;
     }
 
-
     status = kprv_eps_transfer(packet, sizeof(packet), (uint8_t *) &response,
                                sizeof(response));
 
@@ -331,13 +336,8 @@ KEPSStatus k_eps_set_input_mode(uint8_t mode)
 
 KEPSStatus k_eps_set_heater(uint8_t cmd, uint8_t heater, uint8_t mode)
 {
-    KEPSStatus status;
-    uint8_t    packet[] = {
-            SET_HEATER,
-            cmd,
-            heater,
-            mode
-    };
+    KEPSStatus      status;
+    uint8_t         packet[] = { SET_HEATER, cmd, heater, mode };
     eps_resp_header response;
 
     /*
@@ -354,7 +354,8 @@ KEPSStatus k_eps_set_heater(uint8_t cmd, uint8_t heater, uint8_t mode)
                                sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to set EPS heater/s %d mode: %d\n", heater, status);
+        fprintf(stderr, "Failed to set EPS heater/s %d mode: %d\n", heater,
+                status);
         return status;
     }
 
@@ -371,7 +372,8 @@ KEPSStatus k_eps_reset_system_config()
                                sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to reset EPS system configuration: %d\n", status);
+        fprintf(stderr, "Failed to reset EPS system configuration: %d\n",
+                status);
         return status;
     }
 
@@ -388,7 +390,8 @@ KEPSStatus k_eps_reset_battery_config()
                                sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to reset EPS battery configuration: %d\n", status);
+        fprintf(stderr, "Failed to reset EPS battery configuration: %d\n",
+                status);
         return status;
     }
 
@@ -415,8 +418,8 @@ KEPSStatus k_eps_reset_counters()
 KEPSStatus k_eps_get_housekeeping(eps_hk_t * buff)
 {
     KEPSStatus status;
-    uint8_t packet[] = { GET_HOUSEKEEPING, 0 }; 
-    uint8_t response[sizeof(eps_resp_header) + sizeof(eps_hk_t)] = { 0 };
+    uint8_t    packet[] = { GET_HOUSEKEEPING, 0 };
+    uint8_t    response[sizeof(eps_resp_header) + sizeof(eps_hk_t)] = { 0 };
 
     if (buff == NULL)
     {
@@ -437,12 +440,12 @@ KEPSStatus k_eps_get_housekeeping(eps_hk_t * buff)
     buff->vboost[0] = be16toh(body->vboost[0]);
     buff->vboost[1] = be16toh(body->vboost[1]);
     buff->vboost[2] = be16toh(body->vboost[2]);
-    buff->vbatt = be16toh(body->vbatt);
-    buff->curin[0] = be16toh(body->curin[0]);
-    buff->curin[1] = be16toh(body->curin[1]);
-    buff->curin[2] = be16toh(body->curin[2]);
-    buff->cursun = be16toh(body->cursun);
-    buff->cursys = be16toh(body->cursys);
+    buff->vbatt     = be16toh(body->vbatt);
+    buff->curin[0]  = be16toh(body->curin[0]);
+    buff->curin[1]  = be16toh(body->curin[1]);
+    buff->curin[2]  = be16toh(body->curin[2]);
+    buff->cursun    = be16toh(body->cursun);
+    buff->cursys    = be16toh(body->cursys);
     for (int i = 0; i < 6; i++)
     {
         buff->curout[i] = be16toh(body->curout[i]);
@@ -463,13 +466,13 @@ KEPSStatus k_eps_get_housekeeping(eps_hk_t * buff)
     {
         buff->latchup[i] = be16toh(body->latchup[i]);
     }
-    buff->wdt_i2c_time_left = be32toh(body->wdt_i2c_time_left);
-    buff->wdt_gnd_time_left = be32toh(body->wdt_gnd_time_left);
+    buff->wdt_i2c_time_left     = be32toh(body->wdt_i2c_time_left);
+    buff->wdt_gnd_time_left     = be32toh(body->wdt_gnd_time_left);
     buff->wdt_csp_pings_left[0] = body->wdt_csp_pings_left[0];
     buff->wdt_csp_pings_left[1] = body->wdt_csp_pings_left[1];
-    buff->counter_wdt_i2c = be32toh(body->counter_wdt_i2c);
+    buff->counter_wdt_i2c       = be32toh(body->counter_wdt_i2c);
     /* Changed counter_wdt_gnd from uint32_t to uint16_t */
-    buff->counter_wdt_gnd = be16toh(body->counter_wdt_gnd);
+    buff->counter_wdt_gnd    = be16toh(body->counter_wdt_gnd);
     buff->counter_wdt_csp[0] = be32toh(body->counter_wdt_csp[0]);
     buff->counter_wdt_csp[1] = be32toh(body->counter_wdt_csp[1]);
     /* Changed counter_boot from uint32_t to uint16_t */
@@ -479,8 +482,8 @@ KEPSStatus k_eps_get_housekeeping(eps_hk_t * buff)
         buff->temp[i] = be16toh(body->temp[i]);
     }
     buff->boot_cause = body->boot_cause;
-    buff->batt_mode = body->batt_mode;
-    buff->ppt_mode = body->ppt_mode;
+    buff->batt_mode  = body->batt_mode;
+    buff->ppt_mode   = body->ppt_mode;
 
     return EPS_OK;
 }
@@ -489,7 +492,8 @@ KEPSStatus k_eps_get_system_config(eps_system_config_t * buff)
 {
     KEPSStatus status;
     uint8_t    cmd = GET_CONFIG1;
-    uint8_t    response[sizeof(eps_resp_header) + sizeof(eps_system_config_t)] = { 0 };
+    uint8_t    response[sizeof(eps_resp_header) + sizeof(eps_system_config_t)]
+        = { 0 };
 
     if (buff == NULL)
     {
@@ -503,11 +507,12 @@ KEPSStatus k_eps_get_system_config(eps_system_config_t * buff)
         return status;
     }
 
-    eps_system_config_t * body = (eps_system_config_t *) (response + sizeof(eps_resp_header));
+    eps_system_config_t * body
+        = (eps_system_config_t *) (response + sizeof(eps_resp_header));
 
-    buff->ppt_mode = body->ppt_mode;
+    buff->ppt_mode        = body->ppt_mode;
     buff->battheater_mode = body->battheater_mode;
-    buff->battheater_low = body->battheater_low;
+    buff->battheater_low  = body->battheater_low;
     buff->battheater_high = body->battheater_high;
     for (int i = 0; i < 8; i++)
     {
@@ -519,11 +524,13 @@ KEPSStatus k_eps_get_system_config(eps_system_config_t * buff)
     }
     for (int i = 0; i < 8; i++)
     {
-        buff->output_initial_on_delay[i] = be16toh(body->output_initial_on_delay[i]);
+        buff->output_initial_on_delay[i]
+            = be16toh(body->output_initial_on_delay[i]);
     }
     for (int i = 0; i < 8; i++)
     {
-        buff->output_initial_off_delay[i] = be16toh(body->output_initial_off_delay[i]);
+        buff->output_initial_off_delay[i]
+            = be16toh(body->output_initial_off_delay[i]);
     }
     buff->vboost[0] = be16toh(body->vboost[0]);
     buff->vboost[1] = be16toh(body->vboost[1]);
@@ -536,7 +543,8 @@ KEPSStatus k_eps_get_battery_config(eps_battery_config_t * buff)
 {
     KEPSStatus status;
     uint8_t    cmd = GET_CONFIG2;
-    uint8_t    response[sizeof(eps_resp_header) + sizeof(eps_battery_config_t)] = { 0 };
+    uint8_t response[sizeof(eps_resp_header) + sizeof(eps_battery_config_t)]
+        = { 0 };
 
     if (buff == NULL)
     {
@@ -546,16 +554,18 @@ KEPSStatus k_eps_get_battery_config(eps_battery_config_t * buff)
     status = kprv_eps_transfer(&cmd, 1, response, sizeof(response));
     if (status != EPS_OK)
     {
-        fprintf(stderr, "Failed to get EPS battery configuration: %d\n", status);
+        fprintf(stderr, "Failed to get EPS battery configuration: %d\n",
+                status);
         return status;
     }
 
-    eps_battery_config_t * body = (eps_battery_config_t *) (response + sizeof(eps_resp_header));
+    eps_battery_config_t * body
+        = (eps_battery_config_t *) (response + sizeof(eps_resp_header));
 
-    buff->batt_maxvoltage = be16toh(body->batt_maxvoltage);
-    buff->batt_safevoltage = be16toh(body->batt_safevoltage);
+    buff->batt_maxvoltage      = be16toh(body->batt_maxvoltage);
+    buff->batt_safevoltage     = be16toh(body->batt_safevoltage);
     buff->batt_criticalvoltage = be16toh(body->batt_criticalvoltage);
-    buff->batt_normalvoltage = be16toh(body->batt_normalvoltage);
+    buff->batt_normalvoltage   = be16toh(body->batt_normalvoltage);
 
     return EPS_OK;
 }
@@ -607,8 +617,8 @@ KEPSStatus k_eps_watchdog_kick()
     return EPS_OK;
 }
 
-pthread_t handle_watchdog = { 0 };
-uint32_t watchdog_interval = 0;
+pthread_t handle_watchdog   = { 0 };
+uint32_t  watchdog_interval = 0;
 
 void * kprv_eps_watchdog_thread(void * args)
 {
@@ -673,7 +683,7 @@ KEPSStatus k_eps_watchdog_stop()
         return EPS_ERROR;
     }
 
-    handle_watchdog = 0;
+    handle_watchdog   = 0;
     watchdog_interval = 0;
 
     return EPS_OK;

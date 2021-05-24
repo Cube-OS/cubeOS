@@ -1,14 +1,14 @@
-Kubos Mission Development
+CubeOS Mission Development
 =========================
 
-This section of the documentation walks through the necessary steps to get a satellite running KubOS from project initiation to flight ready.
-This *only* covers the software development and preparation of the system as it pertains to KubOS, and does not cover hardware testing, power/thermal design and profiling, or any other mission development aspects that aren't software.
+This section of the documentation walks through the necessary steps to get a satellite running CubeOS from project initiation to flight ready.
+This *only* covers the software development and preparation of the system as it pertains to CubeOS, and does not cover hardware testing, power/thermal design and profiling, or any other mission development aspects that aren't software.
 The following steps don't have to be done precisely in this order, but this is generally expected to be the optimal order.
 
 1. Hardware Integrations
 ------------------------
 
-Although there is already quite a bit of :doc:`supported hardware <../index>` in KubOS, your mission might have some hardware that is not yet supported, or unique to your mission (such as a payload).
+Although there is already quite a bit of :doc:`supported hardware <../index>` in CubeOS, your mission might have some hardware that is not yet supported, or unique to your mission (such as a payload).
 :doc:`Hardware services <../ecosystem/services/hardware-services>` must be developed for any hardware that is not already supported.
 
 Radio Integrations
@@ -22,7 +22,7 @@ To expose their downlink and uplink capability to the rest of the system, we pro
 -------------------------
 
 Besides avionics hardware, you likely have a payload you want to integrate for your mission.
-KubOS provides a payload service guide for integrating payloads into KubOS in the *recommended* way:
+CubeOS provides a payload service guide for integrating payloads into CubeOS in the *recommended* way:
 
 - :doc:`Payload Services <../ecosystem/services/payload-services>`
 
@@ -35,10 +35,10 @@ In this case, it would be better for the appropriate mission application to be a
 3. Mission Applications
 -----------------------
 
-In KubOS, services are used primarily to expose functionality of underlying hardware.
+In CubeOS, services are used primarily to expose functionality of underlying hardware.
 They should be expected to only perform a minimal amount of decision-making (for example, kicking a watchdog at a pre-defined interval).
 Instead, we rely on :ref:`mission applications <app-docs>` to handle the decision making for the mission.
-Kubos has some mission applications that are open sourced in the repo, and others that we can offer to aid in mission development.
+CubeOS has some mission applications that are open sourced in the repo, and others that we can offer to aid in mission development.
 We've listed the typical necessary applications:
 
 - :doc:`Mission Needs <mission-needs>`
@@ -52,7 +52,7 @@ We've listed the typical necessary applications:
 4. Scheduling Tasks
 -------------------
 
-Applications in KubOS are generally designed to be single purpose and run relatively quickly.
+Applications in CubeOS are generally designed to be single purpose and run relatively quickly.
 The application itself should not be concerned with when or how often it is run. That is where
 the scheduler comes in. We rely on the :ref:`scheduler service <scheduler-service>` to schedule
 application execution at designated times or at pre-defined intervals.
@@ -64,29 +64,29 @@ doc should be considered for inclusion in the default safe mode schedule.
 5. Update and Recovery
 ----------------------
 
-KubOS uses similar procedures for both updating and recovering the operating system.
+CubeOS uses similar procedures for both updating and recovering the operating system.
 We *highly* recommend familiarizing yourself with both procedures during development, well before launch.
 
-Updating KubOS
+Updating CubeOS
 ______________
 
-The process for updating the operating system can be reviewed here: :doc:`KubOS update process. <../ecosystem/linux-docs/kubos-linux-upgrade>`
+The process for updating the operating system can be reviewed here: :doc:`CubeOS update process. <../ecosystem/linux-docs/cubeos-linux-upgrade>`
 The process for updating mission applications can be reviewed here: :doc:`application service guide. <../ecosystem/services/app-service>`
 Both should be reviewed and tested on your hardware prior to launch.
 
-Kubos offers `SLAs <https://www.kubos.com/kubos/>`__ to aid in this process.
+CubeOS offers `SLAs <https://www.cubeos-doc-websitem/cubeos/>`__ to aid in this process.
 
-Recovery in KubOS
+Recovery in CubeOS
 _________________
 
-The :doc:`KubOS recovery process <../ecosystem/linux-docs/kubos-linux-recovery>` is defaulted to be configured for a development environment, where you have access to the hardware and are actively developing on it.
+The :doc:`CubeOS recovery process <../ecosystem/linux-docs/cubeos-linux-recovery>` is defaulted to be configured for a development environment, where you have access to the hardware and are actively developing on it.
 As a result, it **requires** augmentation before being flight ready, as it is not initially configured for desired on-orbit behavior.
 The augmentation will likely be limited to changing the alternate boot behavior in the event of multiple failed boots.
 
 Before you finish development, we recommend studying the recovery process and augmenting it as necessary to cover any possible edge cases that your hardware or software might encounter.
 In addition, we also recommend doing several test cycles forcing the recovery to take place under various conditions, verifying that your mission specific code is effectively integrated into the recovery process.
 
-Kubos offers `SLAs <https://www.kubos.com/kubos/>`__ to aid in the augmentation of the process and/or auditing your mission's recovery process.
+CubeOS offers `SLAs <https://www.cubeos-doc-websitem/cubeos/>`__ to aid in the augmentation of the process and/or auditing your mission's recovery process.
 
 6. Flight Readiness
 -------------------

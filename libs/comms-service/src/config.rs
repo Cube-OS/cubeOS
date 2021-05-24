@@ -47,7 +47,7 @@ pub struct CommsConfig {
 impl CommsConfig {
     /// Builds a new configuration for a specific `comms-service`.
     /// Configuration parameters are read from the service's `config.toml` file.
-    pub fn new(service_config: kubos_system::Config) -> CommsResult<Self> {
+    pub fn new(service_config: cubeos_system::Config) -> CommsResult<Self> {
         let raw_config = service_config.get("comms").ok_or_else(|| {
             CommsServiceError::ConfigError("Unable to get `comms` config".to_owned())
         })?;

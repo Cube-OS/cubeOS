@@ -23,7 +23,7 @@ set_target_properties(isis-imtq-api-imtq-test
 target_link_libraries(isis-imtq-api-imtq-test
   cmocka
   isis-imtq-api
-  kubos-hal
+  cubeos-hal
   pthread
 )
 
@@ -49,7 +49,7 @@ set_target_properties(isis-imtq-api-adcs-test
 target_link_libraries(isis-imtq-api-adcs-test
   cmocka
   isis-imtq-api
-  kubos-hal
+  cubeos-hal
   pthread
 )
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* Mock Linux system calls to use for Kubos Linux HAL unit tests */
+/* Mock Linux system calls to use for CubeOS Linux HAL unit tests */
 
 #include <cmocka.h>
 #include <errno.h>
@@ -32,7 +32,7 @@ int __wrap_close(int fd)
     return mock_type(int);
 }
 
-/* 
+/*
  * Returns 0 on success (or occasionally a positive value) and -1 on failure
  */
 int __wrap_ioctl(int fd, unsigned long request, ...)

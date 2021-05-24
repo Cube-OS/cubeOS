@@ -1,7 +1,7 @@
 Tutorials
 =========
 
-Kubos users develop custom flight software for their OBCs using the KubOS libraries.
+CubeOS users develop custom flight software for their OBCs using the CubeOS libraries.
 
 This custom software is then used to communicate with the various :doc:`core <../ecosystem/services/core-services>` and
 :doc:`hardware <../ecosystem/services/hardware-services>` services in order to interact with the system and execute
@@ -15,13 +15,13 @@ mission logic.
     actor User
 
     folder "Host Machine" {
-        [kubos-proj1] as proj1
-        [kubos-proj2] as proj2
+        [cubeos-proj1] as proj1
+        [cubeos-proj2] as proj2
     }
 
-    node "OBC - KubOS" {
+    node "OBC - CubeOS" {
         frame "App Registry" {
-            cloud "kubos-proj2" as application
+            cloud "cubeos-proj2" as application
             cloud "App1"
             cloud "App2"
         }
@@ -48,7 +48,7 @@ a system once it is in-flight.
 .. note::
 
     You should be able to go through these tutorials from either a :doc:`local dev environment <../getting-started/local-setup>`
-    or an instance of the :doc:`Kubos SDK <../sdk-docs/sdk-installing>`
+    or an instance of the :doc:`CubeOS SDK <../sdk-docs/sdk-installing>`
 
 .. _mission-development-tutorials:
 
@@ -63,7 +63,7 @@ data and then storing that data into the telemetry database.
 
 
     Creating Your First Mission Application <first-mission-app>
-    Running a KubOS Project on an OBC <first-obc-project>
+    Running a CubeOS Project on an OBC <first-obc-project>
 
 .. _system-interaction-tutorials:
 
@@ -101,13 +101,13 @@ Important system tutorials which should be approached after mastering basic syst
 Other Resources
 ---------------
 
-These docs give more information about various components of KubOS:
+These docs give more information about various components of CubeOS:
 
-    - :doc:`KubOS Design <../kubos-design>` - The high-level design of KubOS
-    - :doc:`../getting-started/using-rust` - Instructions for using Rust with KubOS
+    - :doc:`CubeOS Design <../cubeos-design>` - The high-level design of CubeOS
+    - :doc:`../getting-started/using-rust` - Instructions for using Rust with CubeOS
     - :doc:`Application Dev Guides <../ecosystem/apps/app-guide>` - More in-depth instructions about
       creating mission applications
-    - :ref:`Kubos Services <service-docs>` - Docs covering what services are,
+    - :ref:`CubeOS Services <service-docs>` - Docs covering what services are,
       which services are availabe, and how to create your own services
     - :doc:`Mission Development Guide <../mission-dev/index>` - Docs covering the recommended
       components which should be developed for any given mission

@@ -1,4 +1,4 @@
-Using C with the Kubos SDK
+Using C with the CubeOS SDK
 ==========================
 
 Creating a Project
@@ -28,7 +28,7 @@ Your final directory structure should look like this::
     |_ source
     |_ test
 
-Kubos uses the CMake build system, along with our own folder conventions, for C projects.
+CubeOS uses the CMake build system, along with our own folder conventions, for C projects.
 You can read more about CMake `here <https://cmake.org/cmake-tutorial/>`__.
 
 Working with CMakeLists.txt
@@ -69,7 +69,7 @@ Lastly, the header folder needs to be added using the
 Building a Project
 ------------------
 
-To build a Kubos C project, the ``CMake`` build mechanism needs to be invoked.
+To build a CubeOS C project, the ``CMake`` build mechanism needs to be invoked.
 
 First, a folder will be created to store the build artifacts::
 

@@ -16,10 +16,10 @@
 
 use crate::model::*;
 use crate::objects::*;
+use cubeos_service;
 use juniper::FieldResult;
-use kubos_service;
 
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 pub struct QueryRoot;
 

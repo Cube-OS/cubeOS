@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
+use cubeos_system::Config as ServiceConfig;
 use file_protocol::{FileProtocol, FileProtocolConfig, ProtocolError, State};
 use file_service::recv_loop;
-use kubos_system::Config as ServiceConfig;
 use rand::{thread_rng, Rng};
 use std::fs::{File, OpenOptions};
 use std::io::prelude::*;

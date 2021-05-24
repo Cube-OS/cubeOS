@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
+use cubeos_service;
 use juniper::{FieldError, FieldResult, Value};
-use kubos_service;
 
 #[derive(Clone)]
 pub struct Subsystem;
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 pub struct QueryRoot;
 

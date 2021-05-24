@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-//! Service for scheduling tasks in the KubOS system.
+//! Service for scheduling tasks in the CubeOS system.
 
 #![deny(warnings)]
 #![deny(missing_docs)]
@@ -28,13 +28,13 @@ mod task;
 mod task_list;
 
 use crate::error::SchedulerError;
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 use log::{error, info};
 use scheduler::{Scheduler, DEFAULT_SCHEDULES_DIR};
 use schema::{MutationRoot, QueryRoot};
 
 fn main() -> Result<(), SchedulerError> {
-    Logger::init("kubos-scheduler-service").unwrap();
+    Logger::init("cubeos-scheduler-service").unwrap();
 
     let config = Config::new("scheduler-service").map_err(|err| {
         error!("Failed to load service config: {:?}", err);

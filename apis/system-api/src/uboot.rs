@@ -18,13 +18,13 @@ use failure::{format_err, Error};
 use std::process::Command;
 use std::str::FromStr;
 
-pub const VAR_KUBOS_CURR_VERSION: &str = "kubos_curr_version";
-pub const VAR_KUBOS_PREV_VERSION: &str = "kubos_prev_version";
-pub const VAR_KUBOS_INITIAL_DEPLOY: &str = "kubos_initial_deploy";
+pub const VAR_KUBOS_CURR_VERSION: &str = "cubeos_curr_version";
+pub const VAR_KUBOS_PREV_VERSION: &str = "cubeos_prev_version";
+pub const VAR_KUBOS_INITIAL_DEPLOY: &str = "cubeos_initial_deploy";
 
 const PRINTENV_PATH: &str = "/usr/sbin/fw_printenv";
 
-/// A convenience wrapper for fetching UBoot variables used by KubOS
+/// A convenience wrapper for fetching UBoot variables used by CubeOS
 #[derive(Default)]
 pub struct UBootVars {
     cmd_path: String,

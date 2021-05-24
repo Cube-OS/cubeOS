@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include <gomspace-p31u-api.h>
 #include <cmocka.h>
 #include <errno.h>
+#include <gomspace-p31u-api.h>
 #include <unistd.h>
 
 uint8_t  last_cmd;
@@ -40,8 +40,8 @@ int __wrap_close(int fd)
 int __wrap_ioctl(int fd, unsigned long request, long addr, ...)
 {
     /*
-     * This shouldn't ever actually fail, it's just a convenient place to check that
-     * we're still sending to the correct slave address
+     * This shouldn't ever actually fail, it's just a convenient place to
+     * check that we're still sending to the correct slave address
      */
     if (addr != 0x02)
     {
@@ -91,7 +91,7 @@ ssize_t __wrap_read(int fd, char * buf, size_t count)
 
     check_expected(len);
 
-    uint8_t *          resp     = (uint8_t *) mock();
+    uint8_t * resp = (uint8_t *) mock();
 
     if (len > 1)
     {

@@ -1,7 +1,7 @@
 Process Monitoring
 ==================
 
-KubOS uses `Monit <https://mmonit.com/monit/documentation/monit.html>`__ in order to monitor its
+CubeOS uses `Monit <https://mmonit.com/monit/documentation/monit.html>`__ in order to monitor its
 :ref:`services <service-docs>` and other continuous processes.
 
 Monit makes periodic checks to ensure that all defined processes are still running.
@@ -29,7 +29,7 @@ First, the information can be viewed by executing ``monit status`` from the OBC'
 All status will then be printed to `stdout`.
 The output will look something like this::
 
-    Process 'kubos-app-service'
+    Process 'cubeos-app-service'
       status                       Running
       monitoring status            Monitored
       monitoring mode              active
@@ -48,7 +48,7 @@ The output will look something like this::
       memory total                 0.6% [3.0 MB]
       data collected               Thu, 01 Jan 1970 03:13:34
     
-    System 'Kubos'
+    System 'CubeOS'
       status                       Running
       monitoring status            Monitored
       monitoring mode              active
@@ -63,7 +63,7 @@ The output will look something like this::
 
 Alternatively, the status info can be viewed by opening a web browser on a *host machine*
 (not the OBC) and opening up a connection to port 7000 on the OBC.
-A login dialog will be presented; the login credentials are **kubos/Kubos123**.
+A login dialog will be presented; the login credentials are **cubeos/CubeOS123**.
 
 This will create a graphical display of the same information returned by ``monit status``:
 
@@ -76,9 +76,9 @@ The items Monit keeps track of are defined in control files.
 We have found it easiest to create one file per process which should be monitored.
 This keeps configuration more modular and makes it easy to add or remove monitoring for a process.
 
-The files for Kubos-created services are generated automatically during the build process.
-For example, `you can see here <https://github.com/kubos/kubos-linux-build/blob/master/package/kubos/kubos-monitor/kubos-monitor.mk>`__
-how the monitoring file will be generated for the Kubos monitor service.
+The files for CubeOS-created services are generated automatically during the build process.
+For example, `you can see here <https://github.com/cubeos/cubeos-linux-build/blob/master/package/cubeos/cubeos-monitor/cubeos-monitor.mk>`__
+how the monitoring file will be generated for the CubeOS monitor service.
 
 Please see the `Monit documentation <https://mmonit.com/monit/documentation/monit.html#THE-MONIT-CONTROL-FILE>`__
 for information regarding the syntax of these files.
@@ -86,10 +86,10 @@ for information regarding the syntax of these files.
 If Monit's configuration is changed, the ``monit reload`` command can be used in order to make the
 Monit daemon re-read its configuration files and process the alterations.
 
-Kubos Service Configuration
+CubeOS Service Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default, all Kubos services are set up with the following behavior:
+By default, all CubeOS services are set up with the following behavior:
 
 - If Monit sees that the service is not running, the service is restarted
 - If Monit has already tried to restart the service 3 times within the last 10 minutes, then the

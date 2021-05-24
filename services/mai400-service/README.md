@@ -1,10 +1,10 @@
 # MAI-400 Service
 
-Kubos Service for interacting with an [Adcole Maryland Aerospace MAI-400](https://www.adcolemai.com/adacs)
+CubeOS Service for interacting with an [Adcole Maryland Aerospace MAI-400](https://www.adcolemai.com/adacs)
 
 # Configuration
 
-The service can be configured in the `/etc/kubos-config.toml` with the following fields:
+The service can be configured in the `/etc/cubeos-config.toml` with the following fields:
 
 ```toml
 [mai400-service.addr]
@@ -20,11 +20,11 @@ The service should be started automatically by its init script, but may also be 
 
 ```bash
 $ mai400-service
-Kubos MAI-400 service started
+CubeOS MAI-400 service started
 Listening on: 10.63.1.20:8120
 ```
 
-If no config file is specified, then the service will look at `/etc/kubos-config.toml`.
+If no config file is specified, then the service will look at `/etc/cubeos-config.toml`.
 An alternative config file may be specified on the command line at run time:
 
 ```bash

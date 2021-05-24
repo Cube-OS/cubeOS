@@ -37,7 +37,7 @@ pub struct AppMetadata {
     /// The custom configuration file which should be passed to the application when it is started
     pub config: Option<String>,
 }
-/// Kubos App struct
+/// CubeOS App struct
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct App {
     /// The name of the application

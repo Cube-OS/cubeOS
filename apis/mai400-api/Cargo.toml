@@ -3,7 +3,7 @@ name = "mai400-api"
 version = "0.1.0"
 authors = ["Catherine Garabedian <catherine@kubos.co>"]
 license = "Apache-2.0"
-repository = "https://github.com/kubos/kubos"
+repository = "https://github.com/cubeos/cubeos"
 edition = "2018"
 
 [dependencies]
@@ -18,4 +18,4 @@ serial = "0.4"
 
 
 [build-dependencies]
-kubos-build-helper = {path = "../../kubos-build-helper"}
+cubeos-build-helper = {path = "../../cubeos-build-helper"}

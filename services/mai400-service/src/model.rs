@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+use cubeos_service::{process_errors, push_err, run};
 use failure::{bail, Error};
-use kubos_service::{process_errors, push_err, run};
 use log::{error, info};
 use mai400_api::*;
 use std::sync::mpsc::channel;
@@ -147,7 +147,7 @@ impl Subsystem {
 
         spawn(move || read_thread(mai_ref, data_ref, sender));
 
-        info!("Kubos MAI-400 service started");
+        info!("CubeOS MAI-400 service started");
 
         Ok(Subsystem {
             mai,

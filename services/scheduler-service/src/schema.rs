@@ -21,12 +21,12 @@
 use crate::mode::*;
 use crate::scheduler::{Scheduler, SAFE_MODE};
 use crate::task_list::{import_raw_task_list, import_task_list, remove_task_list};
+use cubeos_service;
 use juniper::FieldResult;
 use juniper::{graphql_object, GraphQLObject};
-use kubos_service;
 use serde::Deserialize;
 
-type Context = kubos_service::Context<Scheduler>;
+type Context = cubeos_service::Context<Scheduler>;
 
 // Generic GraphQL Response
 #[derive(Debug, Deserialize, GraphQLObject)]

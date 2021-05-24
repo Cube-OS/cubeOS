@@ -15,11 +15,11 @@
  */
 
 #include <i2c.h>
-#include <trxvu.h>
 #include <stdio.h>
+#include <trxvu.h>
 #include <unistd.h>
 
-int radio_bus = 0;
+int      radio_bus  = 0;
 uint16_t wd_timeout = 0;
 trx_prop radio_tx;
 trx_prop radio_rx;
@@ -40,8 +40,8 @@ KRadioStatus k_radio_init(char * bus, trx_prop tx, trx_prop rx, uint16_t timeout
     }
 
     wd_timeout = timeout;
-    radio_tx = tx;
-    radio_rx = rx;
+    radio_tx   = tx;
+    radio_rx   = rx;
 
     return RADIO_OK;
 }
@@ -156,7 +156,7 @@ KRadioStatus k_radio_watchdog_stop()
         perror("TRXVU watchdog thread has not been started");
         return RADIO_ERROR;
     }
-    
+
     /* Send the cancel request */
     if (pthread_cancel(handle_watchdog) != 0)
     {
@@ -203,16 +203,37 @@ KRadioStatus k_radio_get_telemetry(radio_telem * buffer, RadioTelemType type)
     }
 }
 
-float get_voltage(uint16_t raw) {return raw * 0.00488;}
+float get_voltage(uint16_t raw)
+{
+    return raw * 0.00488;
+}
 
-float get_current(uint16_t raw) {return raw * 0.16643964;}
+float get_current(uint16_t raw)
+{
+    return raw * 0.16643964;
+}
 
-float get_temperature(uint16_t raw) {return raw * -0.07669 + 195.6037;}
+float get_temperature(uint16_t raw)
+{
+    return raw * -0.07669 + 195.6037;
+}
 
-float get_doppler_offset(uint16_t raw) {return raw * 13.352 - 22300;}
+float get_doppler_offset(uint16_t raw)
+{
+    return raw * 13.352 - 22300;
+}
 
-float get_signal_strength(uint16_t raw) {return raw * 0.03 - 152;}
+float get_signal_strength(uint16_t raw)
+{
+    return raw * 0.03 - 152;
+}
 
-float get_rf_power_dbm(uint16_t raw) {return 20 * log10(raw * 0.00767);}
+float get_rf_power_dbm(uint16_t raw)
+{
+    return 20 * log10(raw * 0.00767);
+}
 
-float get_rf_power_mw(uint16_t raw) {return raw * raw * powf(10, -2) * 0.00005887;}
+float get_rf_power_mw(uint16_t raw)
+{
+    return raw * raw * powf(10, -2) * 0.00005887;
+}

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-use kubos_service::{Config, Service};
+use cubeos_service::{Config, Service};
 use serde_json::json;
 use std::fs;
 use std::path::PathBuf;
@@ -70,7 +70,7 @@ fn register_good() {
               "active": true,
                "app": {
                    "author": "user",
-                   "config": "/etc/kubos-config.toml",
+                   "config": "/etc/cubeos-config.toml",
                    "name": "dummy",
                    "version": "0.0.1",
                }
@@ -691,7 +691,7 @@ fn register_good_archive() {
               "active": true,
                "app": {
                    "author": "user",
-                   "config": "/etc/kubos-config.toml",
+                   "config": "/etc/cubeos-config.toml",
                    "name": "dummy",
                    "version": "0.0.1",
                }

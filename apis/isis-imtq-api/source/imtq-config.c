@@ -28,7 +28,7 @@ KADCSStatus k_adcs_configure(const JsonNode * config)
 
     JsonNode *        entry;
     uint16_t          param;
-    imtq_config_value value = {0};
+    imtq_config_value value = { 0 };
 
     if (config == NULL)
     {
@@ -117,10 +117,7 @@ KADCSStatus k_adcs_configure(const JsonNode * config)
 KADCSStatus k_imtq_get_param(uint16_t param, imtq_config_resp * response)
 {
     KADCSStatus status    = ADCS_OK;
-    uint8_t    packet[3] = {
-            GET_PARAM,
-            param & 0xFF, param >> 8
-    };
+    uint8_t     packet[3] = { GET_PARAM, param & 0xFF, param >> 8 };
 
     if (param == 0 || response == NULL)
     {
@@ -150,11 +147,8 @@ KADCSStatus k_imtq_set_param(uint16_t param, const imtq_config_value * value,
                              imtq_config_resp * response)
 {
     KADCSStatus status = ADCS_OK;
-    uint8_t    packet[3 + sizeof(imtq_config_value)] = {
-            SET_PARAM,
-            param & 0xFF, param >> 8,
-            0
-    };
+    uint8_t     packet[3 + sizeof(imtq_config_value)]
+        = { SET_PARAM, param & 0xFF, param >> 8, 0 };
 
     if (param == 0 || value == NULL)
     {
@@ -188,11 +182,7 @@ KADCSStatus k_imtq_set_param(uint16_t param, const imtq_config_value * value,
 KADCSStatus k_imtq_reset_param(uint16_t param, imtq_config_resp * response)
 {
     KADCSStatus status    = ADCS_OK;
-    uint8_t    packet[3] = {
-            RESET_PARAM,
-            param & 0xFF,
-            param >> 8
-    };
+    uint8_t     packet[3] = { RESET_PARAM, param & 0xFF, param >> 8 };
 
     if (param == 0)
     {

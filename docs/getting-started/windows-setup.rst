@@ -3,13 +3,13 @@ Setting up a Dev Environment in Windows
 
 Developing for a Linux-based target system from within a Windows-based host machine is difficult.
 The way Windows has architected its file systems and behaviors is fundamentally different from
-Linux, making it extremely difficult to run KubOS services and applications locally.
+Linux, making it extremely difficult to run CubeOS services and applications locally.
 
 As a result, we recommend that Windows users develop from within a Linux VM.
-We provide the Kubos SDK as a pre-built VM which comes with all the tooling needed to create, build,
-and run the KubOS components.
+We provide the CubeOS SDK as a pre-built VM which comes with all the tooling needed to create, build,
+and run the CubeOS components.
 
-This document covers the steps required to set up the Kubos SDK so that it can be used as a
+This document covers the steps required to set up the CubeOS SDK so that it can be used as a
 development environment for Windows users.
 
 .. note::
@@ -20,11 +20,11 @@ development environment for Windows users.
     If you happen to get it up and running smoothly, we would love for you to
     :doc:`tell us about it <../contributing/contribution-process>`!
 
-Installing the Kubos SDK
+Installing the CubeOS SDK
 ------------------------
 
 Please refer to the :doc:`SDK installation guide <../sdk-docs/sdk-installing>` for information about
-installing the Kubos SDK and its dependencies.
+installing the CubeOS SDK and its dependencies.
 
 Setting up a Shared Folder
 --------------------------
@@ -117,7 +117,7 @@ In this case, Windows Firewall may need to be updated to allow this traffic.
 Next Steps
 ----------
 
-Now that your environment is set up, you can get started developing your first KubOS project.
+Now that your environment is set up, you can get started developing your first CubeOS project.
 
 We recommend that you look at the following documents next:
 

@@ -1,10 +1,10 @@
 # ISIS iOBC Supervisor Service
 
-Kubos Service for interacting with the ISIS-OBC Supervisor
+CubeOS Service for interacting with the ISIS-OBC Supervisor
 
 # Configuration
 
-The service must be configured in `/etc/kubos-config.toml` with the following fields:
+The service must be configured in `/etc/cubeos-config.toml` with the following fields:
 
 - `[iobc-supervisor-service.addr]`
 
@@ -25,11 +25,11 @@ The service should be started automatically by its init script, but may also be 
 
 ```bash
 $ iobc-supervisor-service
-Kubos antenna systems service started
+CubeOS antenna systems service started
 Listening on: 0.0.0.0:8170
 ```
 
-If no config file is specified, then the service will look at `/etc/kubos-config.toml`.
+If no config file is specified, then the service will look at `/etc/cubeos-config.toml`.
 An alternative config file may be specified on the command line at run time:
 
 ```bash

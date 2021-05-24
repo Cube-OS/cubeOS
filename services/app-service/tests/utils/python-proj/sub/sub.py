@@ -5,5 +5,5 @@
 # This module exists to test that the app service supports multi-file applications
 
 def test_func():
-    
+
     print("I'm a test function")

@@ -1,10 +1,10 @@
-Installing Kubos Linux on an ISIS-OBC
+Installing CubeOS Linux on an ISIS-OBC
 =====================================
 
 Overview
 --------
 
-This document covers the steps required to install Kubos Linux onto an iOBC.
+This document covers the steps required to install CubeOS Linux onto an iOBC.
 
 Reference Documents
 -------------------
@@ -17,40 +17,40 @@ and is a useful document for learning what each of the hardware
 components are, how to connect them, and what drivers need to be
 installed to support them.
 
-Kubos Documentation
+CubeOS Documentation
 ~~~~~~~~~~~~~~~~~~~
 
--  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first KubOS project
--  :doc:`../../ecosystem/linux-docs/using-kubos-linux` - General guide for interacting with Kubos Linux
+-  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first CubeOS project
+-  :doc:`../../ecosystem/linux-docs/using-cubeos-linux` - General guide for interacting with CubeOS Linux
 -  :doc:`working-with-the-iobc` - Guide for interacting with iOBC-specific features
--  :doc:`../../deep-dive/klb/kubos-linux-on-iobc` - Steps to build Kubos Linux
+-  :doc:`../../deep-dive/klb/cubeos-linux-on-iobc` - Steps to build CubeOS Linux
 
 Components
 ----------
 
-The Kubos Linux installation process is composed of two high-level steps:
+The CubeOS Linux installation process is composed of two high-level steps:
 
   - Flashing the SD card
   - Flashing the on-board NOR flash
 
 To perform a default installation, three files are needed:
 
-  - A Kubos Linux SD card image
+  - A CubeOS Linux SD card image
   - u-boot.bin
   - at91sam9g20isis.dtb
 
-All of these files can be obtained from `our Kubos Linux Releases page on GitHub <https://github.com/kubos/kubos-linux-build/releases>`__
+All of these files can be obtained from `our CubeOS Linux Releases page on GitHub <https://github.com/cubeos/cubeos-linux-build/releases>`__
 
-Download the latest `KubOS-v{version}.tar.gz` file and then unzip the files for the iOBC. They're located in the `KubOS-v{version}/iOBC` folder.
+Download the latest `CubeOS-v{version}.tar.gz` file and then unzip the files for the iOBC. They're located in the `CubeOS-v{version}/iOBC` folder.
 
 .. _install-sd:
 
 Install the SD Card Files
 -------------------------
 
-All users should install the SD card files using a distributed Kubos Linux image, unless they have
-created a custom Kubos Linux build. In that case, the SD card files can be installed by either
-flashing a complete Kubos Linux image onto an SD card or :ref:`by alternate means <alt-sd-setup>`.
+All users should install the SD card files using a distributed CubeOS Linux image, unless they have
+created a custom CubeOS Linux build. In that case, the SD card files can be installed by either
+flashing a complete CubeOS Linux image onto an SD card or :ref:`by alternate means <alt-sd-setup>`.
 
 Pre-Requisites
 ~~~~~~~~~~~~~~
@@ -59,14 +59,14 @@ Pre-Requisites
 
 .. note:: 
 
-    The Kubos Linux SD images are created for a 4GB SD card. The image can be applied to a larger SD card, but the
+    The CubeOS Linux SD images are created for a 4GB SD card. The image can be applied to a larger SD card, but the
     resulting system will still only have 4GB of space available to it.
 
  
 2. Install `Etcher <https://www.balena.io/etcher/>`__. Other software to flash SD cards does exist,
-   but Etcher is the Kubos software of choice.
+   but Etcher is the CubeOS software of choice.
 
-3. Obtain a Kubos Linux image
+3. Obtain a CubeOS Linux image
 
 
 Flash the SD Card
@@ -74,7 +74,7 @@ Flash the SD Card
 
 Using `Etcher <https://www.balena.io/etcher/>`__:
 
-  - Select the Kubos Linux image to flash
+  - Select the CubeOS Linux image to flash
   - Make sure the SD card device is correct (may be auto-detected if there is only one SD card present
     in your system.)
   - Click the "Flash!" button to start the flashing process
@@ -106,7 +106,7 @@ The SD card does not need to be inserted into the iOBC in order for this step to
     
 .. note::
 
-    Once Kubos Linux has been initially installed, future releases of the device tree
+    Once CubeOS Linux has been initially installed, future releases of the device tree
     can be installed using the :ref:`upgrade-installation` process with a `kpack-nor-*.itb`
     file, rather than by manual flashing.
 
@@ -135,8 +135,8 @@ Pre-Requisites
     
 7. Turn on the board.
 
-8. Copy the `kubos-nor-flash.tcl` script from the `tools/at91sam9g20isis` folder in
-   the `kubos-linux-build <https://github.com/kubos/kubos-linux-build>`__ repo
+8. Copy the `cubeos-nor-flash.tcl` script from the `tools/at91sam9g20isis` folder in
+   the `cubeos-linux-build <https://github.com/cubeos/cubeos-linux-build>`__ repo
    into the SAM-BA application folder.
 9. Change line 44 in `{path to SAM-BA}/tcl_lib/boards.tcl` from this:
 
@@ -162,10 +162,10 @@ board.
 You'll need to establish a serial connection with the board in order to connect
 to the console.
 
-You can do this via a Kubos SDK Vagrant image with the ``minicom kubos`` command
+You can do this via a CubeOS SDK Vagrant image with the ``minicom cubeos`` command
 after booting the board.
 
-The default login information for an iOBC is kubos/Kubos123.
+The default login information for an iOBC is cubeos/CubeOS123.
 
 Issue the ``reboot`` command in order to restart the system.
 
@@ -187,7 +187,7 @@ The flashing script can be called from the standard command prompt using this co
 ::
 
     $ {path to SAM-BA}/sam-ba.exe \jlink\ARM0 at91sam9g20-ISISOBC
-          {path to SAM-BA}/kubos-nor-flash.tcl {input arguments} [> {logfile}]
+          {path to SAM-BA}/cubeos-nor-flash.tcl {input arguments} [> {logfile}]
     
 Where the input arguments are as follows:
 
@@ -206,7 +206,7 @@ Example command:
 ::
 
     $ C:/ISIS/applications/samba/sam-ba.exe /jlink/ARM0 at91sam9g20-ISISOBC 
-          C:/ISIS/applications/samba/kubos-nor-flash.tcl uboot=new-u-boot.bin dtb=new-dtb.dtb 
+          C:/ISIS/applications/samba/cubeos-nor-flash.tcl uboot=new-u-boot.bin dtb=new-dtb.dtb 
           > logfile.log
  
 If you'd like to confirm that the command ran successfully, open the log file. You should see
@@ -223,17 +223,17 @@ slot while the board is **not powered**.
 After new files have been loaded, the board will need to be powered off and back
 on again in order to go through the normal boot process.
 
-Using Kubos Linux
+Using CubeOS Linux
 -----------------
 
-For information on how to create and run applications on your new Kubos Linux system, see the
+For information on how to create and run applications on your new CubeOS Linux system, see the
 :doc:`working-with-the-iobc` guide.
 
 
 Non-Default Installation Process
 --------------------------------
 
-There are alternate ways to install Kubos Linux onto the board, in case you want to create a custom
+There are alternate ways to install CubeOS Linux onto the board, in case you want to create a custom
 installation, or are having issues with the default installation work flow.
 
 .. _alt-sd-setup:
@@ -241,7 +241,7 @@ installation, or are having issues with the default installation work flow.
 Alternate SD Card Setup
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-If you do not have a Kubos Linux image, you can load the required files onto an SD card:
+If you do not have a CubeOS Linux image, you can load the required files onto an SD card:
 
   - by using our flashing script
 
@@ -252,7 +252,7 @@ If you do not have a Kubos Linux image, you can load the required files onto an 
 Pre-Requisites
 ^^^^^^^^^^^^^^
 
-Since you are not using a pre-built Kubos Linux image, you will need to go through the :ref:`OS build process <build-os>`
+Since you are not using a pre-built CubeOS Linux image, you will need to go through the :ref:`OS build process <build-os>`
 locally in order to create the kernel and rootfs files.
 
 In order to write the files to the SD card your build system needs be able to a)
@@ -294,9 +294,9 @@ Method 1: Run the Formatting/Flashing Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A script is available to format the SD card and then load the latest
-Kubos Linux kernel and root filesystem.
+CubeOS Linux kernel and root filesystem.
 
-Navigate to the 'kubos-linux-build/tools' directory.
+Navigate to the 'cubeos-linux-build/tools' directory.
 
 Run the ``format-sd.sh`` script. You might need to run as root to get
 permissions for certain steps.
@@ -374,19 +374,19 @@ The BuildRoot build process creates the zImage file, which is a self-extracting
 kernel image. In order to help detect corruption, we package that into an
 \*.itb file, which includes a checksum value that can be validated during boot time.
 
-Navigate to your 'kubos-linux-build' folder and open the 'tools' directory.
+Navigate to your 'cubeos-linux-build' folder and open the 'tools' directory.
 
-Run the ``kubos-kernel.sh`` script.
+Run the ``cubeos-kernel.sh`` script.
 
 The script has optional parameters (which are unlikely to be needed):
 
 - ``-i {input-file}`` - Specify the name of the
-  \*.its file to use. This file describes the files that will be packaged and their usage configuration options. The default is 'kubos-kernel.its', which should also be located in the 'tools' directory.
+  \*.its file to use. This file describes the files that will be packaged and their usage configuration options. The default is 'cubeos-kernel.its', which should also be located in the 'tools' directory.
 -  ``-b {branch}`` - Specify the branch name of U-Boot that has been built.
    The default is 'master'. This option should not need to be used outside of
    development.
 
-The script will create the 'kubos-kernel.itb' file.
+The script will create the 'cubeos-kernel.itb' file.
 
 Copy the files
 ##############
@@ -410,12 +410,12 @@ Mount the partitions (replace '/dev/sdb' with the name of your SD card device)
     $ sudo mount /dev/sdb5 boot
     $ sudo mount /dev/sdb6 rootfs
 
-Copy the kubos-kernel.itb file into partition 5. It will need to be renamed to
+Copy the cubeos-kernel.itb file into partition 5. It will need to be renamed to
 'kernel'.
 
 ::
 
-    $ sudo cp buildroot-2019.02.2/output/images/kubos-kernel.itb boot/kernel
+    $ sudo cp buildroot-2019.02.2/output/images/cubeos-kernel.itb boot/kernel
 
 Untar the rootfs into partition 6
 
@@ -466,7 +466,7 @@ Pre-Requisites
 
 7. Turn on the board.
 
-8. Obtain the NOR flash files either from Kubos, or from your own :ref:`local build <build-os>`:
+8. Obtain the NOR flash files either from CubeOS, or from your own :ref:`local build <build-os>`:
 
     - u-boot.bin
     - at91sam9g20isis.dtb
@@ -483,10 +483,10 @@ board.
 You'll need to establish a serial connection with the board in order to connect
 to the console.
 
-You can do this via a Kubos Vagrant image with the ``minicom kubos`` command
+You can do this via a CubeOS Vagrant image with the ``minicom cubeos`` command
 after booting the board.
 
-The default login information for an iOBC is kubos/Kubos123.
+The default login information for an iOBC is cubeos/CubeOS123.
 
 Issue the ``reboot`` command in order to restart the system.
 

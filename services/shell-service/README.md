@@ -6,4 +6,4 @@ It may also be used between a developer’s system and the OBC when in a develop
 testing environment.
 
 More information about the shell service architecture and how to use it can
-be found in our [official documentation](https://docs.kubos.com/latest/ecosystem/services/shell.html)
+be found in our [official documentation](https://docs.cubeos-doc-websitem/latest/ecosystem/services/shell.html)

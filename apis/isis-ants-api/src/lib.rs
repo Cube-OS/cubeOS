@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-//! Kubos API for interacting with [ISIS Antenna Systems](https://www.isispace.nl/product-category/products/antenna-systems/)
+//! CubeOS API for interacting with [ISIS Antenna Systems](https://www.isispace.nl/product-category/products/antenna-systems/)
 //!
 //! All work is done against an instantiated [`AntS`] struct.
 //!

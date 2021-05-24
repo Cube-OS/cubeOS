@@ -20,8 +20,8 @@
 // properly run these tests. You'll need to manually run these tests and verify the output by
 // checking for any extraneous error messages.
 
+use cubeos_app::ServiceConfig;
 use fs_extra;
-use kubos_app::ServiceConfig;
 use std::fs;
 use std::path::Path;
 use std::thread;
@@ -60,7 +60,7 @@ fn setup_app(registry_dir: &Path) {
             name = "python-proj"
             version = "1.0"
             author = "user"
-            config = "/etc/kubos-config.toml"
+            config = "/etc/cubeos-config.toml"
             "#,
         registry_dir.to_string_lossy(),
     );

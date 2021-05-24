@@ -4,10 +4,10 @@ Working with the Beaglebone Black
 Overview
 --------
 
-This document covers the Kubos Linux features which are specific to the
+This document covers the CubeOS Linux features which are specific to the
 Beaglebone Black target.
 
-Please refer to :doc:`../../ecosystem/linux-docs/using-kubos-linux` for a general guide to using Kubos Linux.
+Please refer to :doc:`../../ecosystem/linux-docs/using-cubeos-linux` for a general guide to using CubeOS Linux.
 
 Reference Documents
 -------------------
@@ -20,13 +20,13 @@ Beaglebone Documentation
 - `Beaglebone Black Hardware Diagrams <http://beagleboard.org/Support/bone101/#hardware>`__
 - `Beaglebone Black System Reference Manual Rev C <http://static6.arrow.com/aropdfconversion/8fff89aa85f5c451318cbdee2facd9c9fac36872/bbb_srm.pdf>`__
 
-Kubos Documentation
+CubeOS Documentation
 ~~~~~~~~~~~~~~~~~~~
 
--  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first KubOS project
--  :doc:`../../ecosystem/linux-docs/using-kubos-linux` - General guide for interacting with Kubos Linux
--  :doc:`../../deep-dive/klb/kubos-linux-on-bbb` - Steps to build Kubos Linux for the Beaglebone Black
--  :doc:`installing-linux-bbb` - Steps to install Kubos Linux
+-  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first CubeOS project
+-  :doc:`../../ecosystem/linux-docs/using-cubeos-linux` - General guide for interacting with CubeOS Linux
+-  :doc:`../../deep-dive/klb/cubeos-linux-on-bbb` - Steps to build CubeOS Linux for the Beaglebone Black
+-  :doc:`installing-linux-bbb` - Steps to install CubeOS Linux
 
 Debug Console Connection
 ------------------------
@@ -35,14 +35,14 @@ As documented in section 7.5 of the :title:`Beaglebone Black System
 Reference Manual`, an FTDI cable can be connected to the serial debug
 connector in order to establish a debug console connection.
 
-This connection will be passed through to a Kubos Vagrant image as
+This connection will be passed through to a CubeOS Vagrant image as
 `/dev/FTDI`.
 
 Status LEDs
 -----------
 
 There are four LEDs present on the Beaglebone Black which give some indication of what state
-the board is in. When there is only one blinking LED, the board is running Kubos Linux and
+the board is in. When there is only one blinking LED, the board is running CubeOS Linux and
 the system is currently idle. The LEDs will blink in correspondence with CPU and MMC activity.
 If all LEDs are solid, then the system has reached some kind of locked error state.
 
@@ -51,12 +51,12 @@ Peripherals
 
 The Beaglebone Black has several different ports available for interacting
 with peripheral devices. Currently, users should interact with these
-devices using the standard Linux functions. A Kubos HAL will be added
+devices using the standard Linux functions. A CubeOS HAL will be added
 in the future to abstract this process.
 
 .. note::
 
-    Kubos Linux for the Pumpkin MBM2 can be used instead of Kubos Linux
+    CubeOS Linux for the Pumpkin MBM2 can be used instead of CubeOS Linux
     for the Beaglebone Black. In this case, some buses and pins won't be
     available, since they aren't exposed in the MBM2's CSK headers, or are
     dedicated to other uses. See the :ref:`peripherals-mbm2` section for 
@@ -123,13 +123,13 @@ The ethernet port is configured to have support for static IPv4 addressing and
 can be used with SSH via the included `Dropbear <https://en.wikipedia.org/wiki/Dropbear_(software)>`__
 package.
 
-Kubos Linux currently guarantees support for TCP, UDP, and SCTP.
+CubeOS Linux currently guarantees support for TCP, UDP, and SCTP.
 Other protocols might be supported by default, but have not been verified.
 
 Resources
 ^^^^^^^^^
 
-- :ref:`Kubos Ethernet Communication Guide <ethernet>`
+- :ref:`CubeOS Ethernet Communication Guide <ethernet>`
 - `TCP tutorial <http://www.linuxhowtos.org/C_C++/socket.htm>`__
 - `UDP tutorial <https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html>`__
 - `SCTP tutorial <http://petanode.com/blog/posts/introduction-to-the-sctp-socket-api-in-linux.html>`__
@@ -146,10 +146,10 @@ By default the address is ``10.0.2.20``.
 Examples
 ^^^^^^^^
 
-A couple example programs using the ethernet port can be found in the `examples` folder of the `kubos repo <https://github.com/kubos/kubos/tree/master/examples>`__:
+A couple example programs using the ethernet port can be found in the `examples` folder of the `cubeos repo <https://github.com/cubeos/cubeos/tree/master/examples>`__:
 
-- `kubos-linux-tcprx <https://github.com/kubos/kubos/tree/master/examples/kubos-linux-tcprx>`__ - Receive TCP packets and then reply to the sender
-- `kubos-linux-tcptx <https://github.com/kubos/kubos/tree/master/examples/kubos-linux-tcptx>`__ - Send TCP packets to specified IP address and port
+- `cubeos-linux-tcprx <https://github.com/cubeos/cubeos/tree/master/examples/cubeos-linux-tcprx>`__ - Receive TCP packets and then reply to the sender
+- `cubeos-linux-tcptx <https://github.com/cubeos/cubeos/tree/master/examples/cubeos-linux-tcptx>`__ - Send TCP packets to specified IP address and port
 
 GPIO
 ~~~~
@@ -250,7 +250,7 @@ I2C
 The Beaglebone Black has two user-accessible I2C buses.
 
 +--------------+--------------+---------+---------+
-| Linux Device | Kubos Device | SCL Pin | SDA Pin |
+| Linux Device | CubeOS Device | SCL Pin | SDA Pin |
 +==============+==============+=========+=========+
 | /dev/i2c-1   | K_I2C1       | P9.17   | P9.18   |
 +--------------+--------------+---------+---------+
@@ -260,10 +260,10 @@ The Beaglebone Black has two user-accessible I2C buses.
 `I2C Standards
 Doc <http://www.nxp.com/documents/user_manual/UM10204.pdf>`__
 
-Kubos Linux is currently configured to support the I2C standard-mode
+CubeOS Linux is currently configured to support the I2C standard-mode
 speed of 100kHz.
 
-For examples and instructions, see the :doc:`I2C HAL documentation <../../deep-dive/apis/kubos-hal/i2c-hal/index>`.
+For examples and instructions, see the :doc:`I2C HAL documentation <../../deep-dive/apis/cubeos-hal/i2c-hal/index>`.
 
 SPI
 ~~~

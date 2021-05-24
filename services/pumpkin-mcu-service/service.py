@@ -14,8 +14,8 @@ import sys
 
 from service import schema
 
-from kubos_service import http_service
-from kubos_service.config import Config
+from cubeos_service import http_service
+from cubeos_service.config import Config
 
 c = Config("pumpkin-mcu-service")
 

@@ -1,7 +1,7 @@
-Upgrading Your Kubos Development Environment
+Upgrading Your CubeOS Development Environment
 ============================================
 
-New updates will be announced to the Kubos community and the new releases will
+New updates will be announced to the CubeOS community and the new releases will
 be published through GitHub.
 If there are any special steps required to upgrade to the newest release, they will be listed in the
 release details.
@@ -12,7 +12,7 @@ Upgrading the Vagrant Box
 Occasionally there will be an update or addition to one of the
 components of the Vagrant environment. When any of these
 components is changes we will package and release a new version of the
-`kubos-dev` box.
+`cubeos-dev` box.
 
 If there's a new version of the box available you will see something
 similar to the following when you start the box:
@@ -21,7 +21,7 @@ similar to the following when you start the box:
 
         $ vagrant up
         ...
-        ==> default: A newer version of the box 'kubos/kubos-dev' is available! You currently
+        ==> default: A newer version of the box 'cubeos/cubeos-dev' is available! You currently
         ==> default: have version '0.2.2'. The latest is version '0.2.3'. Run
         ==> default: `vagrant box update` to update.
         ...

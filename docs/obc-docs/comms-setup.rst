@@ -12,12 +12,12 @@ Debug Console
 
 Each board will have some debug port available, which will then be connected to your computer via
 USB.
-See the appropriate `KubOS for the {OBC} > Working with the {OBC}` document for more information.
+See the appropriate `CubeOS for the {OBC} > Working with the {OBC}` document for more information.
 
 Running Locally
 ~~~~~~~~~~~~~~~
 
-If you are not using the Kubos SDK image and are instead running everything locally, you will need
+If you are not using the CubeOS SDK image and are instead running everything locally, you will need
 to manually set up a serial connection.
 
 Connect your OBC to your host computer and then determine the device name which it was assigned.
@@ -66,23 +66,23 @@ ease-of-use.
 The Vagrant image comes pre-packaged with a minicom serial connection configuration file.
 You can connect with this configuration file using this command::
 
-    $ minicom kubos
+    $ minicom cubeos
 
 Logging In
 ~~~~~~~~~~
 
-Once connected, you can log in using either a user that you've created, the default `kubos` user,
-or `root`. The `kubos` and `root` users both have a default password of 'Kubos123'.
+Once connected, you can log in using either a user that you've created, the default `cubeos` user,
+or `root`. The `cubeos` and `root` users both have a default password of 'CubeOS123'.
 
 Fully logged in, the console should look like this:
 
 ::
 
-    Welcome to Kubos Linux
+    Welcome to CubeOS Linux
 
-    Kubos login: kubos
+    CubeOS login: cubeos
     Password: 
-    /home/kubos # 
+    /home/cubeos # 
 
 .. _ethernet:
 
@@ -95,7 +95,7 @@ as an alternate method to access the board's shell interface and to transfer fil
 Determining a Suitable IP Address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-KubOS does not use DHCP, so all IP addresses are statically defined.
+CubeOS does not use DHCP, so all IP addresses are statically defined.
 
 .. warning::
 
@@ -148,11 +148,11 @@ This is most useful for communicating with OBCs which do not provide an ethernet
 
 All supported boards include a SLIP configuration in their ``/etc/network/interfaces`` file.
 
-In order to communicate with an OBC from the :doc:`Kubos SDK <../sdk-docs/index>`, or from a host
+In order to communicate with an OBC from the :doc:`CubeOS SDK <../sdk-docs/index>`, or from a host
 machine running Linux, users will need to do the following:
 
 - Connect an FTDI cable to the pins of the UART port (please refer to the UART section of the
-  appropriate `KubOS for the {OBC} > Working with the {OBC}` document for details about the default
+  appropriate `CubeOS for the {OBC} > Working with the {OBC}` document for details about the default
   SLIP UART port for the board)
 
     - Ground -> Ground
@@ -212,8 +212,8 @@ Once a board has been given a valid IP address (via ethernet or SLIP), you can c
 
 This can be done from either the SDK or your host machine.
 
-To connect from the command line, run ``ssh kubos@{ip-address}``.
-You will be prompted for the `kubos` account password.
+To connect from the command line, run ``ssh cubeos@{ip-address}``.
+You will be prompted for the `cubeos` account password.
 
 You can also use a tool, like PuTTY, to create an SSH connection.
 
@@ -234,10 +234,10 @@ connection using either ethernet or SLIP.
 Once the IP address has been set, you can transfer files to and from the stack using the ``scp`` command.
 This command can be run from either the SDK or your host machine.
 
-For example, if I wanted to send a file on my host machine, `test.txt`, to reside in the `kubos` account's home directory,
+For example, if I wanted to send a file on my host machine, `test.txt`, to reside in the `cubeos` account's home directory,
 given a stack IP of ``10.50.1.10``, I would enter::
 
-    $ scp test.txt kubos@10.50.1.10:/home/kubos
+    $ scp test.txt cubeos@10.50.1.10:/home/cubeos
     
 .. note::
 
@@ -256,7 +256,7 @@ guaranteed to work with any other terminal program)
 
 ::
 
-    $ minicom kubos
+    $ minicom cubeos
 
 Login to the board
 
@@ -271,7 +271,7 @@ Login to the board
     Press CTRL-A Z for help on special keys
 
 
-    Welcome to Kubos Linux
+    Welcome to CubeOS Linux
     (none) login: root
     Password:
     Jan  1 00:00:11 login[210]: root login on 'ttyS0'
@@ -331,7 +331,7 @@ want within the current folder.
 ::
 
     +-------------------[Select one or more files for upload]-------------------+
-    |Directory: /home/vagrant/linux/build/kubos-linux-isis-gcc/source           |
+    |Directory: /home/vagrant/linux/build/cubeos-linux-isis-gcc/source           |
     | [..]                                                                      |
     | [CMakeFiles]                                                              |
     | CMakeLists.txt                                                            |

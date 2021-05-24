@@ -1,7 +1,7 @@
-Kubos Device APIs
+CubeOS Device APIs
 =================
 
-The Kubos SDK provides a selection of device APIs to make interfacing with external peripherals quick and convenient.
+The CubeOS SDK provides a selection of device APIs to make interfacing with external peripherals quick and convenient.
 
 Supported devices:
 

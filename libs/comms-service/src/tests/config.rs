@@ -31,7 +31,7 @@ fn test_write(_write_conn: &u8, _data: &[u8]) -> CommsResult<()> {
 
 #[test]
 fn config_full_good() {
-    let config = kubos_system::Config::new_from_str(
+    let config = cubeos_system::Config::new_from_str(
         "comms-service",
         r#"
         [comms-service.comms]
@@ -62,7 +62,7 @@ fn config_full_good() {
 
 #[test]
 fn config_no_comms_ip() {
-    let config = kubos_system::Config::new_from_str(
+    let config = cubeos_system::Config::new_from_str(
         "comms-service",
         r#"
         [comms-service.comms]
@@ -81,7 +81,7 @@ fn config_no_comms_ip() {
 
 #[test]
 fn config_write_downlink_mismatch() {
-    let config = kubos_system::Config::new_from_str(
+    let config = cubeos_system::Config::new_from_str(
         "comms-service",
         r#"
         [comms-service.comms]

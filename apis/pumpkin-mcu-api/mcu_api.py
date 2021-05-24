@@ -206,17 +206,17 @@ TELEMETRY = {
         "3_3v":                {"command": "EPS:TEL? 6,data", "length": 9, "parsing": "<HHhhB",
                                 "names": ["3_3v_voltage", "3_3v_volt_max", "3_3v_current", "3_3v_curr_limit", "3_3v_status"]},
         "5v":                 {"command": "EPS:TEL? 7,data", "length": 9, "parsing": "<HHhhB",
-                                "names": ["5v_voltage", "5v_volt_max", "5v_current", "5v_curr_limit", "5v_status"]},
+                               "names": ["5v_voltage", "5v_volt_max", "5v_current", "5v_curr_limit", "5v_status"]},
         "12v":                {"command": "EPS:TEL? 8,data", "length": 9, "parsing": "<HHhhB",
-                                "names": ["12v_voltage", "12v_volt_max", "12v_current", "12v_curr_limit", "12v_status"]},
+                               "names": ["12v_voltage", "12v_volt_max", "12v_current", "12v_curr_limit", "12v_status"]},
         "aux":                {"command": "EPS:TEL? 9,data", "length": 9, "parsing": "<HHhhB",
-                                "names": ["aux_voltage", "aux_volt_max", "aux_current", "aux_curr_limit", "aux_status"]},
+                               "names": ["aux_voltage", "aux_volt_max", "aux_current", "aux_curr_limit", "aux_status"]},
         "fpga_version":       {"command": "EPS:TEL? 10,data", "length": 2, "parsing": "<BB",
-                                "names": ["fpga_version_0", "fpga_version_1"]},
+                               "names": ["fpga_version_0", "fpga_version_1"]},
         "batt1":              {"command": "EPS:TEL? 11,data", "length": 5, "parsing": "<hHB",
-                                "names": ["batt1_current", "batt1_voltage", "batt1_status"]},
+                               "names": ["batt1_current", "batt1_voltage", "batt1_status"]},
         "batt2":              {"command": "EPS:TEL? 12,data", "length": 5, "parsing": "<hHB",
-                                "names": ["batt2_current", "batt2_voltage", "batt2_status"]},
+                               "names": ["batt2_current", "batt2_voltage", "batt2_status"]},
     }
 }
 # End Config Data
@@ -238,7 +238,7 @@ class MCU:
         """
         if type(command) is str:
             command = str.encode(command)
-            
+
         if type(command) is bytes:
             return self.i2cfile.write(
                 device=self.address, data=command+b'\x0A')
@@ -370,7 +370,7 @@ class MCU:
             raise TypeError(
                 'Parsing field must be a valid struct parsing string. Input: '
                 + str(type(parsing)))
-            
+
         if type(data) is str:
             data = data.encode()
 

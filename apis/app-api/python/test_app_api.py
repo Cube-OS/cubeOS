@@ -5,7 +5,7 @@
 # See LICENSE file for details.
 
 """
-Unit testing for the Kubos App API.
+Unit testing for the CubeOS App API.
 """
 
 import app_api
@@ -14,6 +14,7 @@ import mock
 import responses
 
 from requests.exceptions import ConnectionError, HTTPError
+
 
 class TestAppAPI(unittest.TestCase):
 
@@ -38,14 +39,14 @@ class TestAppAPI(unittest.TestCase):
         query = "test query"
         ip = "0.0.0.0"
         port = 8000
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8000',
-            json={'data':'test data'},
+            json={'data': 'test data'},
             status=200)
-        
+
         response = self.api.query(service=service, query=query)
-        
+
         assert response == "test data"
 
     @responses.activate
@@ -53,13 +54,14 @@ class TestAppAPI(unittest.TestCase):
         service = "test-service"
         query = "test query"
         timeout = 0.03
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8000',
-            json={'data':'test data'},
+            json={'data': 'test data'},
             status=200)
-        
-        response = self.api.query(service=service, query=query, timeout=timeout)
+
+        response = self.api.query(
+            service=service, query=query, timeout=timeout)
         assert response == "test data"
 
     @responses.activate
@@ -67,12 +69,12 @@ class TestAppAPI(unittest.TestCase):
         service = "test-service"
         query = "test query"
         timeout = 0.03
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8000',
-            json={'errors':["Lots of errors"],'data':""},
+            json={'errors': ["Lots of errors"], 'data': ""},
             status=200)
-        
+
         with self.assertRaises(EnvironmentError):
             self.api.query(service=service, query=query, timeout=timeout)
 
@@ -81,12 +83,12 @@ class TestAppAPI(unittest.TestCase):
         service = "test-service"
         query = "test query"
         timeout = 0.03
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8000',
-            json={'bad_field_name':[], 'data':""},
+            json={'bad_field_name': [], 'data': ""},
             status=200)
-        
+
         with self.assertRaises(KeyError):
             self.api.query(service=service, query=query, timeout=timeout)
 
@@ -95,43 +97,44 @@ class TestAppAPI(unittest.TestCase):
         service = "test-service"
         query = "test query"
         timeout = 0.03
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8000',
-            json={'bad_field_name':[], 'errors':""},
+            json={'bad_field_name': [], 'errors': ""},
             status=200)
-        
+
         with self.assertRaises(KeyError):
             self.api.query(service=service, query=query, timeout=timeout)
-            
+
     @responses.activate
     def test_bad_url(self):
         service = "test-service"
         query = "test query"
         ip = "0.0.0.0"
         port = 8000
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8001',
-            json={'data':'test data'},
+            json={'data': 'test data'},
             status=200)
-        
+
         with self.assertRaises(ConnectionError):
             response = self.api.query(service=service, query=query)
-            
+
     @responses.activate
     def test_bad_status(self):
         service = "test-service"
         query = "test query"
         ip = "0.0.0.0"
         port = 8000
-        
+
         responses.add(
             responses.POST, 'http://0.0.0.0:8000',
             status=404)
-        
+
         with self.assertRaises(HTTPError):
             response = self.api.query(service=service, query=query)
+
 
 if __name__ == '__main__':
     unittest.main()

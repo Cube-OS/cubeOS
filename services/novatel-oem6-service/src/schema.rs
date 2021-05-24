@@ -16,10 +16,10 @@
 
 use crate::model::*;
 use crate::objects::*;
+use cubeos_service;
 use juniper::FieldResult;
-use kubos_service;
 
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 pub struct QueryRoot;
 
@@ -73,7 +73,7 @@ graphql_object!(QueryRoot: Context as "Query" |&self| {
     // Get the current power state of the system
     //
     // Note: `uptime` is included as an available field in order to conform to
-    //       the Kubos Service Outline, but cannot be implemented for this device,
+    //       the CubeOS Service Outline, but cannot be implemented for this device,
     //       so the value will be 1 if the device is on and 0 if the device is off
     //
     // {

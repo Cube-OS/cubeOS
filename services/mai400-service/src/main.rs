@@ -17,11 +17,11 @@
 #![deny(missing_docs)]
 #![deny(warnings)]
 
-//! Kubos Service for interacting with an [Adcole Maryland Aerospace MAI-400](https://www.adcolemai.com/adacs)
+//! CubeOS Service for interacting with an [Adcole Maryland Aerospace MAI-400](https://www.adcolemai.com/adacs)
 //!
 //! # Configuration
 //!
-//! The service can be configured in the `/etc/kubos-config.toml` with the following fields:
+//! The service can be configured in the `/etc/cubeos-config.toml` with the following fields:
 //!
 //! ```toml
 //! [mai400-service.addr]
@@ -37,7 +37,7 @@
 //!
 //! ```shell
 //! $ mai400-service
-//! Kubos MAI-400 service started
+//! CubeOS MAI-400 service started
 //! Listening on: 10.63.1.20:8120
 //! ```
 //!
@@ -418,7 +418,7 @@ mod tests;
 use crate::model::{ReadData, Subsystem};
 pub use crate::objects::*;
 use crate::schema::{MutationRoot, QueryRoot};
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 use log::error;
 use mai400_api::MAIResult;
 use std::sync::Arc;

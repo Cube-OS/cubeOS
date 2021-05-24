@@ -4,12 +4,12 @@ Testing
 The testing of software is an essential part of developing a high-quality code base and
 ensuring that functionality remains intact as changes are introduced.
 
-This document details the testing standards and guidelines in place around KubOS.
+This document details the testing standards and guidelines in place around CubeOS.
 
 Standards
 ---------
 
-All software modules in the Kubos repo are expected to have some level of testing in place. The appropriate level
+All software modules in the CubeOS repo are expected to have some level of testing in place. The appropriate level
 of testing will vary from module to module.
 
 Libraries and APIs should have unit tests for private functionality and integration tests for public interfaces when possible.
@@ -32,7 +32,7 @@ The ``cargo`` tool has a built-in test runner under the ``cargo test`` subcomman
 
 Running ``cargo test`` from within the crate's folder will run all tests within the crate. 
 
-Running ``cargo test`` from the root of the Kubos repo will run all Rust tests in the repo.
+Running ``cargo test`` from the root of the CubeOS repo will run all Rust tests in the repo.
 
 Python
 ^^^^^^
@@ -51,7 +51,7 @@ Add a new step to run the tests for the new module.
 
     non_rust_tests:
       docker:
-        - image: kubos/kubos-dev:latest
+        - image: cubeos/cubeos-dev:latest
       steps:
       ...
       - run: cd apis/new-api; python3 test_api.py
@@ -62,7 +62,7 @@ C
 Unit tests can be run locally by navigating to the test folder under the module folder,
 creating a ``build`` dir in the test folder and running ``cmake .. && make``.
 
-To run the tests the same way that CircleCI does, navigate to the top level of the Kubos repo and issue this command::
+To run the tests the same way that CircleCI does, navigate to the top level of the CubeOS repo and issue this command::
 
     $ python3 $PWD/tools/ci_c.py
 
@@ -113,7 +113,7 @@ When writing tests, a mocked out implementation of the trait can be either gener
 library, or manually implemented. This `page <https://asomers.github.io/mock_shootout/>`__ gives a good overview of mocking
 libraries currently available for Rust.
 
-.. warning:: Many popular mocking libraries require unstable Rust, however KubOS uses stable rust.
+.. warning:: Many popular mocking libraries require unstable Rust, however CubeOS uses stable rust.
 
 Rust modules should include example code in the documentation. It is `ok` to use ``no_run`` when writing examples for docs,
 as sometimes these examples require external dependencies to actually run. However all examples should be buildable in
@@ -121,7 +121,7 @@ the SDK and CI environment.
 
 The general convention for Rust tests is to include `unit tests` in the same file as the code under test, in a `tests` module, and to place `integration tests` in a `tests` folder at the top level of the crate. See the `test organization <https://doc.rust-lang.org/book/ch11-03-test-organization.html>`__ section of the book for more details on these conventions.
 
-The `app-service <https://github.com/kubos/kubos/tree/master/services/app-service>`__ is a great Rust project to look at for examples of Rust code under test.
+The `app-service <https://github.com/cubeos/cubeos/tree/master/services/app-service>`__ is a great Rust project to look at for examples of Rust code under test.
 
 Python
 ^^^^^^
@@ -129,7 +129,7 @@ Python
 Python's ``unittest`` and ``mock`` packages should be used to create unit tests
 for Python modules.
 
-The `pumpkin-mcu-api <https://github.com/kubos/kubos/tree/master/apis/pumpkin-mcu-api>`__  is a great Python project to look at for an example of testing Python code using ``mock``. The file ``mcu_api.py`` contains the Python class under test, while ``test_mcu_api.py`` contains the actual test code.
+The `pumpkin-mcu-api <https://github.com/cubeos/cubeos/tree/master/apis/pumpkin-mcu-api>`__  is a great Python project to look at for an example of testing Python code using ``mock``. The file ``mcu_api.py`` contains the Python class under test, while ``test_mcu_api.py`` contains the actual test code.
 
 C
 ^
@@ -144,11 +144,11 @@ Within each test set should be three files:
     - ``sysfs.c`` - Stub functions for the underlying `sysfs` calls
     - ``stubs.cmake`` - Makes the stub functions available to the test builder/runner
 
-The `kubos-hal <https://github.com/kubos/kubos/tree/master/hal/kubos-hal>`__ is a great C project to look at for an example of C testing using `CMocka`. The file ``source/i2c.c`` contains the code under test, the folder ``test/i2c`` contains all of the test code.
+The `cubeos-hal <https://github.com/cubeos/cubeos/tree/master/hal/cubeos-hal>`__ is a great C project to look at for an example of C testing using `CMocka`. The file ``source/i2c.c`` contains the code under test, the folder ``test/i2c`` contains all of the test code.
 
 Integration Tests
 ~~~~~~~~~~~~~~~~~
 
 Integration tests are built to exercise the public interfaces or end-to-end functionality of software. When writing these tests it is important to keep the end consumer of the software under test in mind.
 
-Typically integration tests are run alongside unit tests when running the KubOS repo's test suite and can live in the project's folder. However if an integration test is long running (30 seconds or more), it should be split out into an independent project in ``test/integration`` and run separately from the suite of unit tests.
+Typically integration tests are run alongside unit tests when running the CubeOS repo's test suite and can live in the project's folder. However if an integration test is long running (30 seconds or more), it should be split out into an independent project in ``test/integration`` and run separately from the suite of unit tests.

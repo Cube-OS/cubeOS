@@ -5,7 +5,7 @@ authors = ["Ryan Plauche <ryan@kubos.co>"]
 edition = "2018"
 
 [dependencies]
-kubos-service = { path = "../../services/kubos-service" }
+cubeos-service = { path = "../../services/cubeos-service" }
 juniper =  "0.11"
 log = "^0.4.0"
 mount = "0.3.0"

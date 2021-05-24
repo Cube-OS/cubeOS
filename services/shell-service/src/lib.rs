@@ -17,8 +17,8 @@
 #![allow(clippy::block_in_if_condition_stmt)]
 
 use channel_protocol::{ChannelMessage, ChannelProtocol};
+use cubeos_system::Config as ServiceConfig;
 use failure::bail;
-use kubos_system::Config as ServiceConfig;
 use log::{error, info, warn};
 use shell_protocol::{ProcessHandler, ProtocolError, ShellMessage, ShellProtocol};
 use std::collections::HashMap;

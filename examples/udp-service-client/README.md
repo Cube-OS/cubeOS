@@ -1,6 +1,6 @@
-# Example Kubos Service Client App
+# Example CubeOS Service Client App
 
-This application creates a connection with a Kubos service at a requested IP address, sends a GraphQL request, and then prints the response.
+This application creates a connection with a CubeOS service at a requested IP address, sends a GraphQL request, and then prints the response.
 
 ## Configuration
 

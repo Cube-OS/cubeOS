@@ -1,5 +1,5 @@
 /*
- * Kubos Linux
+ * CubeOS Linux
  * Copyright (C) 2016 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
 #include "i2c.h"
 
 #define I2C_BUS "/dev/i2c-1"
@@ -48,7 +49,10 @@
 #define TEST_MODE \
     SPEED_100Hz + NORMAL_POWER + X_AXIS_ENABLE + Y_AXIS_ENABLE + Z_AXIS_ENABLE
 
-typedef enum { CTRL_REG1_A = 0x20 } LSM303DLHC_reg_t;
+typedef enum
+{
+    CTRL_REG1_A = 0x20
+} LSM303DLHC_reg_t;
 
 static int i2c_bus = 0;
 
@@ -58,7 +62,8 @@ static int write_byte(LSM303DLHC_reg_t reg, uint8_t value)
     uint8_t buffer[2] = { (uint8_t) reg, value };
 
     /* Transmit reg and value */
-    if (k_i2c_write(i2c_bus, LSM303DLHC_ADDRESS_A, buffer, sizeof(buffer)) != I2C_OK)
+    if (k_i2c_write(i2c_bus, LSM303DLHC_ADDRESS_A, buffer, sizeof(buffer))
+        != I2C_OK)
     {
         printf("Write failed\n");
         return -1;
@@ -74,7 +79,8 @@ static int read_byte(LSM303DLHC_reg_t reg, uint8_t * value)
         return -1;
     }
     /* Transmit reg */
-    if (k_i2c_write(i2c_bus, LSM303DLHC_ADDRESS_A, (uint8_t *) &reg, 1) != I2C_OK)
+    if (k_i2c_write(i2c_bus, LSM303DLHC_ADDRESS_A, (uint8_t *) &reg, 1)
+        != I2C_OK)
     {
         printf("Write (read) failed\n");
         return -1;
@@ -124,7 +130,7 @@ int init_sensor(void)
 int main(void)
 {
 
-    int  status = 0;
+    int status = 0;
     /*
      * The iOBC only has one i2c bus, so this will always be i2c-0
      * If a future board has more than one i2c bus, change this to take

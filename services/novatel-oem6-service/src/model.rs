@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+use cubeos_service::{process_errors, push_err, run};
 use failure::Error;
-use kubos_service::{process_errors, push_err, run};
 use log::{error, info};
 use novatel_oem6_api::Log::*;
 use novatel_oem6_api::*;
@@ -162,7 +162,7 @@ impl Subsystem {
         let oem_ref = oem.clone();
         thread::spawn(move || log_thread(&oem_ref, &data_ref, &error_send, &version_send));
 
-        info!("Kubos OEM6 service started");
+        info!("CubeOS OEM6 service started");
 
         Ok(Subsystem {
             oem,

@@ -72,7 +72,7 @@
 //! NSL Duplex Communications Service starting on /dev/ttyUSB0
 //! ```
 //!
-//! If no config file is specified, then the service will look at `/etc/kubos-config.toml`.
+//! If no config file is specified, then the service will look at `/etc/cubeos-config.toml`.
 //! An alternative config file may be specified on the command line at run time:
 //!
 //! ```bash
@@ -216,7 +216,7 @@ extern crate comms_service;
 extern crate failure;
 #[macro_use]
 extern crate juniper;
-extern crate kubos_service;
+extern crate cubeos_service;
 #[macro_use]
 extern crate log;
 extern crate nsl_duplex_d2;
@@ -229,8 +229,8 @@ use crate::comms::*;
 use crate::model::Subsystem;
 use crate::schema::{MutationRoot, QueryRoot};
 use comms_service::*;
+use cubeos_service::{Config, Logger, Service};
 use failure::Error;
-use kubos_service::{Config, Logger, Service};
 use std::sync::{Arc, Mutex};
 
 // Generic return type

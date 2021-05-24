@@ -23,7 +23,7 @@ set_target_properties(isis-ants-api-test
 target_link_libraries(isis-ants-api-test
   cmocka
   isis-ants-api
-  kubos-hal
+  cubeos-hal
   pthread
 )
 

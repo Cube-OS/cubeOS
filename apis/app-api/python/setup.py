@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(name='app_api',
       version='0.1.0',
-      description='Mission Application API for KubOS',
+      description='Mission Application API for CubeOS',
       py_modules=["app_api"],
       install_requires=['toml']
       )

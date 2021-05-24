@@ -16,7 +16,7 @@
 
 // Test starting a Rust application with and without additional arguments
 
-use kubos_app::ServiceConfig;
+use cubeos_app::ServiceConfig;
 use std::fs;
 use std::path::Path;
 use std::process::Command;
@@ -64,7 +64,7 @@ fn setup_app(registry_dir: &Path) {
             name = "rust-proj"
             version = "1.0"
             author = "user"
-            config = "/etc/kubos-config.toml"
+            config = "/etc/cubeos-config.toml"
             "#,
         registry_dir.to_string_lossy(),
     );

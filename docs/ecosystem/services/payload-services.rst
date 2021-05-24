@@ -10,16 +10,16 @@ Hardware services each have an accompanying Buildroot package, allowing them to 
 This allows them to be covered by the operating system's recovery process.
 Payload services are generally intended to have the ability to be easily updated on orbit, so they should be run as processes in the user partition that are started on boot.
 
-The `examples folder of the Kubos repo <https://github.com/kubos/kubos/tree/master/examples>`__ includes
-two example payload services: one written in `Python <https://github.com/kubos/kubos/tree/master/examples/python-service>`_,
-and one written in `Rust <https://github.com/kubos/kubos/tree/master/examples/rust-service>`__.
+The `examples folder of the CubeOS repo <https://github.com/cubeos/cubeos/tree/master/examples>`__ includes
+two example payload services: one written in `Python <https://github.com/cubeos/cubeos/tree/master/examples/python-service>`_,
+and one written in `Rust <https://github.com/cubeos/cubeos/tree/master/examples/rust-service>`__.
 
 .. _python-service-ref:
 
 Python Service
 --------------
 
-Inside of the `Python service example <https://github.com/kubos/kubos/tree/master/examples/python-service>`_
+Inside of the `Python service example <https://github.com/cubeos/cubeos/tree/master/examples/python-service>`_
 you will find several files and a folder:
 
 - ``config.toml`` - This TOML file holds :doc:`configuration options <../services/service-config>`
@@ -191,7 +191,7 @@ Running the example
 
 Getting the example service up and running is fairly simple.
 First, you must make sure you have the necessary Python dependencies installed.
-If you are using the Kubos SDK Vagrant box then these will already be installed.
+If you are using the CubeOS SDK Vagrant box then these will already be installed.
 Otherwise, you will need to run ``pip3 install -r requirements.txt``.
 
 Once the dependencies are in place, you can run ``python3 service.py`` and the example service should begin.
@@ -222,7 +222,7 @@ Rust Service
 
 This is a quick overview of the payload service written in Rust.
 
-The current guide for working with Rust within the Kubos SDK can be
+The current guide for working with Rust within the CubeOS SDK can be
 found :doc:`here <../../sdk-docs/sdk-rust>`.
 
 Libraries
@@ -235,7 +235,7 @@ the following external crate:
 
 And one internal helper crate:
 
-- `Kubos Service <../../rust-docs/kubos_service/index.html>`__ - HTTP service interface
+- `CubeOS Service <../../rust-docs/cubeos_service/index.html>`__ - HTTP service interface
 
 The ``Cargo.toml`` in the example payload service gives a good list of crate
 dependencies to start with.
@@ -243,13 +243,13 @@ dependencies to start with.
 Example Source
 ~~~~~~~~~~~~~~
 
-`Example Source - GitHub <https://github.com/kubos/kubos/tree/master/examples/rust-service>`__
+`Example Source - GitHub <https://github.com/cubeos/cubeos/tree/master/examples/rust-service>`__
 
  - ``Cargo.lock`` - Cargo `lock <https://doc.Rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html>`__ file
  - ``Cargo.toml`` - Cargo `manifest <https://doc.Rust-lang.org/cargo/reference/manifest.html>`__ file
  - ``src`` - Contains the actual Rust source.
 
-     - ``main.rs`` - Contains setup code using the ``kubos-service`` crate. May need minor customization but not much.
+     - ``main.rs`` - Contains setup code using the ``cubeos-service`` crate. May need minor customization but not much.
      - ``model.rs`` - Describes the hardware model exposed to GraphQL and contains calls down to lowel-level APIs.
      - ``schema.rs`` - Contains the actual GraphQL schema models used to generate the GraphQL endpoint.
 
@@ -441,7 +441,7 @@ which return data is desired.
 Building and Running
 ~~~~~~~~~~~~~~~~~~~~
 
-From inside of a Kubos SDK Vagrant box, navigate to the ``service`` folder of your
+From inside of a CubeOS SDK Vagrant box, navigate to the ``service`` folder of your
 copy of the Rust service example.
 
 Issue ``cargo build`` in order to build the service.

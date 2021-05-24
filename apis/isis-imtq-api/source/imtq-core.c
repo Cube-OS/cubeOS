@@ -16,8 +16,8 @@
  * ISIS iMTQ API - Core Functions and Configuration Commands
  */
 
-#include <imtq.h>
 #include <i2c.h>
+#include <imtq.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <sys/syscall.h>
@@ -43,7 +43,7 @@ static int wd_timeout = 60;
 
 KADCSStatus k_adcs_init(char * bus, uint16_t addr, int timeout)
 {
-    imqt_addr = addr;
+    imqt_addr  = addr;
     wd_timeout = timeout;
 
     KI2CStatus status;
@@ -84,7 +84,7 @@ KADCSStatus k_adcs_init(char * bus, uint16_t addr, int timeout)
 
 void k_adcs_terminate(void)
 {
-    const struct timespec MUTEX_TIMEOUT = {.tv_sec = 1, .tv_nsec = 0 };
+    const struct timespec MUTEX_TIMEOUT = { .tv_sec = 1, .tv_nsec = 0 };
 
     /* Destroy the mutex */
     if (pthread_mutex_timedlock(&imtq_mutex, &MUTEX_TIMEOUT) != 0)
@@ -203,7 +203,7 @@ KADCSStatus kprv_imtq_transfer(const uint8_t * tx, int tx_len, uint8_t * rx,
 {
     KI2CStatus status;
 
-    const struct timespec MUTEX_TIMEOUT = {.tv_sec = 1, .tv_nsec = 0 };
+    const struct timespec MUTEX_TIMEOUT = { .tv_sec = 1, .tv_nsec = 0 };
 
     if (tx == NULL || tx_len < 1 || rx == NULL
         || rx_len < (int) sizeof(imtq_resp_header))
@@ -234,7 +234,7 @@ KADCSStatus kprv_imtq_transfer(const uint8_t * tx, int tx_len, uint8_t * rx,
     {
         /* There must be at least a 1ms delay in-between each I2C transfer */
         const struct timespec TRANSFER_DELAY
-            = {.tv_sec = 0, .tv_nsec = 1000001 };
+            = { .tv_sec = 0, .tv_nsec = 1000001 };
 
         nanosleep(&TRANSFER_DELAY, NULL);
     }
@@ -259,7 +259,7 @@ KADCSStatus kprv_imtq_transfer(const uint8_t * tx, int tx_len, uint8_t * rx,
         return ADCS_ERROR;
     }
 
-    imtq_resp_header response = {.cmd = rx[0], .status = rx[1] };
+    imtq_resp_header response = { .cmd = rx[0], .status = rx[1] };
 
     if (response.cmd == 0xFF)
     {

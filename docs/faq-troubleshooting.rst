@@ -1,4 +1,4 @@
-Kubos FAQs and Troubleshooting Tips
+CubeOS FAQs and Troubleshooting Tips
 ===================================
 
 .. contents:: :local:
@@ -9,21 +9,21 @@ FAQs
 How do I contact y'all?
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Our community Slack: `slack.kubos.co <https://slack.kubos.co>`__
+Our community Slack: `slack.cubeos-doc-website <https://slack.cubeos-doc-website>`__
 
 Our email: info@kubos.co
 
-How do I set up the Kubos SDK?
+How do I set up the CubeOS SDK?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See :doc:`sdk-docs/sdk-installing`
 
-How do I check if I'm using the latest version of the Kubos Vagrant image?
+How do I check if I'm using the latest version of the CubeOS Vagrant image?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 From your host machine, issue the ``vagrant box outdated`` command.
 
-How do I get the latest version of the Kubos Vagrant image?
+How do I get the latest version of the CubeOS Vagrant image?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 From your host machine, issue the ``vagrant box update`` command.
@@ -34,23 +34,23 @@ From your host machine, issue the ``vagrant box update`` command.
 How do I see the debug output of my board?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``minicom kubos``
+``minicom cubeos``
 
-How do I check what version of Kubos Linux I'm running?
+How do I check what version of CubeOS Linux I'm running?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Issue the ``uname -r`` command on the target board to display the kernel information.
-The Kubos Linux version will be the *n.n.n* number after "KubOS".
+The CubeOS Linux version will be the *n.n.n* number after "CubeOS".
 
 ::
 
     uname -r
-    4.4.23-KubOS-1.0.0
+    4.4.23-CubeOS-1.0.0
 
-What's the default Kubos Linux login?
+What's the default CubeOS Linux login?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-kubos/Kubos123
+cubeos/CubeOS123
 
 How do I make Rust binaries smaller?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,9 +61,9 @@ Rust projects smaller.
 Updating my local Rust installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We keep the KubOS repo locked to specific Rust version. When this version changes
+We keep the CubeOS repo locked to specific Rust version. When this version changes
 you will need to update your local Rust version. You can do so by looking at the Rust version
-that KubOS is locked to (`found here <https://github.com/kubos/kubos/blob/master/rust-toolchain>`__)
+that CubeOS is locked to (`found here <https://github.com/cubeos/cubeos/blob/master/rust-toolchain>`__)
 and using that version number in the following commands.
 
 Updating the native Rust toolchain::
@@ -79,7 +79,7 @@ Updating the Rust cross compiler targets::
 Troubleshooting
 ---------------
 
-Kubos SDK
+CubeOS SDK
 ~~~~~~~~~
 
 The ``vagrant up`` command just hangs
@@ -88,7 +88,7 @@ The ``vagrant up`` command just hangs
 If you're using Windows 7 SP1, make sure you are using the :ref:`correct version of
 Windows PowerShell <powershell>`.
 
-I've tried other steps here, but my Kubos Vagrant image is still behaving weirdly.
+I've tried other steps here, but my CubeOS Vagrant image is still behaving weirdly.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Try logging out and restarting the VM using the ``vagrant reload`` command.
@@ -109,9 +109,9 @@ Interacting with an OBC
 Can't Connect via Serial Debug
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the SDK was unable to connect to the Kubos Linux target using ``minicom kubos``:
+If the SDK was unable to connect to the CubeOS Linux target using ``minicom cubeos``:
 
--  Check that the Kubos Linux target is turned on and connected to your computer
+-  Check that the CubeOS Linux target is turned on and connected to your computer
 
 -  Check that no other Vagrant images are running. Only one VM can have
    control of the USB, so it may be that another instance currently has
@@ -136,13 +136,13 @@ For more information, check out our documentation about :ref:`ethernet connectio
 System Won't Boot into Linux
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the system goes through the :doc:`full recovery process <ecosystem/linux-docs/kubos-linux-recovery>` and the bootcount is still exceeded,
-it will present the U-Boot CLI instead of attempting to boot into Kubos Linux again.
+If the system goes through the :doc:`full recovery process <ecosystem/linux-docs/cubeos-linux-recovery>` and the bootcount is still exceeded,
+it will present the U-Boot CLI instead of attempting to boot into CubeOS Linux again.
 
 If this occurs, follow the :ref:`instructions for resetting the boot environment <env-reset>`.
 
 Note: This is a case which normal users should never encounter, but becomes more likely when initially testing
-custom Kubos Linux builds.
+custom CubeOS Linux builds.
 
 The OBC is Booting from the eMMC Instead of the microSD when Upgrading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -200,12 +200,12 @@ Future configuration options:
     - Maximum number of timeout-retry attempts
     - Non-default destination IP/port
 
-Running the Service from KubOS
+Running the Service from CubeOS
 ------------------------------
 
-The Kubos Linux distribution (as of v1.3.0) ships with the file transfer
+The CubeOS Linux distribution (as of v1.3.0) ships with the file transfer
 service installed and configured to run on boot. This can be verified by
-booting the KubOS system, running the ``ps`` command and looking for the
+booting the CubeOS system, running the ``ps`` command and looking for the
 ``file-service`` process. If the service is not running then it can
 be started like so::
 
@@ -215,10 +215,10 @@ Running the Service from Source
 -------------------------------
 
 The file transfer service can also be run from source if required.
-The source is located in the folder ``kubos/services/file-service``
-in the KubOS source repo. The service can be started like so::
+The source is located in the folder ``cubeos/services/file-service``
+in the CubeOS source repo. The service can be started like so::
 
-    $ cd kubos/services/file-service
+    $ cd cubeos/services/file-service
     $ cargo run -- -c config.toml
 
 The service will look for the given ``config.toml`` file in order to get the
@@ -230,7 +230,7 @@ Communicating with the File Service
 Users should establish a ground-side client which implements the :doc:`file protocol <../../deep-dive/protocols/file-protocol>`
 in order to transfer files over their communications device.
 
-Kubos provides an example `file transfer client <https://github.com/kubos/kubos/tree/master/clients/kubos-file-client>`__
+CubeOS provides an example `file transfer client <https://github.com/cubeos/cubeos/tree/master/clients/cubeos-file-client>`__
 to allow users to learn and experiment with the file transfer service prior to the formal file
 transfer client being developed.
 For more information, please refer to the :doc:`file transfer <../../tutorials/file-transfer>` tutorial.

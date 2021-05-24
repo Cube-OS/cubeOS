@@ -11,17 +11,17 @@ telemetry information.
 Setup
 -----
 
-:doc:`Install the Kubos SDK <../sdk-docs/sdk-installing>` or set up the dependencies required for a
+:doc:`Install the CubeOS SDK <../sdk-docs/sdk-installing>` or set up the dependencies required for a
 :doc:`local dev environment <../getting-started/local-setup>`
 
-If you have not done so already, create a clone of the `KubOS source repo <https://github.com/kubos/kubos>`__::
+If you have not done so already, create a clone of the `CubeOS source repo <https://github.com/cubeos/cubeos>`__::
 
-    $ git clone https://github.com/kubos/kubos
+    $ git clone https://github.com/cubeos/cubeos
     
 **If you are using the SDK**, update all IP addresses in the ``tools/local_config.toml`` file,
 changing them from ``127.0.0.1`` to ``0.0.0.0``, so that they are available :ref:`to your host machine <sdk-port-forward>`.
 
-Navigate to the `kubos` source directory and run the following commands to start the telemetry
+Navigate to the `cubeos` source directory and run the following commands to start the telemetry
 database service in the background (the services may need to be built first, which will take several
 minutes to complete)::
   
@@ -34,7 +34,7 @@ database.
 .. note::
 
     The example commands will be referencing the telemetry database service port which is defined
-    in the `kubos/tools/local_config.toml` file, 8020
+    in the `cubeos/tools/local_config.toml` file, 8020
 
 From your development environment, run the following::
 

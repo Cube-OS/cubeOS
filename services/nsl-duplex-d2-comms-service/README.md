@@ -42,5 +42,5 @@ When the service has started correctly it will display output like so:
 ```
 2019-01-18T13:00:32.512854973-06:00 INFO  nsl_dupex_d2_comms_service - NSL Duplex Communications Service starting on /dev/ttyUSB0
 2019-01-18T13:00:32.513053752-06:00 INFO comms_service::service - Communication service started
-2019-01-18T13:00:32.513855-06:00 INFO kubos_service::service - Listening on: 127.0.0.1:8080
+2019-01-18T13:00:32.513855-06:00 INFO cubeos_service::service - Listening on: 127.0.0.1:8080
 ```

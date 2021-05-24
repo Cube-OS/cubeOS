@@ -19,8 +19,8 @@
 use crate::model::*;
 use crate::objects::*;
 use crate::schema::*;
+use cubeos_service::{Config, Service};
 use isis_ants_api::*;
-use kubos_service::{Config, Service};
 use serde_json::json;
 use std::cell::Cell;
 use std::sync::{Arc, Mutex, RwLock};

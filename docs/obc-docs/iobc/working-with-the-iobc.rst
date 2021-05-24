@@ -4,10 +4,10 @@ Working with the ISIS-OBC
 Overview
 --------
 
-This document covers the Kubos Linux features which are specific to the
+This document covers the CubeOS Linux features which are specific to the
 ISIS-OBC target, also known as the iOBC.
 
-Please refer to :doc:`../../ecosystem/linux-docs/using-kubos-linux` for a general guide to using Kubos Linux.
+Please refer to :doc:`../../ecosystem/linux-docs/using-cubeos-linux` for a general guide to using CubeOS Linux.
 
 Reference Documents
 -------------------
@@ -20,13 +20,13 @@ and is a useful document for learning what each of the hardware
 components are, how to connect them, and what drivers need to be
 installed to support them.
 
-Kubos Documentation
+CubeOS Documentation
 ~~~~~~~~~~~~~~~~~~~
 
--  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first KubOS project
--  :doc:`../../ecosystem/linux-docs/using-kubos-linux` - General guide for interacting with Kubos Linux
--  :doc:`../../deep-dive/klb/kubos-linux-on-iobc` - Steps to build Kubos Linux for the iOBC
--  :doc:`installing-linux-iobc` - Steps to install Kubos Linux
+-  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first CubeOS project
+-  :doc:`../../ecosystem/linux-docs/using-cubeos-linux` - General guide for interacting with CubeOS Linux
+-  :doc:`../../deep-dive/klb/cubeos-linux-on-iobc` - Steps to build CubeOS Linux for the iOBC
+-  :doc:`installing-linux-iobc` - Steps to install CubeOS Linux
 
 Status LEDs
 -----------
@@ -35,7 +35,7 @@ There are four yellow LEDs present on the iOBC which give some indication of wha
 the board is in, along with one red LED which is lit when the system is powered:
 
 -  Three LEDS (solid) - The system is currently running U-Boot
--  One LED (blinking) - The system is currently running Kubos Linux
+-  One LED (blinking) - The system is currently running CubeOS Linux
 
 Debug Console Connection
 ------------------------
@@ -53,7 +53,7 @@ Peripherals
 
 The iOBC has several different ports available for interacting with
 peripheral devices. Currently, users should interact with these devices
-using the standard Linux functions. A Kubos HAL will be added in the
+using the standard Linux functions. A CubeOS HAL will be added in the
 future for the iOBC.
 
 ADC
@@ -85,8 +85,8 @@ found in ``/sys/bus/iio/devices/iio\:device0/in_voltage_scale``.
 More information about the capture and use of ADC can be found in
 `this guide from Atmel <https://www.at91.com/linux4sam/bin/view/Linux4SAM/IioAdcDriver>`__.
 
-An `ADC example <http://github.com/kubos/kubos/tree/master/examples/adc-thermistor>`__ is
-also available for reference in the Kubos repo.
+An `ADC example <http://github.com/cubeos/cubeos/tree/master/examples/adc-thermistor>`__ is
+also available for reference in the CubeOS repo.
 
 GPIO
 ~~~~
@@ -191,12 +191,12 @@ I2C
 `I2C Standards
 Doc <http://www.nxp.com/documents/user_manual/UM10204.pdf>`__
 
-Kubos Linux is currently configured to support the I2C standard-mode
+CubeOS Linux is currently configured to support the I2C standard-mode
 speed of 100kHz.
 
-The I2C bus is available as ``/dev/i2c-0``, or through the Kubos C HAL as ``K_I2C1``.
+The I2C bus is available as ``/dev/i2c-0``, or through the CubeOS C HAL as ``K_I2C1``.
 
-For examples and instructions, see the :doc:`I2C HAL documentation <../../deep-dive/apis/kubos-hal/i2c-hal/index>`.
+For examples and instructions, see the :doc:`I2C HAL documentation <../../deep-dive/apis/cubeos-hal/i2c-hal/index>`.
 
 PWM
 ~~~

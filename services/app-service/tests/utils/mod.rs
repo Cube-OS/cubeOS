@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+use cubeos_app::ServiceConfig;
 use failure::{bail, Error};
-use kubos_app::ServiceConfig;
 use std::io::Write;
 use std::os::unix::fs::PermissionsExt;
 use std::path::{Path, PathBuf};
@@ -94,7 +94,7 @@ impl MockAppBuilder {
             config = self
                 ._config
                 .as_ref()
-                .unwrap_or(&String::from("/etc/kubos-config.toml")),
+                .unwrap_or(&String::from("/etc/cubeos-config.toml")),
         )
     }
 
@@ -233,7 +233,7 @@ impl AppServiceFixture {
     pub fn start_service(&mut self) {
         let mut app_service = env::current_exe().unwrap();
         app_service.pop();
-        app_service.set_file_name("kubos-app-service");
+        app_service.set_file_name("cubeos-app-service");
 
         let (tx, rx): (Sender<bool>, Receiver<bool>) = channel();
         let config_toml = self.config_toml.clone();

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-//! Kubos API for interacting with [Adcole Maryland Aerospace MAI-400 ADACS](https://www.cubesatshop.com/product/mai-400-adacs/)
+//! CubeOS API for interacting with [Adcole Maryland Aerospace MAI-400 ADACS](https://www.cubesatshop.com/product/mai-400-adacs/)
 //!
 //! All work is done against an instantiated [`MAI400`] struct.
 //!

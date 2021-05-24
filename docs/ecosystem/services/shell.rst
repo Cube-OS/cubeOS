@@ -29,12 +29,12 @@ For example::
     port = 8050
 
 
-Running the Service from KubOS
+Running the Service from CubeOS
 ------------------------------
 
-The Kubos Linux distribution (as of v1.3.0) ships with the shell
+The CubeOS Linux distribution (as of v1.3.0) ships with the shell
 service installed and configured to run on boot. This can be verified by
-booting the KubOS system, running the ``ps`` command and looking for the
+booting the CubeOS system, running the ``ps`` command and looking for the
 ``shell-service`` process. If the service is not running then it can
 be started like so::
 
@@ -44,10 +44,10 @@ Running the Service from Source
 -------------------------------
 
 The shell service can also be run from source if required.
-The source is located in the folder ``kubos/services/shell-service``
-in the KubOS source repo. The service can be started like so::
+The source is located in the folder ``cubeos/services/shell-service``
+in the CubeOS source repo. The service can be started like so::
 
-    $ cd kubos/services/shell-service
+    $ cd cubeos/services/shell-service
     $ cargo run -- -c config.toml
 
 The service will look for the given ``config.toml`` file in order to get the
@@ -59,6 +59,6 @@ Communicating with the Shell Service
 Users should establish a ground-side client which implements the :doc:`shell protocol <../../deep-dive/protocols/shell-protocol>`
 in order to access the OBC's shell over their communications device.
 
-Kubos provides an example `shell client <https://github.com/kubos/kubos/tree/master/clients/kubos-shell-client>`__
+CubeOS provides an example `shell client <https://github.com/cubeos/cubeos/tree/master/clients/cubeos-shell-client>`__
 to allow users to learn and experiment with the shell service prior to the formal shell client being developed.
 For more information, please refer to the :doc:`shell connection <../../tutorials/shell>` tutorial.

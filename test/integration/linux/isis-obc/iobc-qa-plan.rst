@@ -1,8 +1,8 @@
-Kubos Linux on the ISIS-OBC QA Plan
+CubeOS Linux on the ISIS-OBC QA Plan
 ===================================
 
 Integration tests that should be run against an iOBC in preparation
-for the newest official release of Kubos Linux.
+for the newest official release of CubeOS Linux.
 
 Introduction
 ------------
@@ -10,7 +10,7 @@ Introduction
 Terms
 ~~~~~
 
-C2 - Abbreviation for Kubos Command and Control
+C2 - Abbreviation for CubeOS Command and Control
 ISIS - Innovative Solutions In Space
 iOBC - ISIS-OBC (on-board computer)
 
@@ -19,13 +19,13 @@ Reference Documents
 
 - ISIS-OBC Datasheet
 - ISIS-OBC Quickstart Guide
-- docs.kubos.co/sphinx
+- docs.cubeos-doc-website/sphinx
 
 Scope
 ~~~~~
 
 The goal of this plan is to test the functionality of the major components
-of Kubos Linux that a user would use:
+of CubeOS Linux that a user would use:
 
 - Command and control
 - Telemetry
@@ -37,16 +37,16 @@ All tests will be run on an ISIS-OBC.
 Out of Scope
 ^^^^^^^^^^^^
 
-- Kubos Linux build process. CircleCI will regularly verify the build process,
+- CubeOS Linux build process. CircleCI will regularly verify the build process,
   so it is not necessary to duplicate the effort here.
 
 Testing Environment Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Files and projects required to run QA tests should be located in the
-Kubos repo under the `test/integration/linux` folder.
+CubeOS repo under the `test/integration/linux` folder.
 
-The release-candidate Kubos Vagrant image should include all these files
+The release-candidate CubeOS Vagrant image should include all these files
 and should be used to run the tests.
 
 Hardware Requirements
@@ -71,7 +71,7 @@ Hardware Setup
 Software Requirements
 ^^^^^^^^^^^^^^^^^^^^^
 
-- An instance of the current KubOS SDK
+- An instance of the current CubeOS SDK
 - Atmel SAM-BA with ISIS' configuration files (can be installed using the ISIS SDK installer)
 
 QA Management
@@ -80,9 +80,9 @@ QA Management
 Testing Process
 ~~~~~~~~~~~~~~~
 
-Before running tests, verify that the master branch of the Kubos repo has passed all CircleCI
+Before running tests, verify that the master branch of the CubeOS repo has passed all CircleCI
 tests. This can be done by checking the badge displayed in the Readme section of the repo's
-`main page<https://github.com/kubos/kubos>`__. It should show a green "PASSED" icon.
+`main page<https://github.com/cubeos/cubeos>`__. It should show a green "PASSED" icon.
 
 All automatable tests will be executed by running the ``test_runner.py`` script against the
 iOBC's test configuration file.
@@ -103,12 +103,12 @@ ISIS
 ISIS should:
 
 -  Run the test suite
--  Create a custom Kubos project which interacts with supported features on the iOBC
+-  Create a custom CubeOS project which interacts with supported features on the iOBC
 
-Kubos
+CubeOS
 ^^^^^
 
-Kubos should:
+CubeOS should:
 
 -  Run the test suite
 -  Manually verify non-automatable tests
@@ -118,16 +118,16 @@ Approval Criteria
 
 The master test script runs 100% successfully for two consecutive runs.
 
-ISIS successfully builds and run a custom Kubos SDK project.
+ISIS successfully builds and run a custom CubeOS SDK project.
 
-Kubos succesfully tests non-automatable things.
+CubeOS succesfully tests non-automatable things.
 
 Defect Management
 ~~~~~~~~~~~~~~~~~
 
-Kubers should add any bugs to the appropriate Kubos Trello board and mark them with the "Bug" label.
+Kubers should add any bugs to the appropriate CubeOS Trello board and mark them with the "Bug" label.
 
-ISIS members should open `GitHub issues within the main Kubos repo<https://github.com/kubos/kubos/issues`__
+ISIS members should open `GitHub issues within the main CubeOS repo<https://github.com/cubeos/cubeos/issues`__
 for any bugs found.
 
 Testing Plan
@@ -136,7 +136,7 @@ Testing Plan
 TODO: Move all "Test Steps" and "Expected Output" sections of automatable tests
 to within the actual tests, once they've been created.
 
-Kubos SDK
+CubeOS SDK
 ~~~~~~~~~
 
 Flash project
@@ -165,7 +165,7 @@ TODO: Create a project to call the "supervisor_get_version()" function
 Test Steps
 ^^^^^^^^^^
 
-1. Copy the "{TBD}" project into a new Kubos Linux project folder
+1. Copy the "{TBD}" project into a new CubeOS Linux project folder
 2. Build the project for the iOBC target
 3. Flash the project onto the iOBC
 4. Log in to the iOBC
@@ -238,7 +238,7 @@ on the iOBC.
 Test Steps
 ^^^^^^^^^^
 
-1. Copy the "linux-i2c" project into a new Kubos Linux project folder
+1. Copy the "linux-i2c" project into a new CubeOS Linux project folder
 2. Build the project for the iOBC target
 3. Flash the project onto the iOBC
 4. Log in to the iOBC
@@ -274,7 +274,7 @@ OS Upgrade
 - Reboot board
 - Verify that board is now running new version
 
-    - Issue `fw_printenv kubos_curr_version` and check that the value matches
+    - Issue `fw_printenv cubeos_curr_version` and check that the value matches
       the name of the upgrade package.
 
 Watchdog
@@ -302,7 +302,7 @@ Vague Steps:
 - Delete /usr/ directory on board (to corrupt rootfs)
 - Reboot
 - Board should throw a kernel panic
-- Recovery should happen (current version of Kubos Linux should be reloaded)
+- Recovery should happen (current version of CubeOS Linux should be reloaded)
 
 
 Test Plan Execution

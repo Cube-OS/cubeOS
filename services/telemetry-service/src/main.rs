@@ -17,11 +17,11 @@
 #![deny(missing_docs)]
 #![deny(warnings)]
 
-//! Kubos Service for interacting with the telemetry database.
+//! CubeOS Service for interacting with the telemetry database.
 //!
 //! # Configuration
 //!
-//! The service can be configured in the `/etc/kubos-config.toml` with the following fields:
+//! The service can be configured in the `/etc/cubeos-config.toml` with the following fields:
 //!
 //! ```
 //! [telemetry-service]
@@ -209,12 +209,12 @@ mod schema;
 mod udp;
 
 use crate::schema::{MutationRoot, QueryRoot, Subsystem};
-use kubos_service::{Config, Logger, Service};
-use kubos_telemetry_db::Database;
+use cubeos_service::{Config, Logger, Service};
+use cubeos_telemetry_db::Database;
 use log::error;
 
 fn main() {
-    Logger::init("kubos-telemetry-service").unwrap();
+    Logger::init("cubeos-telemetry-service").unwrap();
 
     let config = Config::new("telemetry-service")
         .map_err(|err| {

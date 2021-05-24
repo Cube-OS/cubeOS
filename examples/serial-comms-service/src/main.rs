@@ -25,8 +25,8 @@
 extern crate comms_service;
 #[macro_use]
 extern crate failure;
-extern crate kubos_service;
-extern crate kubos_system;
+extern crate cubeos_service;
+extern crate cubeos_system;
 #[macro_use]
 extern crate juniper;
 extern crate rust_uart;
@@ -43,8 +43,8 @@ use crate::comms::*;
 use crate::model::Subsystem;
 use crate::schema::{MutationRoot, QueryRoot};
 use comms_service::*;
+use cubeos_service::{Config, Logger, Service};
 use failure::Error;
-use kubos_service::{Config, Logger, Service};
 use std::sync::{Arc, Mutex};
 
 // Return type for the ethernet service.

@@ -24,7 +24,7 @@ Project
 
 Build and flash the ``radio-test`` project in this folder onto your iOBC.
 
-Use `minicom kubos` to connect to the board and then run the ``radio-test`` program.
+Use `minicom cubeos` to connect to the board and then run the ``radio-test`` program.
 It should give you a dialog asking for a command to run.
 
 RF Checkout Box

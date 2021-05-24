@@ -6,7 +6,7 @@ serial link and gives a template for how to structure a communications service p
 KISS framing is implemented to preserve message integrity over the serial link.
 
 A more detailed tutorial on how to create a new communications service can be found
-[here](https://docs.kubos.com/latest/tutorials/comms-service.html)
+[here](https://docs.cubeos-doc-websitem/latest/tutorials/comms-service.html)
 
 ## Running
 
@@ -33,5 +33,5 @@ When the service has started correctly it will display output like so:
 ```
 2019-01-18T13:00:32.512854973-06:00 INFO serial_comms_service - Serial Communications Service starting on /dev/ttyUSB0
 2019-01-18T13:00:32.513053752-06:00 INFO comms_service::service - Communication service started
-2019-01-18T13:00:32.513855-06:00 INFO kubos_service::service - Listening on: 127.0.0.1:8160
+2019-01-18T13:00:32.513855-06:00 INFO cubeos_service::service - Listening on: 127.0.0.1:8160
 ```

@@ -60,8 +60,8 @@ This tutorial will *not* cover:
     - Downlink endpoints
     - Radio packet framing
 
-A more `in-depth example <https://github.com/kubos/kubos/tree/master/examples/serial-comms-service>`__
-can be found in the Kubos repo.
+A more `in-depth example <https://github.com/cubeos/cubeos/tree/master/examples/serial-comms-service>`__
+can be found in the CubeOS repo.
 
 Configuration
 -------------
@@ -108,11 +108,11 @@ Cargo.toml
 
 Edit the ``Cargo.toml`` file to have the following dependencies::
 
-    comms-service = { git = "https://github.com/kubos/kubos" }
+    comms-service = { git = "https://github.com/cubeos/cubeos" }
     failure = "0.1.2"
     juniper =  "0.11"
-    kubos-service = { git = "https://github.com/kubos/kubos" }
-    kubos-system = { git = "https://github.com/kubos/kubos" }
+    cubeos-service = { git = "https://github.com/cubeos/cubeos" }
+    cubeos-system = { git = "https://github.com/cubeos/cubeos" }
     log = "^0.4.0"
     serial = "0.4"
 
@@ -141,7 +141,7 @@ We'll start by initializing our logging:
 
 .. code-block:: rust
     
-    use kubos_service::Logger;
+    use cubeos_service::Logger;
     use log::*;
 
     fn main() {
@@ -370,7 +370,7 @@ After setting up logging, we'll want to fetch our service's configuration settin
         Logger::init("radio-service").unwrap();
 
         // Get the main service configuration from the system's config.toml file
-        let service_config = kubos_system::Config::new("radio-service")?;
+        let service_config = cubeos_system::Config::new("radio-service")?;
 
         // Pull out our communication settings
         let config = CommsConfig::new(service_config)?;
@@ -407,7 +407,7 @@ The initialization should look like this:
         Logger::init("radio-service").unwrap();
 
         // Get the main service configuration from the system's config.toml file
-        let service_config = kubos_system::Config::new("radio-service")?;
+        let service_config = cubeos_system::Config::new("radio-service")?;
 
         // Pull out our communication settings
         let config = CommsConfig::new(service_config)?;
@@ -446,7 +446,7 @@ For the moment, we'll put a loop at the end of our program to keep from exiting.
         Logger::init("radio-service").unwrap();
 
         // Get the main service configuration from the system's config.toml file
-        let service_config = kubos_system::Config::new("radio-service")?;
+        let service_config = cubeos_system::Config::new("radio-service")?;
 
         // Pull out our communication settings
         let config = CommsConfig::new(service_config)?;
@@ -490,7 +490,7 @@ All together, our code so far should look like this:
     
     use comms_service::*;
     use failure::*;
-    use kubos_service::Logger;
+    use cubeos_service::Logger;
     use log::*;
     use serial;
     use serial::prelude::*;
@@ -608,7 +608,7 @@ All together, our code so far should look like this:
         Logger::init("radio-service").unwrap();
 
         // Get the main service configuration from the system's config.toml file
-        let service_config = kubos_system::Config::new("test-comms")?;
+        let service_config = cubeos_system::Config::new("test-comms")?;
     
         // Pull out our communication settings
         let config = CommsConfig::new(service_config)?;
@@ -647,7 +647,7 @@ Testing
 -------
 
 The SDK is packaged with a client to help test our new UART comms service,
-`uart-comms-client <https://github.com/kubos/kubos/tree/master/clients/uart-comms-client>`__.
+`uart-comms-client <https://github.com/cubeos/cubeos/tree/master/clients/uart-comms-client>`__.
 
 This client program will take the input data, wrap it in a UDP packet, and then send it over the
 requested serial device.
@@ -744,7 +744,7 @@ check the following:
     - OBC's UART port is correctly wired to the user's PC
     - Destination IP given to the client matches the ``ip`` parameter in the service
     - Port given to the client matches the port of the telemetry service (this is defined in
-      the systems ``config.toml`` file. The default location is ``/etc/kubos-config.toml``)
+      the systems ``config.toml`` file. The default location is ``/etc/cubeos-config.toml``)
 
 GraphQL
 -------
@@ -778,7 +778,7 @@ The file should look like this:
     use juniper::FieldResult;
     use crate::model::Subsystem;
 
-    type Context = kubos_service::Context<Subsystem>;
+    type Context = cubeos_service::Context<Subsystem>;
 
     pub struct QueryRoot;
 
@@ -907,14 +907,14 @@ We can now define and start our GraphQL front-end in the main code:
     use crate::model::*;
     use crate::schema::*;
     
-    use kubos_service::{Logger, Service};
+    use cubeos_service::{Logger, Service};
 
     fn main() -> ServiceResult<()> {
         // Initialize logging for the service
         Logger::init("radio-service").unwrap();
 
         // Get the main service configuration from the system's config.toml file
-        let service_config = kubos_system::Config::new("radio-service")?;
+        let service_config = cubeos_system::Config::new("radio-service")?;
 
         // Pull out our communication settings
         let config = CommsConfig::new(service_config.clone())?;

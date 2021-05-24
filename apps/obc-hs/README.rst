@@ -35,7 +35,7 @@ set:
 
 A few other configuration settings are present which may be optionally updated:
 
-- ``CONFIG_PATH`` - (Default: ``"/etc/kubos-config.toml"``) Location of the system's
+- ``CONFIG_PATH`` - (Default: ``"/etc/cubeos-config.toml"``) Location of the system's
   configuration file.
 - ``TELEMETRY_AGE`` - (Default: 1 week) The maximum age allowed for a telemetry entry. Once this age
   is exceeded, the entry will be removed.
@@ -104,6 +104,6 @@ There's not an easy way to tell the difference between intentional and spurious 
 Ping Services
 ~~~~~~~~~~~~~
 
-All Kubos services provide a "ping" request as part of their GraphQL schema.
+All CubeOS services provide a "ping" request as part of their GraphQL schema.
 The ``ping_services`` function submits this ping request to all defined services and records which
 services fail to return the "pong" response.

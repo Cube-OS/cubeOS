@@ -1,7 +1,7 @@
-Using Rust with the Kubos SDK
+Using Rust with the CubeOS SDK
 =============================
 
-The Kubos SDK comes with pre-built support for `Rust <https://www.rust-lang.org/>`__ and
+The CubeOS SDK comes with pre-built support for `Rust <https://www.rust-lang.org/>`__ and
 `Cargo <https://doc.rust-lang.org/cargo/>`__.
 Additionally, it includes tooling to assist with cross-compiling for a target OBC and to build
 projects which use both Rust and C.
@@ -11,18 +11,18 @@ projects which use both Rust and C.
 Cross-compilation
 -----------------
 
-The Kubos SDK provides Rust cross-compilation targets for each of the supported OBCs.
+The CubeOS SDK provides Rust cross-compilation targets for each of the supported OBCs.
 
 The target name varies depending which command is used to compile the project.
 
 +------------------+-------------------------------+------------------------------+
-| OBC              | ``cargo build`` target        | ``cargo kubos`` target       |
+| OBC              | ``cargo build`` target        | ``cargo cubeos`` target       |
 +------------------+-------------------------------+------------------------------+
-| Beaglebone Black | arm-unknown-linux-gnueabihf   | kubos-linux-beaglebone-gcc   |
+| Beaglebone Black | arm-unknown-linux-gnueabihf   | cubeos-linux-beaglebone-gcc   |
 +------------------+-------------------------------+------------------------------+
-| ISIS-OBC         | armv5te-unknown-linux-gnueabi | kubos-linux-isis-gcc         |
+| ISIS-OBC         | armv5te-unknown-linux-gnueabi | cubeos-linux-isis-gcc         |
 +------------------+-------------------------------+------------------------------+
-| Pumpkin MBM2     | arm-unknown-linux-gnueabihf   | kubos-linux-pumpkin-mbm2-gcc |
+| Pumpkin MBM2     | arm-unknown-linux-gnueabihf   | cubeos-linux-pumpkin-mbm2-gcc |
 +------------------+-------------------------------+------------------------------+
 
 Some Rust crates require that the C compiler be explicitly declared when cross-compiling.
@@ -37,11 +37,11 @@ Some Rust crates require that the C compiler be explicitly declared when cross-c
 | Pumpkin MBM2     | /usr/bin/bbb_toolchain/usr/bin/arm-linux-gcc  |
 +------------------+-----------------------------------------------+
 
-To simplify development when cross-compiling, use the ``cargo kubos`` command to automatically setup
-the build environment. The ``cargo kubos`` command takes a required cargo sub-command (i.e. ``build``,
+To simplify development when cross-compiling, use the ``cargo cubeos`` command to automatically setup
+the build environment. The ``cargo cubeos`` command takes a required cargo sub-command (i.e. ``build``,
 ``test``), and a target. For example, to build a project for the ISIS iOBC::
 
-    $ cargo kubos -c build -t kubos-linux-isis-gcc
+    $ cargo cubeos -c build -t cubeos-linux-isis-gcc
     
 Cross compiling can also be done manually by specifying the C compiler path in the ``CC``
 environment variable like so::

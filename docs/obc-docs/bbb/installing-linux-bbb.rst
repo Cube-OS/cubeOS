@@ -1,10 +1,10 @@
-Installing Kubos Linux on a Beaglebone Black
+Installing CubeOS Linux on a Beaglebone Black
 ============================================
 
 Overview
 --------
 
-This document covers the steps required to install Kubos Linux onto a Beaglebone Black.
+This document covers the steps required to install CubeOS Linux onto a Beaglebone Black.
 
 Reference Documents
 -------------------
@@ -17,30 +17,30 @@ Beaglebone Documentation
 - `Beaglebone Black Hardware Diagrams <http://beagleboard.org/Support/bone101/#hardware>`__
 - `Beaglebone Black System Reference Manual Rev C <http://static6.arrow.com/aropdfconversion/8fff89aa85f5c451318cbdee2facd9c9fac36872/bbb_srm.pdf>`__
 
-Kubos Documentation
+CubeOS Documentation
 ~~~~~~~~~~~~~~~~~~~
 
--  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first KubOS project
--  :doc:`../../ecosystem/linux-docs/using-kubos-linux` - General guide for interacting with Kubos Linux
+-  :doc:`../../tutorials/first-obc-project` - Basic tutorial for creating your first CubeOS project
+-  :doc:`../../ecosystem/linux-docs/using-cubeos-linux` - General guide for interacting with CubeOS Linux
 -  :doc:`working-with-the-bbb` - Guide for interacting with BBB-specific features
--  :doc:`../../deep-dive/klb/kubos-linux-on-bbb` - Steps to build Kubos Linux
+-  :doc:`../../deep-dive/klb/cubeos-linux-on-bbb` - Steps to build CubeOS Linux
 
 Components
 ----------
 
-The Kubos Linux installation process is composed of two high-level steps:
+The CubeOS Linux installation process is composed of two high-level steps:
 
   - Flashing the eMMC
   - Flashing the microSD card
 
 To perform a full default installation, two files are needed:
 
-  - A Kubos Linux SD card image (kubos-linux.img)
+  - A CubeOS Linux SD card image (cubeos-linux.img)
   - An Auxilliary SD card image (aux-sd.img)
 
-All of these files can be obtained from `our Kubos Linux Releases page on GitHub <https://github.com/kubos/kubos-linux-build/releases>`__
+All of these files can be obtained from `our CubeOS Linux Releases page on GitHub <https://github.com/cubeos/cubeos-linux-build/releases>`__
 
-Download the latest `KubOS-v{version}.tar.gz` file and then unzip the files for the Beaglebone Black. They're located in the `KubOS-v{version}/Beaglebone-Black` folder.
+Download the latest `CubeOS-v{version}.tar.gz` file and then unzip the files for the Beaglebone Black. They're located in the `CubeOS-v{version}/Beaglebone-Black` folder.
 
 .. note::
 
@@ -55,12 +55,12 @@ Pre-Requisites
 
 .. note:: 
 
-    The Kubos Linux SD images are created for a 4GB SD card. The image can be applied to a larger SD card, but the
+    The CubeOS Linux SD images are created for a 4GB SD card. The image can be applied to a larger SD card, but the
     resulting system will still only have 4GB of space available to it.
 
  
 2. Install `Etcher <https://www.balena.io/etcher/>`__. Other software to flash SD cards does exist,
-   but Etcher is the Kubos software of choice.
+   but Etcher is the CubeOS software of choice.
 
 3. Obtain the SD card images
 
@@ -72,7 +72,7 @@ Flash the SD Card
 
 Using `Etcher <https://www.balena.io/etcher/>`__:
 
-  - Select the Kubos Linux image to flash
+  - Select the CubeOS Linux image to flash
   - Make sure the SD card device is correct (may be auto-detected if there is only one SD card present
     in your system.)
   - Click the "Flash!" button to start the flashing process
@@ -90,11 +90,11 @@ into the Beaglebone Black's microSD slot.
 Boot into U-Boot
 ~~~~~~~~~~~~~~~~
 
-.. note:: These instructions should work whether you're currently running Kubos Linux
+.. note:: These instructions should work whether you're currently running CubeOS Linux
     or some other Linux distribution.
 
 We now want to overwrite the eMMC, so we'll need to use U-Boot in order to boot
-Kubos Linux from the microSD card.
+CubeOS Linux from the microSD card.
 
 You'll need to establish a serial connection with the board in order to connect
 to the console.
@@ -119,13 +119,13 @@ Copy/paste these commands:
     
     setenv bootargs console=ttyS0,115200 root=/dev/mmcblk0p2 ext4 rootwait; fatload mmc 0:1 ${fdtaddr} /beaglebone-black.dtb; fatload mmc 0:1 ${loadaddr} /kernel; bootm ${loadaddr} - ${fdtaddr}
     
-This will cause the board to load Kubos Linux off of the microSD card, allowing us to flash
+This will cause the board to load CubeOS Linux off of the microSD card, allowing us to flash
 the eMMC.
 
 Alternative Boot
 ~~~~~~~~~~~~~~~~
 
-When loading Kubos Linux for the first time, the prior instructions may fail for boards which come
+When loading CubeOS Linux for the first time, the prior instructions may fail for boards which come
 from certain hardware providers.
 This failure will be indicated by the following error message::
 
@@ -136,18 +136,18 @@ In this case, you will need to boot off of the microSD card by using the Beagleb
 Power off the board. Hold down the boot button and then apply power to the board.
 You may let go of the boot button once you start seeing boot messages from the debug port.
 
-The system will now boot off of the microSD card and into Kubos Linux.
+The system will now boot off of the microSD card and into CubeOS Linux.
 
 Flash the eMMC
 ~~~~~~~~~~~~~~
 
-To flash the eMMC, log into the board using the default `root` user with password `Kubos123` and then run the
+To flash the eMMC, log into the board using the default `root` user with password `CubeOS123` and then run the
 installation script, ``install-os``. It has been placed within the system PATH, so may be called from any location.
 
 A confirmation dialog will be issued. Enter ``y`` to proceed with the installation.
 
 You will see a variety of messages which will vary depending on the current state of the system
-(for example, whether you are currently running a version of Kubos Linux or some other distribution).
+(for example, whether you are currently running a version of CubeOS Linux or some other distribution).
 
 It should be safe to ignore any messages which are issued prior to the actual copying of data.
 
@@ -168,7 +168,7 @@ The four status LEDs on the board should start flashing in a random pattern.
 This indicates that the eMMC is currently being flashed.
 
 The process should take roughly ten minutes, after which the LEDs should return to normal,
-with one LED blinking to indicate a successfully running Kubos Linux system.
+with one LED blinking to indicate a successfully running CubeOS Linux system.
 
 The console should show a summary of the transfer::
 
@@ -185,13 +185,13 @@ Re-Flash the SD Card
 ~~~~~~~~~~~~~~~~~~~~
 
 Now flash the microSD card with the auxiliary SD card image (``aux-sd.img``). This image contains the
-Kubos Linux upgrade partition and the second user data partition.
+CubeOS Linux upgrade partition and the second user data partition.
 
 Once the flash process has completed, put the card back into the microSD slot
 and boot up the system.
 
 
-.. figure:: ../../images/kubos_bbb_linux_mount_errors.png
+.. figure:: ../../images/cubeos_bbb_linux_mount_errors.png
    :alt: mount complaints during boot.
 
 You will see messages as the data partitions are mounted. For example::
@@ -210,8 +210,8 @@ or the microSD card not being properly flashed with the auxilliary SD image.
 
 If you see no such errors, the installation process is now complete.
 
-Using Kubos Linux
+Using CubeOS Linux
 -----------------
 
-For information on how to create and run applications on your new Kubos Linux system, see the
-:doc:`../../ecosystem/linux-docs/using-kubos-linux` and :doc:`working-with-the-bbb` guides.
+For information on how to create and run applications on your new CubeOS Linux system, see the
+:doc:`../../ecosystem/linux-docs/using-cubeos-linux` and :doc:`working-with-the-bbb` guides.

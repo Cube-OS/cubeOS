@@ -15,7 +15,7 @@
  */
 #![deny(warnings)]
 
-use kubos_system::UBootVars;
+use cubeos_system::UBootVars;
 use std::env;
 use std::fs;
 use std::io::Write;

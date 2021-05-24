@@ -30,9 +30,9 @@
 
 use crate::comms::*;
 use comms_service::*;
+use cubeos_system::logger as ServiceLogger;
+use cubeos_system::Config as ServiceConfig;
 use failure::Error;
-use kubos_system::logger as ServiceLogger;
-use kubos_system::Config as ServiceConfig;
 use log::error;
 use std::sync::{Arc, Mutex};
 use std::thread;

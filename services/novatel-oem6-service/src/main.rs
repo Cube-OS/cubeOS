@@ -17,11 +17,11 @@
 #![deny(missing_docs)]
 #![deny(warnings)]
 
-//! Kubos Service for interacting with a [NovAtel OEM6 High Precision GNSS Receiver](https://www.novatel.com/products/gnss-receivers/oem-receiver-boards/oem6-receivers/)
+//! CubeOS Service for interacting with a [NovAtel OEM6 High Precision GNSS Receiver](https://www.novatel.com/products/gnss-receivers/oem-receiver-boards/oem6-receivers/)
 //!
 //! # Configuration
 //!
-//! The service can be configured in the `/etc/kubos-config.toml` with the following fields:
+//! The service can be configured in the `/etc/cubeos-config.toml` with the following fields:
 //!
 //! - `bus` - Specifies the UART bus the OEM6 is connected to
 //! - `ip` - Specifies the service's IP address
@@ -44,7 +44,7 @@
 //!
 //! ```toml
 //! $ novatel-oem6-service
-//! Kubos OEM6 service started
+//! CubeOS OEM6 service started
 //! Listening on: 10.63.1.20:8130
 //! ```
 //!
@@ -86,7 +86,7 @@
 //! Get the current power state of the system
 //!
 //! Note: `uptime` is included as an available field in order to conform to
-//!       the Kubos Service Outline, but cannot be implemented for this device,
+//!       the CubeOS Service Outline, but cannot be implemented for this device,
 //!       so the value will be 1 if the device is on and 0 if the device is off
 //!
 //! ```json
@@ -327,7 +327,7 @@ mod tests;
 use crate::model::{LockData, Subsystem};
 pub use crate::objects::*;
 use crate::schema::{MutationRoot, QueryRoot};
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 use log::error;
 use novatel_oem6_api::OEMResult;
 use std::sync::Arc;

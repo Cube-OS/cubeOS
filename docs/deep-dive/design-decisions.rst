@@ -1,18 +1,18 @@
-KubOS Design Decisions
+CubeOS Design Decisions
 ======================
 
 This doc records the high-level reasoning for some of our major design decisions made while
-architecting KubOS.
+architecting CubeOS.
 
 Linux vs RTOS
 -------------
 
-Check out the :ref:`real-time section <real-time>` in our KubOS Design doc for information about this decision.
+Check out the :ref:`real-time section <real-time>` in our CubeOS Design doc for information about this decision.
 
 Buildroot
 ---------
 
-When deciding on which tool to use in order to configure and build Kubos Linux, we compared
+When deciding on which tool to use in order to configure and build CubeOS Linux, we compared
 `Buildroot <https://buildroot.org/>`__ and `Yocto <https://www.yoctoproject.org/>`__.
 
 Both systems are widely adopted, actively maintained, and have an easy learning curve.

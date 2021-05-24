@@ -29,8 +29,8 @@ mod check_reset;
 mod clean_db;
 mod ping;
 
+use cubeos_app::*;
 use failure::{bail, err_msg, Error};
-use kubos_app::*;
 use log::*;
 use std::time::Duration;
 
@@ -48,7 +48,7 @@ pub const DOWNLINK_PORT: u16 = 8080;
 // General options:
 
 // Location of the systems configuration file
-pub const CONFIG_PATH: &str = "/etc/kubos-config.toml";
+pub const CONFIG_PATH: &str = "/etc/cubeos-config.toml";
 
 // Maximum telemetry entry age. Default: 1 week (60*60*24*7)
 pub const TELEMETRY_AGE: f64 = 604_800.0;

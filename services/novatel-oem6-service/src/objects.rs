@@ -220,7 +220,7 @@ pub enum SolutionStatus {
     /// Position type is unauthorized
     Unauthorized,
     /// Unknown solution status value encountered
-    KubosInvalid,
+    CubeOSInvalid,
 }
 
 impl From<u32> for SolutionStatus {
@@ -240,7 +240,7 @@ impl From<u32> for SolutionStatus {
             18 => SolutionStatus::Pending,
             19 => SolutionStatus::InvalidFix,
             20 => SolutionStatus::Unauthorized,
-            _ => SolutionStatus::KubosInvalid,
+            _ => SolutionStatus::CubeOSInvalid,
         }
     }
 }
@@ -296,7 +296,7 @@ pub enum PosVelType {
     /// Converged TerraStar-L solution
     PPPBasic,
     /// Unknown type value encountered
-    KubosInvalid,
+    CubeOSInvalid,
 }
 
 impl From<u32> for PosVelType {
@@ -325,7 +325,7 @@ impl From<u32> for PosVelType {
             72 => PosVelType::OutOfBounds,
             77 => PosVelType::PPPBasicConverging,
             78 => PosVelType::PPPBasic,
-            _ => PosVelType::KubosInvalid,
+            _ => PosVelType::CubeOSInvalid,
         }
     }
 }
@@ -356,7 +356,7 @@ pub enum RefTimeStatus {
     /// Time from satellite. Only used in logs containing satellite data such as ephemeris and almanac
     SatTime,
     /// Unknown status value encountered
-    KubosInvalid,
+    CubeOSInvalid,
 }
 
 impl From<u8> for RefTimeStatus {
@@ -373,7 +373,7 @@ impl From<u8> for RefTimeStatus {
             170 => RefTimeStatus::FineBackupSteering,
             180 => RefTimeStatus::FineSteering,
             200 => RefTimeStatus::SatTime,
-            _ => RefTimeStatus::KubosInvalid,
+            _ => RefTimeStatus::CubeOSInvalid,
         }
     }
 }

@@ -2,7 +2,7 @@ Rust Example Mission Application
 ================================
 
 This script shows the basic layout a mission application written in Rust will use in order
-to be successfully registered and run using the Kubos mission applications service.
+to be successfully registered and run using the CubeOS mission applications service.
 
 It uses the Rust app API in order to reduce the amount of boilerplate code required.
 
@@ -30,10 +30,10 @@ Optional Arguments::
 
 .. note::
 
-    When starting a Rust-based app from within the Kubos SDK manually, the default ``/etc/kubos-config.toml`` config
+    When starting a Rust-based app from within the CubeOS SDK manually, the default ``/etc/cubeos-config.toml`` config
     file will likely not exist, and so you will need to provide a config file. It will be similar to this::
 
-        $ cargo run -- -c /home/vagrant/kubos/tools/local_config.toml
+        $ cargo run -- -c /home/vagrant/cubeos/tools/local_config.toml
 
     The ``--`` characters make sure that the following parameters are passed to the underlying
     program, rather than to ``cargo``.

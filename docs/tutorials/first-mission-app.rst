@@ -22,20 +22,20 @@ You do not need to have an OBC available.
 .. note:: 
 
     The iOBC does not support Python. If this is the board which you are using,
-    please refer to the `example Rust mission application <https://github.com/kubos/kubos/blob/master/examples/rust-mission-app/src/main.rs>`__
+    please refer to the `example Rust mission application <https://github.com/cubeos/cubeos/blob/master/examples/rust-mission-app/src/main.rs>`__
     for the specific application code. The rest of this document should still be useful for the
     high-level concepts which are involved when developing a mission application.
 
 Setup
 -----
 
-- :doc:`Install the Kubos SDK <../sdk-docs/sdk-installing>` or set up the dependencies
+- :doc:`Install the CubeOS SDK <../sdk-docs/sdk-installing>` or set up the dependencies
   required for a :doc:`local dev environment <../getting-started/local-setup>`
-- If you have not done so already, create a clone of the `KubOS source repo <https://github.com/kubos/kubos>`__::
+- If you have not done so already, create a clone of the `CubeOS source repo <https://github.com/cubeos/cubeos>`__::
 
-    $ git clone https://github.com/kubos/kubos
+    $ git clone https://github.com/cubeos/cubeos
     
-- Navigate to the `kubos` source directory and run the following commands to start the monitor service
+- Navigate to the `cubeos` source directory and run the following commands to start the monitor service
   and telemetry database service in the background (the services may need to be built first, which
   will take several minutes to complete)::
   
@@ -44,7 +44,7 @@ Setup
     
 - Navigate back out to the development directory of your choosing.
   This tutorial will use ``/home/user/my-app`` as the example development directory and will assume
-  that the cloned kubos repo is in ``/home/user/kubos``.
+  that the cloned cubeos repo is in ``/home/user/cubeos``.
 
 
 - Create a new file for this tutorial, ``my-mission-app.py``.
@@ -60,11 +60,11 @@ Setup
 
     $ chmod +x my-mission-app.py
 
-Kubos Services and GraphQL
+CubeOS Services and GraphQL
 --------------------------
 
 A major component of most mission applications will be interacting with
-:ref:`Kubos services <service-docs>`.
+:ref:`CubeOS services <service-docs>`.
 
 These services provided interfaces to underlying hardware and other system resources.
 
@@ -169,7 +169,7 @@ Each service has a schema which defines all of its queries and mutations.
 Users should refer to these to determine what actions are available for each service and how their
 requests should be structured.
 
-Documentation for Kubos services can be found within the :ref:`services <service-docs>`
+Documentation for CubeOS services can be found within the :ref:`services <service-docs>`
 section.
 
 For example, links to the schemas for all of the pre-built hardware services can be found
@@ -183,9 +183,9 @@ In order to communicate with a service, we need to know where to send our messag
 All services rely on a configuration file, ``config.toml``, in order to determine which IP and port
 they should bind a listener thread to.
 
-By default, this file is located in ``/etc/kubos-config.toml``.
+By default, this file is located in ``/etc/cubeos-config.toml``.
 Since we're running these tutorials locally, that file location likely doesn't exist, so instead we
-are using the ``tools/local_config.toml`` file in our cloned copy of the kubos repo.
+are using the ``tools/local_config.toml`` file in our cloned copy of the cubeos repo.
 
 We'll need to pass our application this path when we go to run it locally.
 
@@ -206,7 +206,7 @@ other core or hardware service.
 We intend for this to be an ad-hoc action, so we'll be adding code to the on-command section of
 our program.
 
-The all KubOS core services provide a ``ping`` query which can be used to verify that the service
+The all CubeOS core services provide a ``ping`` query which can be used to verify that the service
 is currently running on the expected port.
 The request has the following format::
 
@@ -306,7 +306,7 @@ After adding proper structure, our program should look like this:
     
 If we run our program, the output should look like this::
 
-    $ ./my-mission-app.py -c ../kubos/tools/local_config.toml
+    $ ./my-mission-app.py -c ../cubeos/tools/local_config.toml
     Successfully pinged monitor service
 
 Writing Data to the Telemetry Database
@@ -439,7 +439,7 @@ With some error handling, our final application looks like this:
 
 If we run our program, the output should look like this::
 
-    $ ./my-mission-app.py -c ../kubos/tools/local_config.toml
+    $ ./my-mission-app.py -c ../cubeos/tools/local_config.toml
     Successfully pinged monitor service
     Telemetry insert completed successfully
     

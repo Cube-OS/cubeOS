@@ -23,7 +23,7 @@ use toml;
 use toml::Value;
 
 /// The default configuration file path
-pub static DEFAULT_PATH: &str = "/etc/kubos-config.toml";
+pub static DEFAULT_PATH: &str = "/etc/cubeos-config.toml";
 
 #[derive(Clone, Debug, Deserialize)]
 /// A simple address consisting of an IP address and port number
@@ -44,12 +44,12 @@ impl Address {
     }
 }
 
-/// KubOS config used by either Apps or Services. KubOS config files use the TOML format, and can
+/// CubeOS config used by either Apps or Services. CubeOS config files use the TOML format, and can
 /// may contain multiple named Categories. Typically each category corresponds to an App or Service
 /// name. This allows one config file to store configuration for multiple Apps / Services at a
 /// time.
 ///
-/// Example KubOS config files for a Service called `my-service` with an IP/port binding
+/// Example CubeOS config files for a Service called `my-service` with an IP/port binding
 /// ```toml
 /// [my-service]
 /// my-property = "value"
@@ -121,7 +121,7 @@ impl Config {
     /// ### Examples
     ///
     /// ```rust,no_run
-    /// use kubos_system::Config;
+    /// use cubeos_system::Config;
     ///
     /// let config = Config::new("example-service").unwrap();
     /// let raw = config.raw();

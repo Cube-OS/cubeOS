@@ -7,7 +7,7 @@ they will need to be compiled using the appropriate cross-compile toolchain.
 This document covers the process of installing the cross-compile toolchain and compiling a program
 for a target OBC using a local development environment.
 
-The Kubos SDK comes with the cross-compile toolchains pre-installed, as well as some additional
+The CubeOS SDK comes with the cross-compile toolchains pre-installed, as well as some additional
 helper tooling.
 If you are using the SDK as your development environment, please refer to :doc:`those docs <../sdk-docs/index>`
 for more specific information.
@@ -22,14 +22,14 @@ Download
 --------
 
 Below are the direct download links for the latest cross-compiling toolchains.
-These toolchains contain the majority of utilities required to build a KubOS project.
+These toolchains contain the majority of utilities required to build a CubeOS project.
 They include things like the C and C++ compilers and linkers which are needed to generate
 executables for the target architecture, as well as tools which the host will use to assemble and
 package other OS components.
-If you need a prior version of a toolchain, please contact a Kubos team member for support.
+If you need a prior version of a toolchain, please contact a CubeOS team member for support.
 
-- `Beaglebone Black / Pumpkin MBM2 <https://s3.amazonaws.com/kubos-world-readable-assets/bbb_toolchain.tar.gz>`__
-- `ISIS OBC <https://s3.amazonaws.com/kubos-world-readable-assets/iobc_toolchain.tar.gz>`__
+- `Beaglebone Black / Pumpkin MBM2 <https://s3.amazonaws.com/cubeos-world-readable-assets/bbb_toolchain.tar.gz>`__
+- `ISIS OBC <https://s3.amazonaws.com/cubeos-world-readable-assets/iobc_toolchain.tar.gz>`__
 
 Installation
 ------------
@@ -53,7 +53,7 @@ file::
     [target.$triple]
     linker = "/path/to/{obc}_toolchain/usr/bin/{arch}-gcc"
     
-Please refer to the Kubos SDK's `Cargo config file <https://github.com/kubos/kubos-vagrant/blob/master/kubos-dev/bin/cargo_config>`__
+Please refer to the CubeOS SDK's `Cargo config file <https://github.com/cubeos/cubeos-vagrant/blob/master/cubeos-dev/bin/cargo_config>`__
 for reference.
 You should be able to directly copy the lines pertaining to your target OBC.
 

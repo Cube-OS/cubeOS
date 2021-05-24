@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-use kubos_telemetry_db::Database;
+use cubeos_telemetry_db::Database;
 use log::{error, info};
 use serde::Deserialize;
 use std::net::{SocketAddr, UdpSocket};

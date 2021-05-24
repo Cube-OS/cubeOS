@@ -15,7 +15,7 @@
  */
 #![deny(warnings)]
 
-use kubos_app::ServiceConfig;
+use cubeos_app::ServiceConfig;
 use serde_json::json;
 use std::panic;
 use std::path::Path;
@@ -253,7 +253,7 @@ test_query!(
         assert_eq!(apps.len(), 2);
         assert_eq!(
             apps[0],
-            json!({"app": {"name": "app1", "version": "0.0.1", "config": "/etc/kubos-config.toml"}})
+            json!({"app": {"name": "app1", "version": "0.0.1", "config": "/etc/cubeos-config.toml"}})
         );
         assert_eq!(
             apps[1],

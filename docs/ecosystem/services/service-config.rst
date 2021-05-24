@@ -1,28 +1,28 @@
-Configuring Services in KubOS
+Configuring Services in CubeOS
 =============================
 
-All Kubos services rely on a configuration file to determine certain runtime settings,
+All CubeOS services rely on a configuration file to determine certain runtime settings,
 referred to as the ``config.toml`` file.
 
-By default, this file lives in ``/etc/kubos-config.toml``.
+By default, this file lives in ``/etc/cubeos-config.toml``.
 
 Discovering Config Options
 --------------------------
 
-All Kubos :doc:`core services <core-services>` have a `Configuration` section in their repective
+All CubeOS :doc:`core services <core-services>` have a `Configuration` section in their repective
 doc page which details the available configuration options.
 
-All :ref:`hardware services <pre-built-services>` provided by Kubos document their configuration
+All :ref:`hardware services <pre-built-services>` provided by CubeOS document their configuration
 options within their generated doc page.
 
 Common Config Options
 ---------------------
 
-All Kubos services will have a ``[{service}.addr]`` section.
+All CubeOS services will have a ``[{service}.addr]`` section.
 
 For example::
 
-    [kubos-monitor.addr]
+    [cubeos-monitor.addr]
     ip = "0.0.0.0"
     port = 8030
 
@@ -30,7 +30,7 @@ This section defines the IP address and port to be used for receiving :doc:`grap
 
 In general, the ports being used follow the following convention:
 
-- Kubos core services use ports 8000-8079
+- CubeOS core services use ports 8000-8079
 - Communications services use ports 8080-8099 for their downlink ports
 - Hardware services use ports 8100 and up
 
@@ -48,17 +48,17 @@ Using Custom Config Files
 -------------------------
 
 By default, all services will attempt to read their configuration options from
-``/etc/kubos-config.toml``.
-This file is auto-generated when the KubOS image is built and lives in the root file system so that
-it can be restored during the :doc:`OS recovery process <../linux-docs/kubos-linux-recovery>`.
+``/etc/cubeos-config.toml``.
+This file is auto-generated when the CubeOS image is built and lives in the root file system so that
+it can be restored during the :doc:`OS recovery process <../linux-docs/cubeos-linux-recovery>`.
 
 .. warning::
 
-    Any ad-hoc config changes made to the ``/etc/kubos-config.toml`` file will be lost if the OS is
+    Any ad-hoc config changes made to the ``/etc/cubeos-config.toml`` file will be lost if the OS is
     upgraded or restored.
 
 As a result, if you would like to add or change any configuration options outside of the
-:doc:`KubOS build process <../../deep-dive/klb/configuring-kubos>`, you should create a custom
+:doc:`CubeOS build process <../../deep-dive/klb/configuring-cubeos>`, you should create a custom
 config file within the user data partition.
 
 This custom file location may be provided by specifying the path in the ``-c`` option when starting
@@ -66,14 +66,14 @@ a service.
 
 For example::
 
-    $ /usr/sbin/kubos-monitor-service -c /home/kubos/my-config.toml
+    $ /usr/sbin/cubeos-monitor-service -c /home/cubeos/my-config.toml
     
 .. note::
 
-    When starting a Rust-based service from within the Kubos SDK, the config file should be passed
+    When starting a Rust-based service from within the CubeOS SDK, the config file should be passed
     like so::
     
-        $ cargo run -- -c /home/kubos/my-config.toml
+        $ cargo run -- -c /home/cubeos/my-config.toml
         
     The ``--`` characters make sure that the following parameters are passed to the underlying
     program, rather than to ``cargo``.
@@ -120,7 +120,7 @@ Python
 
 .. code-block:: python
 
-    from kubos_service.config import Config
+    from cubeos_service.config import Config
     import i2c
     import threading
     
@@ -148,7 +148,7 @@ Rust
 
 .. code-block:: rust
 
-    use kubos_service::Config;
+    use cubeos_service::Config;
     use std::thread;
     use std::time::Duration;
     

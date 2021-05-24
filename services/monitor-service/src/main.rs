@@ -17,7 +17,7 @@
 #![deny(missing_docs)]
 #![deny(warnings)]
 
-//! Service for monitoring KubOS Linux processes, memory, and CPU usage
+//! Service for monitoring CubeOS Linux processes, memory, and CPU usage
 //!
 //! # GraphQL Schema
 //!
@@ -58,7 +58,7 @@
 extern crate juniper;
 
 use crate::schema::{MutationRoot, QueryRoot};
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 use log::error;
 
 mod meminfo;
@@ -69,7 +69,7 @@ mod schema;
 mod userinfo;
 
 fn main() {
-    Logger::init("kubos-monitor-service").unwrap();
+    Logger::init("cubeos-monitor-service").unwrap();
 
     let config = Config::new("monitor-service")
         .map_err(|err| {

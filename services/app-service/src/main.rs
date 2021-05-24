@@ -28,12 +28,12 @@ mod schema;
 mod tests;
 
 use crate::registry::AppRegistry;
+use cubeos_service::{Config, Logger, Service};
 use failure::Error;
-use kubos_service::{Config, Logger, Service};
 use log::error;
 
 fn main() -> Result<(), Error> {
-    Logger::init("kubos-app-service").unwrap();
+    Logger::init("cubeos-app-service").unwrap();
 
     let config = Config::new("app-service").map_err(|err| {
         error!("Failed to load service config: {:?}", err);

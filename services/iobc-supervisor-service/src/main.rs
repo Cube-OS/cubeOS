@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-//! Kubos Service for interacting with the ISIS-OBC Supervisor
+//! CubeOS Service for interacting with the ISIS-OBC Supervisor
 //!
 //! # Configuration
 //!
-//! The service must be configured in `/etc/kubos-config.toml` with the following fields:
+//! The service must be configured in `/etc/cubeos-config.toml` with the following fields:
 //!
 //! - `[iobc-supervisor-service.addr]`
 //!
@@ -39,7 +39,7 @@
 //!
 //! ```shell
 //! $ iobc-supervisor-service
-//! Kubos antenna systems service started
+//! CubeOS antenna systems service started
 //! Listening on: 0.0.0.0:8170
 //! ```
 //!
@@ -99,7 +99,7 @@ mod schema;
 
 use crate::model::Supervisor;
 use crate::schema::{MutationRoot, QueryRoot};
-use kubos_service::{Config, Logger, Service};
+use cubeos_service::{Config, Logger, Service};
 
 fn main() {
     Logger::init("iobc-supervisor-service").unwrap();

@@ -1,10 +1,10 @@
 # ISIS Antenna Systems Service
 
-Kubos Service for interacting with an [ISIS Antenna System](https://www.isispace.nl/product-category/products/antenna-systems/)
+CubeOS Service for interacting with an [ISIS Antenna System](https://www.isispace.nl/product-category/products/antenna-systems/)
 
 # Configuration
 
-The service must be configured in `/etc/kubos-config.toml` with the following fields:
+The service must be configured in `/etc/cubeos-config.toml` with the following fields:
 
 - `[isis-ants-service.addr]`
 
@@ -40,11 +40,11 @@ The service should be started automatically by its init script, but may also be 
 
 ```bash
 $ isis-ants-service
-Kubos antenna systems service started
+CubeOS antenna systems service started
 Listening on: 0.0.0.0:8110
 ```
 
-If no config file is specified, then the service will look at `/etc/kubos-config.toml`.
+If no config file is specified, then the service will look at `/etc/cubeos-config.toml`.
 An alternative config file may be specified on the command line at run time:
 
 ```bash

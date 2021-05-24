@@ -1,6 +1,6 @@
 # Rust Application API
 
-The Rust application API is meant to simplify development of KubOS mission applications in Rust.
+The Rust application API is meant to simplify development of CubeOS mission applications in Rust.
 
 It provides the following functionality:
 
@@ -11,7 +11,7 @@ It provides the following functionality:
 
 ```
 use failure::{bail, Error};
-use kubos_app::*;
+use cubeos_app::*;
 use log::*;
 
 fn main() -> Result<(), Error> {

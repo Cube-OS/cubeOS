@@ -1,7 +1,7 @@
 Scheduling a Mission Application's Execution
 ============================================
 
-The Kubos :doc:`scheduler service <../ecosystem/services/scheduler>` is
+The CubeOS :doc:`scheduler service <../ecosystem/services/scheduler>` is
 responsible for scheduling applications for execution.
 
 This tutorial walks the user through:
@@ -25,11 +25,11 @@ with the application service.
 
 This tutorial will use the following example directories:
 
-    - ``/home/user/kubos`` - Cloned copy of the kubos responsible
-    - ``/home/user/kubos/schedules`` - Directory used by the schedules service
+    - ``/home/user/cubeos`` - Cloned copy of the cubeos responsible
+    - ``/home/user/cubeos/schedules`` - Directory used by the schedules service
       to store schedule information
 
-- Navigate to ``/home/user/kubos`` (or your preferred copy of the kubos repo).
+- Navigate to ``/home/user/cubeos`` (or your preferred copy of the cubeos repo).
 
 - Run the following command to start the scheduler service in the background
   (the service may need to be built first, which will take several minutes to complete)::
@@ -39,7 +39,7 @@ This tutorial will use the following example directories:
 GraphiQL
 --------
 
-All Kubos services which provide an HTTP interface have a special endpoint which
+All CubeOS services which provide an HTTP interface have a special endpoint which
 can be used to send and receive GraphQL data via an in-browser graphical
 interface, GraphiQL.
 
@@ -133,7 +133,7 @@ It has the following schema::
 Our import mutation should look like this::
 
     mutation {
-        importTaskList(name: "my-mission", path: "/home/user/kubos/my-mission.json", mode: "nominal") {
+        importTaskList(name: "my-mission", path: "/home/user/cubeos/my-mission.json", mode: "nominal") {
             success
             errors
         }

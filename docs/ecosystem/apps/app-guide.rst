@@ -1,4 +1,4 @@
-KubOS Mission Applications Development Guide
+CubeOS Mission Applications Development Guide
 ============================================
 
 Overview
@@ -19,7 +19,7 @@ APIs
 ----
 
 Users may write applications in the language of their choice.
-However, Kubos provides APIs to assist and simplify with application development for use with one of our preferred languages.
+However, CubeOS provides APIs to assist and simplify with application development for use with one of our preferred languages.
 
 Our supported languages for mission applications are:
 
@@ -42,8 +42,8 @@ Under the covers, the application would be called like so::
     
 Where ``--verbose`` and ``--release`` are custom arguments for that particular application.
 
-Examples of how to define and structure additional arguments can be seen in the `Rust <https://github.com/kubos/kubos/blob/master/examples/rust-mission-app/src/main.rs>`__
-and `Python <https://github.com/kubos/kubos/blob/master/examples/python-mission-application/mission-app.py>`__
+Examples of how to define and structure additional arguments can be seen in the `Rust <https://github.com/cubeos/cubeos/blob/master/examples/rust-mission-app/src/main.rs>`__
+and `Python <https://github.com/cubeos/cubeos/blob/master/examples/python-mission-application/mission-app.py>`__
 example applications.
 
 .. note:: The ``-c`` option is pre-defined by the system to allow a custom config file to be used.
@@ -71,7 +71,7 @@ match the name of the file to be called.
 
 The ``config`` key value allows you to specify a custom file which the application should use in
 order to read :doc:`service configuration <../services/service-config>` information.
-If it is omitted, the default location ``/etc/kubos-config.toml`` will be used.
+If it is omitted, the default location ``/etc/cubeos-config.toml`` will be used.
 
 For example::
 
@@ -106,16 +106,16 @@ Reference Docs:
 Tutorials:
 
     - :doc:`../../tutorials/first-mission-app` - Walks the user through the process of creating their
-      first mission application which is capable of interacting with Kubos services
+      first mission application which is capable of interacting with CubeOS services
     - :doc:`../../tutorials/app-register` - Walks the user through the process of registering a
       mission application with the applications service and then starting, updating, and verifying
       the application
 
 Example applications:
 
-    - `Basic application written in Rust <https://github.com/kubos/kubos/tree/master/examples/rust-mission-app>`__ -
+    - `Basic application written in Rust <https://github.com/cubeos/cubeos/tree/master/examples/rust-mission-app>`__ -
       Demonstrates the basic application framework and how passthrough arguments can be used
-    - `Framework application written in Python <https://github.com/kubos/kubos/blob/master/examples/python-mission-framework/python-mission-app.py>`__ -
+    - `Framework application written in Python <https://github.com/cubeos/cubeos/blob/master/examples/python-mission-framework/python-mission-app.py>`__ -
       Can be used as a starting template when creating Python applications
-    - `Basic application wrtting in Python <https://github.com/kubos/kubos/tree/master/examples/python-mission-application>`__ -
-      Demonstrates the basic application framework and how to communicate with Kubos services
+    - `Basic application wrtting in Python <https://github.com/cubeos/cubeos/tree/master/examples/python-mission-application>`__ -
+      Demonstrates the basic application framework and how to communicate with CubeOS services

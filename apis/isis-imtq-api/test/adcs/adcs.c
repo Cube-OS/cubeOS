@@ -1,5 +1,5 @@
 /*
- * Kubos iMTQ API
+ * CubeOS iMTQ API
  * Copyright (C) 2018 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,24 +17,19 @@
  * Unit tests for the generic ADCS API functions
  */
 
-#include <imtq.h>
 #include <cmocka.h>
+#include <imtq.h>
 
-static char * bus = "/dev/i2c-1";
-static uint16_t addr = 0x40;
-static int timeout = 60;
+static char *   bus     = "/dev/i2c-1";
+static uint16_t addr    = 0x40;
+static int      timeout = 60;
 
 #define NUM_CONFIG_PARAMS 83
 
 imtq_resp_header response = { 0 };
 
-imtq_state state = {
-        .hdr = {0},
-        .mode = SELFTEST,
-        .error = 0,
-        .config = 1,
-        .uptime = 35
-    };
+imtq_state state
+    = { .hdr = { 0 }, .mode = SELFTEST, .error = 0, .config = 1, .uptime = 35 };
 
 /* Self-test structs */
 imtq_test_result_all    test_results_all    = { 0 };

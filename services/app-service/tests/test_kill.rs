@@ -16,7 +16,7 @@
 
 // Test ability to kill running app
 
-use kubos_app::ServiceConfig;
+use cubeos_app::ServiceConfig;
 use serde_json::json;
 use std::fs;
 use std::path::Path;
@@ -67,7 +67,7 @@ fn setup_app(registry_dir: &Path) {
             name = "rust-proj"
             version = "1.0"
             author = "user"
-            config = "/etc/kubos-config.toml"
+            config = "/etc/cubeos-config.toml"
             "#,
         registry_dir.to_string_lossy(),
     );

@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Integration tests for the Kubos MAI400 API
+// Integration tests for the CubeOS MAI400 API
 //
 // Note: The I2C commands are needed when the MAI is connected to the stack via
 //       an AIM module. If no AIM is present, they should be removed

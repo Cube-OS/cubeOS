@@ -15,13 +15,13 @@
 //
 
 use crate::udp::*;
+use cubeos_service;
+use cubeos_telemetry_db;
 use diesel;
 use diesel::prelude::*;
 use flate2::write::GzEncoder;
 use flate2::Compression;
 use juniper::{FieldError, FieldResult, Value};
-use kubos_service;
-use kubos_telemetry_db;
 use serde_derive::Serialize;
 use serde_json;
 use std::fs;
@@ -32,15 +32,15 @@ use std::sync::{Arc, Mutex};
 use std::thread::spawn;
 use tar;
 
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 #[derive(Clone)]
 pub struct Subsystem {
-    pub database: Arc<Mutex<kubos_telemetry_db::Database>>,
+    pub database: Arc<Mutex<cubeos_telemetry_db::Database>>,
 }
 
 impl Subsystem {
-    pub fn new(database: kubos_telemetry_db::Database, direct_udp: Option<String>) -> Self {
+    pub fn new(database: cubeos_telemetry_db::Database, direct_udp: Option<String>) -> Self {
         let db = Arc::new(Mutex::new(database));
 
         if let Some(udp_url) = direct_udp {
@@ -53,7 +53,7 @@ impl Subsystem {
 }
 
 #[derive(Serialize)]
-pub struct Entry(kubos_telemetry_db::Entry);
+pub struct Entry(cubeos_telemetry_db::Entry);
 
 graphql_object!(Entry: () |&self| {
     description: "A telemetry entry"
@@ -76,15 +76,15 @@ graphql_object!(Entry: () |&self| {
 });
 
 fn query_db(
-    database: &Arc<Mutex<kubos_telemetry_db::Database>>,
+    database: &Arc<Mutex<cubeos_telemetry_db::Database>>,
     timestamp_ge: Option<f64>,
     timestamp_le: Option<f64>,
     subsystem: Option<String>,
     parameters: Option<Vec<String>>,
     limit: Option<i32>,
 ) -> FieldResult<Vec<Entry>> {
-    use kubos_telemetry_db::telemetry;
-    use kubos_telemetry_db::telemetry::dsl;
+    use cubeos_telemetry_db::telemetry;
+    use cubeos_telemetry_db::telemetry::dsl;
 
     let mut query = telemetry::table.into_boxed::<<SqliteConnection as Connection>::Backend>();
 
@@ -111,7 +111,7 @@ fn query_db(
     query = query.order(dsl::timestamp.desc());
 
     let entries = query
-        .load::<kubos_telemetry_db::Entry>(
+        .load::<cubeos_telemetry_db::Entry>(
             &database
                 .lock()
                 .or_else(|err| {
@@ -283,11 +283,11 @@ graphql_object!(MutationRoot: Context | &self | {
         let time = time::now_utc().to_timespec();
         let systime = time.sec as f64 + (f64::from(time.nsec) / 1_000_000_000.0);
 
-        let mut new_entries: Vec<kubos_telemetry_db::Entry> = Vec::new();
+        let mut new_entries: Vec<cubeos_telemetry_db::Entry> = Vec::new();
         for entry in entries {
             let ts = entry.timestamp.or(timestamp).unwrap_or(systime);
 
-            new_entries.push(kubos_telemetry_db::Entry {
+            new_entries.push(cubeos_telemetry_db::Entry {
                 timestamp: ts,
                 subsystem: entry.subsystem,
                 parameter: entry.parameter,
@@ -317,8 +317,8 @@ graphql_object!(MutationRoot: Context | &self | {
         parameter: Option<String>,
     ) -> FieldResult<DeleteResponse>
     {
-        use kubos_telemetry_db::telemetry::dsl;
-        use kubos_telemetry_db::telemetry;
+        use cubeos_telemetry_db::telemetry::dsl;
+        use cubeos_telemetry_db::telemetry;
         use diesel::sqlite::SqliteConnection;
 
         let mut selection = diesel::delete(telemetry::table).into_boxed::<<SqliteConnection as Connection>::Backend>();

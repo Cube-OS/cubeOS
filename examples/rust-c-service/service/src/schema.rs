@@ -15,10 +15,10 @@
 //
 
 use crate::model::{CalibrateThermometer, ResetUptime, SetPower, Subsystem};
+use cubeos_service;
 use juniper::FieldResult;
-use kubos_service;
 
-type Context = kubos_service::Context<Subsystem>;
+type Context = cubeos_service::Context<Subsystem>;
 
 /// GraphQL model for Subsystem
 graphql_object!(Subsystem: Context as "Subsystem" |&self| {

@@ -1,4 +1,4 @@
-Kubos Device API Creation Guide
+CubeOS Device API Creation Guide
 ===============================
 
 This guide covers the process developers should go through when writing an API for a new device.
@@ -23,12 +23,12 @@ For example, when implementing a new ADCS API, refer to the ADCS service outline
 Create a list of functions you expect to implement.
 If needed, create a list of potential functions you're unsure about.
 
-Find a Kubos device API to model the new API's structure and naming conventions after.
+Find a CubeOS device API to model the new API's structure and naming conventions after.
 Ideally, there will be an existing API within the same category as the new API;
 for example, the TRXVU API if you were implementing a new radio.
 
 If you have any questions about what should be implemented and how it should be structured,
-talk with other KubOS developers or the KubOS product manager.
+talk with other CubeOS developers or the CubeOS product manager.
 
 General API Framework
 ---------------------
@@ -52,7 +52,7 @@ For example, by using an argument in the API's ``{API}::new()`` function.
 File Location
 -------------
 
-New APIs should be located in a new folder within the `apis` folder of the `Kubos repo <https://github.com/kubos/kubos>`__.
+New APIs should be located in a new folder within the `apis` folder of the `CubeOS repo <https://github.com/cubeos/cubeos>`__.
 
 ::
 
@@ -62,7 +62,7 @@ New APIs should be located in a new folder within the `apis` folder of the `Kubo
     |   +-- isis-trxvu-api\
     |   +-- <new-api>\
     |
-    +-- cargo-kubos\
+    +-- cargo-cubeos\
     +-- ccan\
     +-- cmocka\
 
@@ -76,7 +76,7 @@ While each API is highly device-specific, our goal is to keep the overall stylin
 This makes the codebase much more maintainable and reduces the amount of effort required for a service developer
 to navigate between APIs.
 
-In addition to mimicking existing APIs, please refer to the :doc:`../../contributing/kubos-standards` doc for more specific coding rules.
+In addition to mimicking existing APIs, please refer to the :doc:`../../contributing/cubeos-standards` doc for more specific coding rules.
 
 Guidelines for Rust APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~

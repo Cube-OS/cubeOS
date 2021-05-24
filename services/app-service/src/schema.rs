@@ -17,10 +17,10 @@
 use crate::monitor::MonitorEntry;
 use crate::objects::*;
 use crate::registry::AppRegistry;
+use cubeos_service;
 use juniper::FieldResult;
-use kubos_service;
 
-type Context = kubos_service::Context<AppRegistry>;
+type Context = cubeos_service::Context<AppRegistry>;
 
 ///
 pub struct QueryRoot;
@@ -43,7 +43,7 @@ graphql_object!(QueryRoot : Context as "Query" |&self| {
                name: Option<String>,
                version: Option<String>,
                active: Option<bool>)
-        -> FieldResult<Vec<KAppRegistryEntry>> as "Kubos Apps Query"
+        -> FieldResult<Vec<KAppRegistryEntry>> as "CubeOS Apps Query"
     {
         let entries = executor.context().subsystem().entries.lock()?;
         let result = entries.iter().filter(|ref e| {

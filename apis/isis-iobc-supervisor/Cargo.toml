@@ -9,4 +9,4 @@ edition = "2018"
 libc = "0.2"
 
 [build-dependencies]
-kubos-build-helper = {path = "../../kubos-build-helper"}
+cubeos-build-helper = {path = "../../cubeos-build-helper"}

@@ -1,17 +1,17 @@
-Under the Hood of KubOS
+Under the Hood of CubeOS
 =======================
 
-These docs give a more detailed examination of the inner workings of KubOS
+These docs give a more detailed examination of the inner workings of CubeOS
 
 APIs
 ----
 
-Kubos provides a variety of APIs to help with the development of mission software:
+CubeOS provides a variety of APIs to help with the development of mission software:
 
-  - :doc:`Device Interfaces <apis/device-api/index>` - APIs for external devices (ex. radio), built on top of the Kubos HAL
+  - :doc:`Device Interfaces <apis/device-api/index>` - APIs for external devices (ex. radio), built on top of the CubeOS HAL
   - :doc:`OBC APIs <apis/obc-api/index>` - APIs for features which are internal to a particular OBC
-  - :doc:`Kubos HAL <apis/kubos-hal/index>` - Hardware interface abstractions (I2C, SPI, etc)
-  - :doc:`Kubos Libraries <apis/kubos-libs>` - Non-hardware libraries
+  - :doc:`CubeOS HAL <apis/cubeos-hal/index>` - Hardware interface abstractions (I2C, SPI, etc)
+  - :doc:`CubeOS Libraries <apis/cubeos-libs>` - Non-hardware libraries
 
 .. toctree::
     :caption: APIs
@@ -20,8 +20,8 @@ Kubos provides a variety of APIs to help with the development of mission softwar
     apis/device-api-guide
     Device Interfaces <apis/device-api/index>
     OBC APIs <apis/obc-api/index>
-    Kubos HAL <apis/kubos-hal/index>
-    Kubos Libraries <apis/kubos-libs>
+    CubeOS HAL <apis/cubeos-hal/index>
+    CubeOS Libraries <apis/cubeos-libs>
     
 Protocols
 ---------
@@ -46,12 +46,12 @@ comms environment.
 
 .. _custom-klb:
 
-Kubos Linux
+CubeOS Linux
 -----------
 
-While Kubos does create and distribute official releases of Kubos Linux, users are free to create
+While CubeOS does create and distribute official releases of CubeOS Linux, users are free to create
 their own builds.
-This allows KubOS to be easily customized on a per-mission basis.
+This allows CubeOS to be easily customized on a per-mission basis.
 
 Users will most likely want to create their own builds when they create new hardware services which
 should be included in the OS' root file system.
@@ -59,15 +59,15 @@ should be included in the OS' root file system.
 .. toctree::
     :maxdepth: 1
     
-    klb/configuring-kubos
-    klb/kubos-linux-on-bbb
-    klb/kubos-linux-on-iobc
-    klb/kubos-linux-on-mbm2
+    klb/configuring-cubeos
+    klb/cubeos-linux-on-bbb
+    klb/cubeos-linux-on-iobc
+    klb/cubeos-linux-on-mbm2
     
 Design Decisions
 ----------------
 
-When developing new features for KubOS, we frequently have to make a choice between two or more
+When developing new features for CubeOS, we frequently have to make a choice between two or more
 tools/libraries/frameworks which will most closely give us our desired characteristics.
 
 The design decisions doc give a quick summary of how we have decided on our particular toolset.

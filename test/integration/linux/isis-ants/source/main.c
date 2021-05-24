@@ -1,5 +1,5 @@
 /*
- * Kubos Linux
+ * CubeOS Linux
  * Copyright (C) 2018 Kubos Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,19 +21,19 @@
 #include <errno.h>
 #include <getopt.h>
 #include <signal.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdbool.h>
 
 FILE * fp;
 
-#define BUS             "/dev/i2c-0"
-#define PRIMARY_ADDR    0x31
-#define SECONDARY_ADDR  0x32
-#define ANT_COUNT       4
-#define TIMEOUT         10
+#define BUS "/dev/i2c-0"
+#define PRIMARY_ADDR 0x31
+#define SECONDARY_ADDR 0x32
+#define ANT_COUNT 4
+#define TIMEOUT 10
 
 KANTSStatus reset()
 {
@@ -60,7 +60,8 @@ KANTSStatus configure()
     if (status != ANTS_OK)
     {
         fprintf(fp, "[Configure Test] Failed to configure ANTS: %d\n", status);
-        fprintf(stderr, "[Configure Test] Failed to configure ANTS: %d\n", status);
+        fprintf(stderr, "[Configure Test] Failed to configure ANTS: %d\n",
+                status);
         return ANTS_ERROR;
     }
 
@@ -77,19 +78,21 @@ KANTSStatus deploy(KANTSAnt antenna, bool override, uint8_t time)
     status = k_ants_deploy(antenna, override, time);
     if (status != ANTS_OK)
     {
-        fprintf(fp,
-                "[Deploy %d %sTest] Error/s occurred while deploying antenna/s: %d\n",
-                antenna, override ? "Override " : "", status);
-        fprintf(stderr,
-                "[Deploy %d %sTest] Error/s occurred while deploying antenna/s: %d\n",
-                antenna, override ? "Override " : "", status);
+        fprintf(
+            fp, "[Deploy %d %sTest] Error/s occurred while deploying antenna/s: %d\n",
+            antenna, override ? "Override " : "", status);
+        fprintf(
+            stderr, "[Deploy %d %sTest] Error/s occurred while deploying antenna/s: %d\n",
+            antenna, override ? "Override " : "", status);
         return ANTS_ERROR;
     }
 
-    /* Give it a moment to run so we have meaningful data later when we get the telemetry */
+    /* Give it a moment to run so we have meaningful data later when we get
+     * the telemetry */
     sleep(1);
 
-    fprintf(fp, "[Deploy %d %sTest] Test completed successfully\n", antenna, override ? "Override " : "");
+    fprintf(fp, "[Deploy %d %sTest] Test completed successfully\n", antenna,
+            override ? "Override " : "");
 
     return ANTS_OK;
 }
@@ -103,8 +106,11 @@ KANTSStatus auto_deploy()
     status = k_ants_auto_deploy(time);
     if (status != ANTS_OK)
     {
-        fprintf(fp, "[Auto-Deploy Test] Failed to auto-deploy antennas: %d\n", status);
-        fprintf(stderr, "[Auto-Deploy Test] Failed to auto-deploy antennas: %d\n", status);
+        fprintf(fp, "[Auto-Deploy Test] Failed to auto-deploy antennas: %d\n",
+                status);
+        fprintf(stderr,
+                "[Auto-Deploy Test] Failed to auto-deploy antennas: %d\n",
+                status);
         return ANTS_ERROR;
     }
 
@@ -120,8 +126,12 @@ KANTSStatus cancel_deploy()
     status = k_ants_cancel_deploy();
     if (status != ANTS_OK)
     {
-        fprintf(fp, "[Cancel Deploy Test] Failed to cancel AntS deployment: %d\n", status);
-        fprintf(stderr, "[Cancel Deploy Test] Failed to cancel AntS deployment: %d\n", status);
+        fprintf(fp,
+                "[Cancel Deploy Test] Failed to cancel AntS deployment: %d\n",
+                status);
+        fprintf(stderr,
+                "[Cancel Deploy Test] Failed to cancel AntS deployment: %d\n",
+                status);
         return ANTS_ERROR;
     }
 
@@ -174,10 +184,14 @@ KANTSStatus get_uptime()
     status = k_ants_get_uptime(&uptime);
     if (status != ANTS_OK)
     {
-        fprintf(fp,
-                "[Uptime Test] Error/s occurred while getting AntS uptime: %d\n", status);
-        fprintf(stderr,
-                "[Uptime Test] Error/s occurred while getting AntS uptime: %d\n", status);
+        fprintf(
+            fp,
+            "[Uptime Test] Error/s occurred while getting AntS uptime: %d\n",
+            status);
+        fprintf(
+            stderr,
+            "[Uptime Test] Error/s occurred while getting AntS uptime: %d\n",
+            status);
         return ANTS_ERROR;
     }
 
@@ -197,10 +211,12 @@ KANTSStatus get_deploy()
     status = k_ants_get_deploy_status(&deploy);
     if (status != ANTS_OK)
     {
-        fprintf(fp,
-                "[Deploy Status Test] Error/s occurred while getting AntS deploy status: %d\n", status);
-        fprintf(stderr,
-                "[Deploy Status Test] Error/s occurred while getting AntS deploy status: %d\n", status);
+        fprintf(
+            fp, "[Deploy Status Test] Error/s occurred while getting AntS deploy status: %d\n",
+            status);
+        fprintf(
+            stderr, "[Deploy Status Test] Error/s occurred while getting AntS deploy status: %d\n",
+            status);
         return ANTS_ERROR;
     }
 
@@ -214,8 +230,8 @@ KANTSStatus get_deploy()
 KANTSStatus passthrough()
 {
     KANTSStatus status;
-    uint8_t    cmd = GET_STATUS;
-    uint16_t resp;
+    uint8_t     cmd = GET_STATUS;
+    uint16_t    resp;
 
     status = k_ants_passthrough(&cmd, 1, (uint8_t *) &resp, 2);
     if (status != ANTS_OK)
@@ -240,12 +256,12 @@ KANTSStatus get_system_telemetry()
     status = k_ants_get_system_telemetry(&telem);
     if (status != ANTS_OK)
     {
-        fprintf(fp,
-                "[System Telemetry Test] Error/s occurred while getting AntS system telemetry: %d\n",
-                status);
-        fprintf(stderr,
-                "[System Telemetry Test] Error/s occurred while getting AntS system telemetry: %d\n",
-                status);
+        fprintf(
+            fp, "[System Telemetry Test] Error/s occurred while getting AntS system telemetry: %d\n",
+            status);
+        fprintf(
+            stderr, "[System Telemetry Test] Error/s occurred while getting AntS system telemetry: %d\n",
+            status);
         return ANTS_ERROR;
     }
 
@@ -264,18 +280,18 @@ KANTSStatus get_activation_counts()
 
     uint8_t count;
 
-    for(int i = 0; i < ANT_COUNT; i++)
+    for (int i = 0; i < ANT_COUNT; i++)
     {
         /* Get the data */
         status = k_ants_get_activation_count(i, &count);
         if (status != ANTS_OK)
         {
-            fprintf(fp,
-                    "[Activation Counts Test] Error/s occurred while getting antenna %d activation count: %d\n",
-                    (i + 1), status);
-            fprintf(stderr,
-                    "[Activation Counts Test] Error/s occurred while getting antenna %d activation count: %d\n",
-                    (i + 1), status);
+            fprintf(
+                fp, "[Activation Counts Test] Error/s occurred while getting antenna %d activation count: %d\n",
+                (i + 1), status);
+            fprintf(
+                stderr, "[Activation Counts Test] Error/s occurred while getting antenna %d activation count: %d\n",
+                (i + 1), status);
             status = ANTS_ERROR;
             continue;
         }
@@ -293,18 +309,18 @@ KANTSStatus get_activation_times()
 
     uint16_t time;
 
-    for(int i = 0; i < ANT_COUNT; i++)
+    for (int i = 0; i < ANT_COUNT; i++)
     {
         /* Get the data */
         status = k_ants_get_activation_time(i, &time);
         if (status != ANTS_OK)
         {
-            fprintf(fp,
-                    "[Activation Times Test] Error/s occurred while getting antenna %d activation time: %d\n",
-                    (i + 1), status);
-            fprintf(stderr,
-                    "[Activation Times Test] Error/s occurred while getting antenna %d activation time: %d\n",
-                    (i + 1), status);
+            fprintf(
+                fp, "[Activation Times Test] Error/s occurred while getting antenna %d activation time: %d\n",
+                (i + 1), status);
+            fprintf(
+                stderr, "[Activation Times Test] Error/s occurred while getting antenna %d activation time: %d\n",
+                (i + 1), status);
             status = ANTS_ERROR;
             continue;
         }
@@ -345,7 +361,8 @@ int main(int argc, char * argv[])
     status |= arm();
     status |= disarm();
     status |= configure();
-    status |= arm(); /* System needs to be armed to run deploy commands successfully */
+    status |= arm(); /* System needs to be armed to run deploy commands
+                        successfully */
     status |= deploy(ANT_3, false, 1);
     status |= deploy(ANT_1, true, 1);
     status |= auto_deploy();
@@ -361,7 +378,7 @@ int main(int argc, char * argv[])
     k_ants_terminate();
 
     fprintf(fp, "\nISIS AntS Integration Tests Complete\n"
-                  "------------------------------------\n\n");
+                "------------------------------------\n\n");
 
     if (status == ANTS_OK)
     {
@@ -370,7 +387,8 @@ int main(int argc, char * argv[])
     }
     else
     {
-        fprintf(stderr, "One or more AntS tests have failed. See ant-results.txt for info\n");
+        fprintf(stderr, "One or more AntS tests have failed. See "
+                        "ant-results.txt for info\n");
         fprintf(fp, "One or more AntS tests have failed\n");
     }
 

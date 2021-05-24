@@ -35,9 +35,9 @@ use std::time::Duration;
 use tempfile::TempDir;
 use toml;
 
-/// The default application registry directory in KubOS
-pub static K_APPS_DIR: &str = "/home/system/kubos/apps";
-pub static DEFAULT_CONFIG: &str = "/etc/kubos-config.toml";
+/// The default application registry directory in CubeOS
+pub static K_APPS_DIR: &str = "/home/system/cubeos/apps";
+pub static DEFAULT_CONFIG: &str = "/etc/cubeos-config.toml";
 
 /// AppRegistry
 #[derive(Clone, Debug)]
@@ -59,7 +59,7 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new_from_dir("/my/apps");
     /// ```
     pub fn new_from_dir(apps_dir: &str) -> Result<AppRegistry, AppError> {
@@ -102,7 +102,7 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new();
     /// ```
     pub fn new() -> Result<AppRegistry, AppError> {
@@ -214,9 +214,9 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new();
-    /// registry.register("/home/kubos/my-app-bin");
+    /// registry.register("/home/cubeos/my-app-bin");
     /// ```
     pub fn register(&self, path: &str) -> Result<AppRegistryEntry, AppError> {
         let app_path = Path::new(path);
@@ -378,7 +378,7 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new();
     /// registry.uninstall("my-app", "1.0");
     /// ```
@@ -463,7 +463,7 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new();
     /// registry.uninstall("my-app", "1.0");
     /// ```
@@ -528,7 +528,7 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new();
     /// registry.set_version("my-app", "1.0");
     /// ```
@@ -595,7 +595,7 @@ impl AppRegistry {
     /// # Examples
     ///
     /// ```
-    /// # use kubos_app::registry::AppRegistry;
+    /// # use cubeos_app::registry::AppRegistry;
     /// let registry = AppRegistry::new();
     /// registry.start_app("my-app", None, None);
     /// ```

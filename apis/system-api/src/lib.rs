@@ -16,7 +16,7 @@
 #![deny(warnings)]
 #![deny(missing_docs)]
 
-//! KubOS System level APIs
+//! CubeOS System level APIs
 
 mod config;
 pub mod logger;
@@ -26,26 +26,26 @@ pub use crate::config::DEFAULT_PATH as DEFAULT_CONFIG_PATH;
 pub use crate::config::*;
 pub use crate::uboot::UBootVars;
 
-/// The name of the KubOS app service that can be used to derive service configuration
+/// The name of the CubeOS app service that can be used to derive service configuration
 pub const SERVICE_APP: &str = "app-service";
-/// The name of the KubOS telemetry db service that can be used to dervice service configuration
+/// The name of the CubeOS telemetry db service that can be used to dervice service configuration
 pub const SERVICE_TELEMETRY: &str = "telemetry-service";
 
-/// Information about the version(s) of KubOS installed in the system
-pub struct KubosVersions {
-    /// The current or "active" version of KubOS
+/// Information about the version(s) of CubeOS installed in the system
+pub struct CubeOSVersions {
+    /// The current or "active" version of CubeOS
     pub curr: Option<String>,
-    /// The previous or "inactive" version of KubOS. If there is no previous version, this will be
+    /// The previous or "inactive" version of CubeOS. If there is no previous version, this will be
     /// None
     pub prev: Option<String>,
 }
 
-/// Fetch information about the version(s) of KubOS installed in the system
+/// Fetch information about the version(s) of CubeOS installed in the system
 ///
-/// Returns the current and previous version(s) of KubOS.
-pub fn kubos_versions() -> KubosVersions {
+/// Returns the current and previous version(s) of CubeOS.
+pub fn cubeos_versions() -> CubeOSVersions {
     let vars = UBootVars::new();
-    KubosVersions {
+    CubeOSVersions {
         curr: vars.get_str(uboot::VAR_KUBOS_CURR_VERSION),
         prev: vars.get_str(uboot::VAR_KUBOS_PREV_VERSION),
     }

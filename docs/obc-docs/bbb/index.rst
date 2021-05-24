@@ -1,4 +1,4 @@
-KubOS for the Beaglebone Black
+CubeOS for the Beaglebone Black
 ==============================
 
 .. toctree::
@@ -22,7 +22,7 @@ As documented in section 7.5 of the :title:`Beaglebone Black System
 Reference Manual`, an FTDI cable can be connected to the serial debug
 connector in order to establish a debug console connection.
 
-This connection will be passed through to a Kubos Vagrant image as
+This connection will be passed through to a CubeOS Vagrant image as
 `/dev/FTDI`.
 
 Ethernet Connection
@@ -34,7 +34,7 @@ ethernet.
 Peripherals
 -----------
 
-By default, KubOS exposes the following peripheral components:
+By default, CubeOS exposes the following peripheral components:
 
 - Ethernet
 - 2 I2C buses

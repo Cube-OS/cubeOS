@@ -1,7 +1,7 @@
 Monitor Service
 ===============
 
-The monitor service is a special hardware service which is included by default in KubOS.
+The monitor service is a special hardware service which is included by default in CubeOS.
 Instead of having an external hardware endpoint, this service's endpoint is the OBC itself.
 
 The monitor service provides a way to check currently running processes and total system memory

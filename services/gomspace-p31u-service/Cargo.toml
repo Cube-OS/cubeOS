@@ -6,7 +6,7 @@ edition = "2018"
 
 [dependencies]
 gomspace-p31u-api = { path = "../../apis/gomspace-p31u-api"}
-kubos-service = { path = "../../services/kubos-service" }
+cubeos-service = { path = "../../services/cubeos-service" }
 rust-i2c = { path = "../../hal/rust-hal/rust-i2c" }
 juniper = "0.11"
 syslog = "4.0"
