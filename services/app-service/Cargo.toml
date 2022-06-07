@@ -1,5 +1,5 @@
 [package]
-name = "kubos-app-service"
+name = "cubeos-app-service"
 version = "0.1.0"
 authors = ["Marshall Culpepper <marshall@kubos.com>", "Catherine Garabedian <catherine@kubos.com>"]
 edition = "2018"
