@@ -957,7 +957,7 @@ dependencies = [
  "bytes 0.4.12",
  "fnv",
  "futures",
- "http 0.1.19",
+ "http 0.1.21",
  "indexmap",
  "log 0.4.8",
  "slab",
@@ -994,7 +994,7 @@ dependencies = [
  "bitflags 1.2.1",
  "bytes 0.4.12",
  "headers-core",
- "http 0.1.19",
+ "http 0.1.21",
  "mime 0.3.14",
  "sha-1",
  "time",
@@ -1007,7 +1007,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "967131279aaa9f7c20c7205b45a391638a83ab118e6509b2d0ccbe08de044237"
 dependencies = [
  "bytes 0.4.12",
- "http 0.1.19",
+ "http 0.1.21",
 ]
 
 [[package]]
@@ -1021,9 +1021,9 @@ dependencies = [
 
 [[package]]
 name = "http"
-version = "0.1.19"
+version = "0.1.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d7e06e336150b178206af098a055e3621e8336027e2b4d126bda0bc64824baaf"
+checksum = "d6ccf5ede3a895d8856620237b2f02972c1bbc78d2965ad7fe8838d4a0ed41f0"
 dependencies = [
  "bytes 0.4.12",
  "fnv",
@@ -1049,7 +1049,7 @@ checksum = "6741c859c1b2463a423a1dbce98d418e6c3c3fc720fb0d45528657320920292d"
 dependencies = [
  "bytes 0.4.12",
  "futures",
- "http 0.1.19",
+ "http 0.1.21",
  "tokio-buf",
 ]
 
@@ -1107,7 +1107,7 @@ dependencies = [
  "futures",
  "futures-cpupool",
  "h2 0.1.26",
- "http 0.1.19",
+ "http 0.1.21",
  "http-body 0.1.0",
  "httparse",
  "iovec",
@@ -3607,7 +3607,7 @@ dependencies = [
  "base64 0.11.0",
  "byteorder",
  "bytes 0.4.12",
- "http 0.1.19",
+ "http 0.1.21",
  "httparse",
  "input_buffer",
  "log 0.4.8",
@@ -3872,7 +3872,7 @@ dependencies = [
  "bytes 0.4.12",
  "futures",
  "headers",
- "http 0.1.19",
+ "http 0.1.21",
  "hyper 0.12.35",
  "log 0.4.8",
  "mime 0.3.14",
