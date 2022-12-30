@@ -8,7 +8,7 @@ edition = "2018"
 diesel = { version = "1.4.6", features = ["sqlite"] }
 kubos-system = { path = "../../../apis/system-api" }
 kubos-telemetry-db = { path = "../../../apis/telemetry-db-api" }
-prettytable-rs = "^0.8"
+prettytable-rs = "^0.10"
 rand = "0.5"
 reqwest = { version = "0.10.8", default-features = false, features = ["blocking", "json"] }
 serde_json = { version = "1.0", default-features = false }
